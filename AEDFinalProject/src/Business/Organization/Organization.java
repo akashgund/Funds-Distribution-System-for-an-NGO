@@ -37,10 +37,10 @@ public abstract class Organization {
         ++counter;
     }
     
-    public enum organisationType{
+    public enum organizationType{
         Clinic("Clinic"),Admin("Organisation Admin"),Provider("Provider"),Doctor("Doctor"),StockManager("Stock Manager");
         private String value;
-        private organisationType(String name)
+        private organizationType(String name)
         {
             this.value=name;
         }
