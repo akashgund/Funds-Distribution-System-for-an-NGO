@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package Interfaces.SystemAdmin;
+
+import Interfaces.*;
 
 /**
  *
  * @author Dell
  */
-public class LoginPage extends javax.swing.JPanel {
+public class ManageFunds extends javax.swing.JPanel {
 
     /**
      * Creates new form LoginPage
      */
-    public LoginPage() {
+    public ManageFunds() {
         initComponents();
     }
 
@@ -60,23 +62,27 @@ public class LoginPage extends javax.swing.JPanel {
         });
 
         jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("SIGN IN");
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Funds Management");
 
         javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
         userProcessContainer.setLayout(userProcessContainerLayout);
         userProcessContainerLayout.setHorizontalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userProcessContainerLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
-                        .addComponent(txtUser)
-                        .addComponent(txtPassword))
-                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(336, Short.MAX_VALUE))
+                    .addGroup(userProcessContainerLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                                .addComponent(txtUser)
+                                .addComponent(txtPassword))
+                            .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(userProcessContainerLayout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jLabel6)))
+                .addContainerGap(176, Short.MAX_VALUE))
             .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(userProcessContainerLayout.createSequentialGroup()
                     .addGap(50, 50, 50)
@@ -86,9 +92,9 @@ public class LoginPage extends javax.swing.JPanel {
         userProcessContainerLayout.setVerticalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userProcessContainerLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(151, 151, 151)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
