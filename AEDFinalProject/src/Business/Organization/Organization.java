@@ -38,7 +38,7 @@ public abstract class Organization {
     }
     
     public enum organizationType{
-        Admin("Organisation Admin"),Provider("Provider"),Doctor("Doctor"),StockManager("Stock Manager");//change this
+        schoolAdmin("School Admin"),principal("Principal"),treasury("Treasury"),stationaryInventroyManager("Stationary Inventory Manager"),stationaryInvoiceManager("Stationary Invoice Manager"),vaccineManufacturer("Vaccince Manufacturer"),healthProviderInventoryManager("Health Provider Inventory Manager");//change this
         private String value;
         private organizationType(String name)
         {
