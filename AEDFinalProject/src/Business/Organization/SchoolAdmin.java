@@ -23,7 +23,7 @@ public class SchoolAdmin extends Organization{
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList<>();
         roles.add(new SchoolAdminRole());
-        return roles; //To change body of generated methods, choose Tools | Templates.
+        return roles; 
     }
     
 }
