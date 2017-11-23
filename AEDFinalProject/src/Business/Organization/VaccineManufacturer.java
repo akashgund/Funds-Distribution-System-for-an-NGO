@@ -5,10 +5,30 @@
  */
 package Business.Organization;
 
+
+import Business.Role.Role;
+
+import Business.Role.VaccineManufacturerRole;
+import java.util.ArrayList;
+
+
 /**
  *
  * @author akash
  */
-public class VaccineManufacturer {
+
+public class VaccineManufacturer extends Organization {
+
+    public VaccineManufacturer(String name) {
+        super(Organization.organizationType.vaccineManufacturer.getValue());
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+         ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new VaccineManufacturerRole());
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }

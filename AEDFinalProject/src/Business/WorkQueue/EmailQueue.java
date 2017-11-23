@@ -12,6 +12,20 @@ import java.util.ArrayList;
  * @author akash
  */
 public class EmailQueue {
+    ArrayList<Email> emailQueue;
+
+    public EmailQueue() {
+        emailQueue = new ArrayList<Email>();
+    }
+
+    public ArrayList<Email> getEmailQueue() {
+        return emailQueue;
+    }
+
+    public void setEmailQueue(ArrayList<Email> emailQueue) {
+        this.emailQueue = emailQueue;
+    }
+    
     
     ArrayList<Email> emailQueue;
     

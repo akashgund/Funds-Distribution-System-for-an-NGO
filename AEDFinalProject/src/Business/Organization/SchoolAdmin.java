@@ -16,14 +16,18 @@ import java.util.ArrayList;
 public class SchoolAdmin extends Organization{
 
     public SchoolAdmin(String name) {
-        super(organizationType.schoolAdmin.getValue());
+
+        super(Organization.organizationType.schoolAdmin.getValue());
+
     }
 
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList<>();
         roles.add(new SchoolAdminRole());
+
         return roles; //To change body of generated methods, choose Tools | Templates.
+
     }
     
 }
