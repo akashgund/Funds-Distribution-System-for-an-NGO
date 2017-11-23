@@ -219,6 +219,10 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
 
     private void loginButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton3ActionPerformed
         // TODO add your handling code here:
+        ManageEmails panel = new ManageEmails(container);
+        container.add("ManageEmails", panel);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
     }//GEN-LAST:event_loginButton3ActionPerformed
 
     private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed

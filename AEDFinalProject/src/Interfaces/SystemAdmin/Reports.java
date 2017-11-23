@@ -22,17 +22,23 @@ public class Reports extends javax.swing.JPanel {
      */
     JPanel container;
     Timer t;
+    int x=100,y=100;
 
     public Reports(JPanel container) {
         initComponents();
         this.container = container;
+        jProgressBar1.setValue(x);
+        jProgressBar2.setValue(y);
         load();
     }
 
     public void load() {
-        final Timer t = new Timer(25, (ActionEvent e) -> {
-            jProgressBar1.setValue(jProgressBar1.getValue() + 1);
-            if (jProgressBar1.getValue() == 80) {
+        final Timer t = new Timer(7000, (ActionEvent e) -> {
+            x--;
+            y--;
+            jProgressBar1.setValue(x);
+            jProgressBar2.setValue(y);
+            if (jProgressBar1.getValue() == 30) {
                 ((Timer) e.getSource()).stop();
             }
         });
@@ -49,10 +55,21 @@ public class Reports extends javax.swing.JPanel {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jLabel10 = new javax.swing.JLabel();
+        jProgressBar5 = new javax.swing.JProgressBar();
+        scrollbar1 = new java.awt.Scrollbar();
         userProcessContainer = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
+        jLabel7 = new javax.swing.JLabel();
+        jProgressBar2 = new javax.swing.JProgressBar();
+        jLabel8 = new javax.swing.JLabel();
+        jProgressBar3 = new javax.swing.JProgressBar();
+        jLabel9 = new javax.swing.JLabel();
+        jProgressBar4 = new javax.swing.JProgressBar();
+        jLabel11 = new javax.swing.JLabel();
+        jProgressBar6 = new javax.swing.JProgressBar();
 
         jMenuItem1.setText("jMenuItem1");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +77,14 @@ public class Reports extends javax.swing.JPanel {
                 jMenuItem1ActionPerformed(evt);
             }
         });
+
+        jLabel10.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel10.setText("Overall Score");
+
+        jProgressBar5.setBackground(new java.awt.Color(51, 51, 255));
+        jProgressBar5.setForeground(new java.awt.Color(0, 0, 0));
+        jProgressBar5.setStringPainted(true);
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -77,6 +102,38 @@ public class Reports extends javax.swing.JPanel {
         jProgressBar1.setForeground(new java.awt.Color(0, 0, 0));
         jProgressBar1.setStringPainted(true);
 
+        jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel7.setText("Infrastructure");
+
+        jProgressBar2.setBackground(new java.awt.Color(51, 51, 255));
+        jProgressBar2.setForeground(new java.awt.Color(0, 0, 0));
+        jProgressBar2.setStringPainted(true);
+
+        jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel8.setText("Utility Funds");
+
+        jProgressBar3.setBackground(new java.awt.Color(51, 51, 255));
+        jProgressBar3.setForeground(new java.awt.Color(0, 0, 0));
+        jProgressBar3.setStringPainted(true);
+
+        jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel9.setText("Faculty Score");
+
+        jProgressBar4.setBackground(new java.awt.Color(51, 51, 255));
+        jProgressBar4.setForeground(new java.awt.Color(0, 0, 0));
+        jProgressBar4.setStringPainted(true);
+
+        jLabel11.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel11.setText("Healthcare");
+
+        jProgressBar6.setBackground(new java.awt.Color(51, 51, 255));
+        jProgressBar6.setForeground(new java.awt.Color(0, 0, 0));
+        jProgressBar6.setStringPainted(true);
+
         javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
         userProcessContainer.setLayout(userProcessContainerLayout);
         userProcessContainerLayout.setHorizontalGroup(
@@ -88,9 +145,23 @@ public class Reports extends javax.swing.JPanel {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(userProcessContainerLayout.createSequentialGroup()
                         .addGap(82, 82, 82)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(userProcessContainerLayout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(81, 81, 81)
+                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(userProcessContainerLayout.createSequentialGroup()
+                                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jProgressBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jProgressBar3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jProgressBar4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jProgressBar6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
         userProcessContainerLayout.setVerticalGroup(
@@ -102,7 +173,23 @@ public class Reports extends javax.swing.JPanel {
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(492, Short.MAX_VALUE))
+                .addGap(107, 107, 107)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jProgressBar6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -118,7 +205,7 @@ public class Reports extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 613, Short.MAX_VALUE)
+            .addGap(0, 621, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -133,10 +220,21 @@ public class Reports extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar2;
+    private javax.swing.JProgressBar jProgressBar3;
+    private javax.swing.JProgressBar jProgressBar4;
+    private javax.swing.JProgressBar jProgressBar5;
+    private javax.swing.JProgressBar jProgressBar6;
+    private java.awt.Scrollbar scrollbar1;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
 
