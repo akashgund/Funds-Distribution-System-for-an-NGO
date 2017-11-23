@@ -17,6 +17,7 @@ import java.util.ArrayList;
  * @author akash
  */
 public class HealthCare extends Organization {
+
     private String healthProviderName;
     private EmailQueue emailQueue;
     private static HealthCare healthCareProvider;
@@ -46,30 +47,27 @@ public class HealthCare extends Organization {
     public void setWorkQueue(WorkQueue workQueue) {
         this.workQueue = workQueue;
     }
-    
-    
-    
 
-   private HealthCare(String name) {
+    private HealthCare(String name) {
         super(name);
-        workQueue= new WorkQueue();
-        vaccineManufacturer= new VaccineManufacturer.getInstance();//hanlde code later
-        emailQueue= new EmailQueue();
-        
+        workQueue = new WorkQueue();
+        //vaccineManufacturer= new Hea//hanlde code later
+        vaccineManufacturer = VaccineManufacturer.getInstance();
+        emailQueue = new EmailQueue();
+
     }
-private static HealthCare getInstance()
-{
-    if(healthCareProvider==null)
-    {
-        healthCareProvider= new HealthCare(null);// chk for the name passed
-        
+
+    public static HealthCare getInstance() {
+        if (healthCareProvider == null) {
+            healthCareProvider = new HealthCare(null);// chk for the name passed
+
+        }
+        return healthCareProvider;
     }
-    return healthCareProvider;
-}
+
     @Override
     public ArrayList<Role> getSupportedRole() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }
