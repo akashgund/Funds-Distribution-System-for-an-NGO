@@ -28,7 +28,8 @@ public class Network extends Organization {
     {
         super(null);//Add super constructor call;
         schoolDirectory= new SchoolDirectory();
-       /* healthCare = HealthCare.getInstance();
+        healthCare = HealthCare.getInstance();
+        /*
         infraProvider=InfraProvider.getInstance();remaove comments
         stationaryProvider=StationaryProvider.getInstance();*/
         
