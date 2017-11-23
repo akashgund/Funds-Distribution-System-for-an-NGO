@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class SchoolAdmin extends Organization{
 
     public SchoolAdmin(String name) {
-        super(organizationType.schoolAdmin.getValue());
+        super(Organization.organizationType.schoolAdmin.getValue());
     }
 
     @Override

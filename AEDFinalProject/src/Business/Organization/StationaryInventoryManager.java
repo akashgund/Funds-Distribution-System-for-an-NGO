@@ -5,10 +5,26 @@
  */
 package Business.Organization;
 
+import Business.Role.Role;
+import Business.Role.SchoolTreasuryRole;
+import Business.Role.StaionaryInventoryManagerRole;
+import java.util.ArrayList;
+
 /**
  *
  * @author akash
  */
-public class StationaryInventoryManager {
+public class StationaryInventoryManager extends Organization {
+
+    public StationaryInventoryManager(String name) {
+        super(Organization.organizationType.stationaryInventroyManager.getValue());
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+         ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new StaionaryInventoryManagerRole());
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
