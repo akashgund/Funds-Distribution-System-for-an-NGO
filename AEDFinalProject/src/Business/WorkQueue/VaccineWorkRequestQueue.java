@@ -9,6 +9,6 @@ package Business.WorkQueue;
  *
  * @author akash
  */
-public class WorkRequest {
+public class VaccineWorkRequestQueue {
     
 }

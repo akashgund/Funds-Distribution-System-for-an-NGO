@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.WorkQueue;
+package Business.Funds;
 
 /**
  *
  * @author akash
  */
-public class WorkRequest {
+public class InfraFunds {
     
 }

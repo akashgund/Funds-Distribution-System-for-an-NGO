@@ -21,6 +21,7 @@ public class Network extends Organization {
     private HealthCare healthCare;
     private InfraProvider infraProvider;
     private StationaryProvider stationaryProvider;
+    
      //make Builders,stionary/healthcare
 
     //public abstract ArrayList<networkRole> getSupportedRole();

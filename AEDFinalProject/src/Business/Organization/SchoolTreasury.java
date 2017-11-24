@@ -5,29 +5,34 @@
  */
 package Business.Organization;
 
+import Business.Ecosystem.Ecosystem;
+import Business.Enterprize.Enterprize;
+import Business.Network.Network;
+import Business.Role.Role;
+import Business.Role.SchoolPrincipalRole;
+import Business.Role.SchoolTreasuryRole;
+import Business.Users.UserAccount;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
 /**
  *
  * @author akash
  */
-public class SchoolTreasury {
-    
-    ArrayList<Email> emailQueue;
-    
-    public EmailQueue()
-    {
-        emailQueue= new ArrayList<Email>();
-        
+public class SchoolTreasury extends Organization{
+
+    public SchoolTreasury(String name) {
+        super(Organization.organizationType.treasury.getValue());
     }
 
-    public ArrayList<Email> getEmailQueue() {
-        return emailQueue;
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+         ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new SchoolTreasuryRole());
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 
-    public void setEmailQueue(ArrayList<Email> emailQueue) {
-        this.emailQueue = emailQueue;
-    }
     
     
     

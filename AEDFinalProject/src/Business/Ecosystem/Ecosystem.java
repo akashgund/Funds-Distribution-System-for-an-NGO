@@ -18,6 +18,7 @@ public class Ecosystem extends Organization {
     
     private static Ecosystem business;
     ArrayList< Network> networkList;
+    
    
 
     public static Ecosystem getInstance()    {
