@@ -9,6 +9,43 @@ package Business.WorkQueue;
  *
  * @author akash
  */
-public class WorkRequest {
+public class WorkRequest extends WorkRequestABS {
+    String fundType;
+    double fundRequested;
+    double fundAccepted;
+    String grantStatus;
+
+    public String getGrantStatus() {
+        return grantStatus;
+    }
+
+    public void setGrantStatus(String grantStatus) {
+        this.grantStatus = grantStatus;
+    }
+    
+    public String getFundType() {
+        return fundType;
+    }
+
+    public void setFundType(String fundType) {
+        this.fundType = fundType;
+    }
+
+    public double getFundRequested() {
+        return fundRequested;
+    }
+
+    public void setFundRequested(double fundRequested) {
+        this.fundRequested = fundRequested;
+    }
+
+    public double getFundAccepted() {
+        return fundAccepted;
+    }
+
+    public void setFundAccepted(double fundAccepted) {
+        this.fundAccepted = fundAccepted;
+    }
+    
     
 }
