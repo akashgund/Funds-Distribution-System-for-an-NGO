@@ -5,10 +5,18 @@
  */
 package Business.WorkQueue;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author akash
  */
 public class VaccineWorkRequestQueue {
+    ArrayList<VaccineWorkRequest> vaccineWorkRequestQueue;
+
+    public VaccineWorkRequestQueue() {
+        vaccineWorkRequestQueue= new ArrayList<VaccineWorkRequest>();
+    }
+    
     
 }
