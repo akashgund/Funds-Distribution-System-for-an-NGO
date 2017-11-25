@@ -30,7 +30,7 @@ public abstract class Organization {
     public Organization(String name)
     {
 
-        organisationName= name;
+        organizationName= name;
         workQueue = new WorkQueue();
         emailQueue = new EmailQueue();
 
