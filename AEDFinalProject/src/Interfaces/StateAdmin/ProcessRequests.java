@@ -3,20 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces.SystemAdmin;
+package Interfaces.StateAdmin;
 
+import Interfaces.SystemAdmin.*;
 import Interfaces.*;
 
 /**
  *
  * @author Dell
  */
-public class ManageFunds extends javax.swing.JPanel {
+public class ProcessRequests extends javax.swing.JPanel {
 
     /**
      * Creates new form LoginPage
      */
-    public ManageFunds() {
+    public ProcessRequests() {
         initComponents();
     }
 

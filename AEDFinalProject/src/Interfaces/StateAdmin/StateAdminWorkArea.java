@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces.SystemAdmin;
+package Interfaces.StateAdmin;
 
+import Interfaces.SystemAdmin.*;
 import Interfaces.*;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -13,13 +14,13 @@ import javax.swing.JPanel;
  *
  * @author Dell
  */
-public class SystemAdminWorkArea extends javax.swing.JPanel {
+public class StateAdminWorkArea extends javax.swing.JPanel {
 
     /**
      * Creates new form LoginPage
      */
     JPanel container;
-    public SystemAdminWorkArea(JPanel container) {
+    public StateAdminWorkArea(JPanel container) {
         initComponents();
         this.container = container;
     }
@@ -36,12 +37,10 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
         userProcessContainer = new javax.swing.JPanel();
         txtUser = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        loginButton1 = new javax.swing.JButton();
         loginButton2 = new javax.swing.JButton();
         loginButton3 = new javax.swing.JButton();
         loginButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -64,22 +63,10 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("My Dashboard");
 
-        loginButton1.setBackground(new java.awt.Color(255, 0, 51));
-        loginButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        loginButton1.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton1.setText("Manage Resources");
-        loginButton1.setBorder(null);
-        loginButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButton1ActionPerformed(evt);
-            }
-        });
-
         loginButton2.setBackground(new java.awt.Color(255, 0, 51));
         loginButton2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         loginButton2.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton2.setText("View Progress Reports");
+        loginButton2.setText("Process Requests");
         loginButton2.setBorder(null);
         loginButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -114,8 +101,6 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\progress1.PNG")); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\trustfunds.jpg")); // NOI18N
-
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\accounts.PNG")); // NOI18N
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\email.PNG")); // NOI18N
@@ -124,26 +109,15 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
         userProcessContainer.setLayout(userProcessContainerLayout);
         userProcessContainerLayout.setHorizontalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(loginButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(loginButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loginButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
-                        .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(loginButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1))
+                        .addComponent(loginButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,6 +126,15 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
                 .addGap(194, 194, 194)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(231, 231, 231)))))
         );
         userProcessContainerLayout.setVerticalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,15 +143,11 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 196, Short.MAX_VALUE))
@@ -205,16 +184,9 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
 
-    private void loginButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginButton1ActionPerformed
-
     private void loginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton2ActionPerformed
         // TODO add your handling code here:
-        ProgressReports panel = new ProgressReports(container);
-        container.add("ProgressReports", panel);
-        CardLayout layout = (CardLayout) container.getLayout();
-        layout.next(container);
+        
     }//GEN-LAST:event_loginButton2ActionPerformed
 
     private void loginButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton3ActionPerformed
@@ -228,11 +200,9 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JButton loginButton1;
     private javax.swing.JButton loginButton2;
     private javax.swing.JButton loginButton3;
     private javax.swing.JButton loginButton4;
