@@ -5,10 +5,36 @@
  */
 package Business.WorkQueue;
 
+import java.util.Date;
+
 /**
  *
  * @author akash
  */
-public class Email {
+public class Email extends WorkRequestABS{
+    String emailContent;
+    private Date requestDate;
+    
+    public Email()
+    {
+        requestDate= new Date();
+    }
+
+    public String getEmailContent() {
+        return emailContent;
+    }
+
+    public void setEmailContent(String emailContent) {
+        this.emailContent = emailContent;
+    }
+
+    public Date getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
+    }
+    
     
 }

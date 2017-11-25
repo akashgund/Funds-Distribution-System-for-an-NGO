@@ -11,14 +11,12 @@ import java.util.ArrayList;
  *
  * @author akash
  */
-public class WorkQueue {
-    private ArrayList<WorkRequestABS> workRequestList;
+public class VaccineWorkRequestQueue {
+    ArrayList<VaccineWorkRequest> vaccineWorkRequestQueue;
 
-    public WorkQueue() {
-        workRequestList = new ArrayList<>();
+    public VaccineWorkRequestQueue() {
+        vaccineWorkRequestQueue= new ArrayList<VaccineWorkRequest>();
     }
-
-    public ArrayList<WorkRequestABS> getWorkRequestList() {
-        return workRequestList;
-    }
+    
+    
 }
