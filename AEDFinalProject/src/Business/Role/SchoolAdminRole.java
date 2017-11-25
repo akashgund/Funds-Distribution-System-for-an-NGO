@@ -18,12 +18,13 @@ import javax.swing.JPanel;
  */
 public class SchoolAdminRole extends Role{
 
-  
-
-
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network, Organization organisation, Enterprize enterprise, Ecosystem business) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+  
+
+
+   
 }
