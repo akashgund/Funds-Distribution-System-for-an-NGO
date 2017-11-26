@@ -17,29 +17,7 @@ import javax.swing.JPanel;
  * @author akash
  */
 public abstract class Role {
-    public enum roletype{
-        SystemAdmin("SystemAdmin"),SchoolAdminRole("School Admin"),Principal("principal"),Teacher("Teacher");
-        
-        public String value;
-        
-        private roletype(String value)
-        {
-            this.value=value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        public void setValue(String value) {
-            this.value = value;
-        }
-        @Override
-        public String toString()
-        {
-            return(value);
-        }
-    }
+    
     
     public abstract JPanel createWorkArea(JPanel userProcessContainer, 
             UserAccount account,

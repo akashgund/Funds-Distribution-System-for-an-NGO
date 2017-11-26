@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public abstract class Organization {
     
-    private String organisationName;
+    private String organizationName;
     //add workqueue 
  
     private EmployeeDirectory employeeDirectory;
@@ -26,7 +26,7 @@ public abstract class Organization {
     public Organization(String name)
     {
         //loop ids
-        organisationName= name;
+        organizationName= name;
        
      
         employeeDirectory= new EmployeeDirectory();
@@ -53,15 +53,17 @@ public abstract class Organization {
             this.value = value;
         }
         
-        
     }
+        
+        
+    
  
 
     
 
     
     
-          public abstract ArrayList<Role> getSupportedRole();
+    public abstract ArrayList<Role> getSupportedRole();
 
     
 
@@ -86,11 +88,11 @@ public abstract class Organization {
 
 
     public String getOrganisationName() {
-        return organisationName;
+        return organizationName;
     }
 
     public void setOrganisationName(String organisationName) {
-        this.organisationName = organisationName;
+        this.organizationName = organisationName;
     }
 
     public int getOrganizationID() {
@@ -102,7 +104,7 @@ public abstract class Organization {
     }
     public String toString()
     {
-        return organisationName;
+        return organizationName;
     }
     
 }
