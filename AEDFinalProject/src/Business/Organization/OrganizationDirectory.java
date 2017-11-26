@@ -13,11 +13,11 @@ import java.util.ArrayList;
  * @author akash
  */
 public class OrganizationDirectory {
+
     ArrayList<Organization> organizationList;
-            public OrganizationDirectory()
-    {
-      organizationList= new ArrayList<Organization>();  
-      
+
+    public OrganizationDirectory() {
+        organizationList = new ArrayList<Organization>();
     }
 
     public ArrayList<Organization> getOrganisationList() {
@@ -27,27 +27,24 @@ public class OrganizationDirectory {
     public void setOrganisationList(ArrayList<Organization> organisationList) {
         this.organizationList = organisationList;
     }
-            
-    
-    public Organization createOrganisation()
-    {
+
+    public Organization createOrganisation() {
         //ADD ORGANISATION ADDING STUFFS HERE
-        
+
         return null;
     }
-    public Organization createOrganization(organizationType type){
+
+    public Organization createOrganization(organizationType type) {
         Organization organization = null;
         /*
         if (type.getValue().equals(organizationType.Doctor.getValue())){
             organization = new Doctor();
             organisationList.add(organization);
         }
-*/
+         */
         //add code here
-        
-        
+
         return organization;
     }
-            
-}
 
+}

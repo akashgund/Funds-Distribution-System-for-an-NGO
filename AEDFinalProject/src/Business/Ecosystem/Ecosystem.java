@@ -34,11 +34,10 @@ public class Ecosystem extends Organization {
          
         super(null);
         networkList = new ArrayList<>();
-        
         //Configuration.configure();
     }
-      public Network createAndAddNetwork() {
-        Network network = new Network();
+      public Network createAndAddNetwork(String name) {
+        Network network = new Network(name);
         networkList.add(network);
         return network;
     }
