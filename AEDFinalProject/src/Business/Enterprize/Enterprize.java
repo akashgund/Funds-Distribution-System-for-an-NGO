@@ -46,7 +46,7 @@ import Business.Organization.OrganizationDirectory;
    
     
     public enum Enterprisetype {
-      School("School");
+      School("School"),Infrastructure("Infrastructure Provider"),Stationary("Stationary Provider"),Healthcare("Healthcare Provider"),Vaccine("Vaccine Manufacturer");
       //changes req
       private String value;
       private Enterprisetype(String value)
@@ -65,10 +65,10 @@ import Business.Organization.OrganizationDirectory;
           return value;
       }
   }
-    
-    
-
-
-    
+   @Override
+      public String toString()
+      {
+          return this.getOrganisationName();
+      } 
 }
 

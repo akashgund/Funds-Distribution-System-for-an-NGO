@@ -8,6 +8,8 @@ package Business.Organization;
 import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
 import Business.Users.UserAccountDirectory;
+import Business.WorkQueue.EmailQueue;
+import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -23,19 +25,27 @@ public abstract class Organization {
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter;
+    private WorkQueue workQueue;
+    private EmailQueue emailQueue;
     public Organization(String name)
     {
-        //loop ids
         organisationName= name;
-       
-     
+        workQueue = new WorkQueue();
+        emailQueue = new EmailQueue();
         employeeDirectory= new EmployeeDirectory();
         userAccountDirectory= new UserAccountDirectory();
-        
-        
         organizationID=counter;
         ++counter;
     }
+
+    public WorkQueue getWorkQueue() {
+        return workQueue;
+    }
+
+    public EmailQueue getEmailQueue() {
+        return emailQueue;
+    }
+    
     
     public enum organizationType{
         schoolAdmin("School Admin"),principal("Principal"),treasury("Treasury"),stationaryInventroyManager("Stationary Inventory Manager"),stationaryInvoiceManager("Stationary Invoice Manager"),vaccineManufacturer("Vaccince Manufacturer"),healthProviderInventoryManager("Health Provider Inventory Manager");//change this
