@@ -4,16 +4,16 @@
  * and open the template in the editor.
  */
 package Business.Enterprize;
-
+import Business.Enterprize.Enterprize.Enterprisetype;
 import java.util.ArrayList;
 
 /**
  *
  * @author akash
  */
-public class SchoolDirectory {
+public class EnterpriseDirectory {
     public ArrayList<Enterprize> enterprizeList;
-    public SchoolDirectory()
+    public EnterpriseDirectory()
     {
         enterprizeList= new ArrayList<>();
         
@@ -26,16 +26,12 @@ public class SchoolDirectory {
     public void setEnterpriseList(ArrayList<Enterprize> enterpriseList) {
         this.enterprizeList = enterpriseList;
     }
-     public Enterprize createAndAddEnterprise(String name, Enterprize.Enterprisetype type){
+     public Enterprize createAndAddEnterprise(String name, Enterprisetype type){
         Enterprize enterprize = null;
-        //add code here
-        /*
-        if (type == Enterprize.Enterprisetype.Health){
-            enterprise = new HealthEnterprise(name);
-            enterpriseList.add(enterprise);
+        if (type == Enterprize.Enterprisetype.School){
+            enterprize = new School(name);
+            enterprizeList.add(enterprize);
         }
-        
-*/
         return enterprize;
     }
     

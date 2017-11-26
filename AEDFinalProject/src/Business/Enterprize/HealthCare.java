@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Network;
+package Business.Enterprize;
 
+import Business.Network.*;
+import Business.Enterprize.Enterprize;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.WorkQueue.Email;
@@ -16,13 +18,10 @@ import java.util.ArrayList;
  *
  * @author akash
  */
-public class HealthCare extends Organization {
+public class HealthCare extends Enterprize {
 
     private String healthProviderName;
-    private EmailQueue emailQueue;
     private static HealthCare healthCareProvider;
-    private WorkQueue workQueue;
-    private VaccineManufacturer vaccineManufacturer;
 
     public String getHealthProviderName() {
         return healthProviderName;
@@ -40,32 +39,17 @@ public class HealthCare extends Organization {
         HealthCare.healthCareProvider = healthCareProvider;
     }
 
-    public WorkQueue getWorkQueue() {
-        return workQueue;
-    }
-
-    public void setWorkQueue(WorkQueue workQueue) {
-        this.workQueue = workQueue;
-    }
-
     private HealthCare(String name) {
-        super(name);
-        workQueue = new WorkQueue();
-        //vaccineManufacturer= new Hea//hanlde code later
-        vaccineManufacturer = VaccineManufacturer.getInstance();
-        emailQueue = new EmailQueue();
-
+        super(name,Enterprize.Enterprisetype.Healthcare);
     }
 
     public static HealthCare getInstance() {
         if (healthCareProvider == null) {
             healthCareProvider = new HealthCare(null);// chk for the name passed
-
         }
         return healthCareProvider;
     }
-
-    @Override
+     @Override
     public ArrayList<Role> getSupportedRole() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

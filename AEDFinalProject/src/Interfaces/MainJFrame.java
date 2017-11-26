@@ -5,8 +5,15 @@
  */
 package Interfaces;
 
+import Business.Ecosystem.Configuration;
+import Business.Ecosystem.Ecosystem;
+import Business.Enterprize.Enterprize;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.Users.UserAccount;
 import Interfaces.SystemAdmin.SystemAdminWorkArea;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,8 +24,11 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    private Ecosystem system;
+
     public MainJFrame() {
         initComponents();
+        system = Configuration.configure();
     }
 
     /**
@@ -36,7 +46,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
-        jpanel = new javax.swing.JPanel();
+        loginPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -91,7 +101,7 @@ public class MainJFrame extends javax.swing.JFrame {
         container.setBackground(new java.awt.Color(255, 255, 255));
         container.setLayout(new java.awt.CardLayout());
 
-        jpanel.setBackground(new java.awt.Color(255, 255, 255));
+        loginPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -117,29 +127,29 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("SIGN IN");
 
-        javax.swing.GroupLayout jpanelLayout = new javax.swing.GroupLayout(jpanel);
-        jpanel.setLayout(jpanelLayout);
-        jpanelLayout.setHorizontalGroup(
-            jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
+        loginPanel.setLayout(loginPanelLayout);
+        loginPanelLayout.setHorizontalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginPanelLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                         .addComponent(txtUser)
                         .addComponent(txtPassword))
                     .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(336, Short.MAX_VALUE))
-            .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jpanelLayout.createSequentialGroup()
+            .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(loginPanelLayout.createSequentialGroup()
                     .addGap(50, 50, 50)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(341, Short.MAX_VALUE)))
         );
-        jpanelLayout.setVerticalGroup(
-            jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpanelLayout.createSequentialGroup()
+        loginPanelLayout.setVerticalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginPanelLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
@@ -151,14 +161,14 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(102, Short.MAX_VALUE))
-            .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jpanelLayout.createSequentialGroup()
+            .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(loginPanelLayout.createSequentialGroup()
                     .addGap(168, 168, 168)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(390, Short.MAX_VALUE)))
         );
 
-        container.add(jpanel, "card2");
+        container.add(loginPanel, "card2");
 
         jSplitPane1.setRightComponent(container);
 
@@ -178,10 +188,64 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-        SystemAdminWorkArea panel = new SystemAdminWorkArea(container);
-        container.add("SystemAdminWorkArea", panel);
-        CardLayout layout = (CardLayout) container.getLayout();
-        layout.next(container);
+        String userName = txtUser.getText();
+        // Get Password
+        char[] passwordCharArray = txtPassword.getPassword();
+        String password = String.valueOf(passwordCharArray);
+
+        //Step1: Check in the system user account directory if you have the user
+        UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
+        Enterprize inEnterprise = null;
+        Organization inOrganization = null;
+        Network inNetwork = null;
+        if (userAccount == null) {
+            //Step2: Go inside each network to check each enterprise
+            for (Network network : system.getNetworkList()) {
+                //Step 2-a: Check against each enterprise
+                userAccount = network.getUserAccountDirectory().authenticateUser(userName, password);
+                if (userAccount == null) {
+                    for (Enterprize enterprise : network.getEnterpriseDirectory().getEnterprizeList()) {
+                        userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                        if (userAccount == null) {
+                            //Step3: Check against each organization inside that enterprise
+                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganisationList()) {
+                                userAccount = organization.getUserAccountDirectory().authenticateUser(userName, password);
+                                if (userAccount != null) {
+                                    inEnterprise = enterprise;
+                                    inOrganization = organization;
+                                    break;
+                                }
+                            }
+                        } else {
+                            inEnterprise = enterprise;
+                            break;
+                        }
+                        if (inOrganization != null) {
+                            break;
+                        }
+                    }
+                }//idhar
+                else {
+                    inNetwork = network;
+                    break;
+                }
+                if (inNetwork != null) {
+                    break;
+                }
+            }
+
+        }
+
+        if (userAccount == null) {
+            JOptionPane.showMessageDialog(null, "Invalid Credentails!");
+            return;
+        } else {
+            CardLayout layout = (CardLayout) container.getLayout();
+            container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inNetwork, inOrganization, inEnterprise, system));
+            layout.next(container);
+        }
+
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
@@ -230,8 +294,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JPanel jpanel;
     private javax.swing.JButton loginButton;
+    private javax.swing.JPanel loginPanel;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables

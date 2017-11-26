@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Network;
+package Business.Enterprize;
 
+import Business.Network.*;
+import Business.Enterprize.Enterprize;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.WorkQueue.Email;
@@ -16,27 +18,22 @@ import java.util.ArrayList;
  *
  * @author akash
  */
-public class VaccineManufacturer extends Organization{
+public class VaccineManufacturer extends Enterprize {
 
     private String vaccineManufacturerName;
-    private WorkQueue workQueue;
-    private EmailQueue emailQueue;
     private static VaccineManufacturer vaccineManufacturer;
+
     private VaccineManufacturer(String name) {
-        super(name);
-        workQueue= new WorkQueue();
-        emailQueue= new EmailQueue();
-        
-        
+        super(name, Enterprize.Enterprisetype.Vaccine);
     }
-public static VaccineManufacturer getInstance()
-{
-    if(vaccineManufacturer==null)
-    {
-        vaccineManufacturer= new VaccineManufacturer(null);//chk name passed
+
+    public static VaccineManufacturer getInstance() {
+        if (vaccineManufacturer == null) {
+            vaccineManufacturer = new VaccineManufacturer(null);//chk name passed
+        }
+        return vaccineManufacturer;
     }
-    return vaccineManufacturer;
-}
+
     public String getVaccineManufacturerName() {
         return vaccineManufacturerName;
     }
@@ -44,12 +41,10 @@ public static VaccineManufacturer getInstance()
     public void setVaccineManufacturerName(String vaccineManufacturerName) {
         this.vaccineManufacturerName = vaccineManufacturerName;
     }
-    
 
     @Override
     public ArrayList<Role> getSupportedRole() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
 }

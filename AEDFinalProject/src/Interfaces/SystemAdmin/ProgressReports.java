@@ -5,6 +5,8 @@
  */
 package Interfaces.SystemAdmin;
 
+import Business.Ecosystem.Ecosystem;
+import Business.Network.Network;
 import Interfaces.*;
 import UtilityClasses.JComboBoxDecorator;
 import java.awt.CardLayout;
@@ -24,20 +26,32 @@ public class ProgressReports extends javax.swing.JPanel {
     /**
      * Creates new form LoginPage
      */
-     JPanel container;
-    public ProgressReports( JPanel container) {
+    JPanel container;
+    private Ecosystem business;
+
+    public ProgressReports(JPanel container, Ecosystem business) {
         initComponents();
         this.container = container;
+        this.business = business;
+        jComboBox1.removeAllItems();
+        for (Network n : business.getNetworkList()) {
+            n.getEnterpriseDirectory().getEnterprizeList().stream()
+                    .filter(x -> x.getEnterpriseType().getValue().equals("School"))
+                    .forEach(
+                            x -> {
+                                    jComboBox1.addItem(x.getOrganisationName().toString());
+                            }
+                    );
+        }
         autosuggest();
     }
 
-    
-    public void autosuggest()
-    {
+    public void autosuggest() {
         JTextField text = (JTextField) jComboBox1.getEditor().getEditorComponent();
         text.setText("");
         text.addKeyListener(new JComboBoxDecorator(jComboBox1));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,11 +108,11 @@ public class ProgressReports extends javax.swing.JPanel {
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addGap(188, 188, 188)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, 0, 309, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(197, Short.MAX_VALUE))
         );
         userProcessContainerLayout.setVerticalGroup(
@@ -147,7 +161,7 @@ public class ProgressReports extends javax.swing.JPanel {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 

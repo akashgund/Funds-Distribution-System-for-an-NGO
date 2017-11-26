@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Network;
+package Business.Enterprize;
 
+import Business.Network.*;
+import Business.Enterprize.Enterprize;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.WorkQueue.EmailQueue;
@@ -15,18 +17,13 @@ import java.util.ArrayList;
  *
  * @author akash
  */
-public class InfraProvider extends Organization {
+public class InfraProvider extends Enterprize {
 
     private String infraProviderName;
     private static InfraProvider infraProvider;
-    private WorkQueue workQueue;
-    private EmailQueue emailQueue;
 
     public InfraProvider(String name) {
-        super(name);
-        workQueue = new WorkQueue();
-        emailQueue = new EmailQueue();
-
+        super(name,Enterprize.Enterprisetype.Infrastructure);
     }
 
     public String getInfraProviderName() {
@@ -35,22 +32,6 @@ public class InfraProvider extends Organization {
 
     public void setInfraProviderName(String infraProviderName) {
         this.infraProviderName = infraProviderName;
-    }
-
-    public WorkQueue getWorkQueue() {
-        return workQueue;
-    }
-
-    public void setWorkQueue(WorkQueue workQueue) {
-        this.workQueue = workQueue;
-    }
-
-    public EmailQueue getEmailQueue() {
-        return emailQueue;
-    }
-
-    public void setEmailQueue(EmailQueue emailQueue) {
-        this.emailQueue = emailQueue;
     }
 
     public static InfraProvider getInstance() {

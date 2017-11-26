@@ -5,8 +5,13 @@
  */
 package Business.Network;
 
-import Business.Enterprize.SchoolDirectory;
+import Business.Enterprize.EnterpriseDirectory;
+import Business.Enterprize.HealthCare;
+import Business.Enterprize.InfraProvider;
+import Business.Enterprize.StationaryProvider;
 import Business.Organization.Organization;
+import Business.Organization.OrganizationDirectory;
+import Business.Organization.VaccineManufacturer;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -15,33 +20,37 @@ import java.util.ArrayList;
  * @author akash
  */
 public class Network extends Organization {
-    
+
     private String networkName;
-    SchoolDirectory  schoolDirectory;
     private HealthCare healthCare;
     private InfraProvider infraProvider;
     private StationaryProvider stationaryProvider;
-    
-     //make Builders,stionary/healthcare
-
+    private VaccineManufacturer vaccineManufacturer;
+    private EnterpriseDirectory enterpriseDirectory;
+    //make Builders,stionary/healthcare
     //public abstract ArrayList<networkRole> getSupportedRole();
-    public Network()
-    {
-        super(null);//Add super constructor call;
-        schoolDirectory= new SchoolDirectory();
+    public Network(String name) {
+        super(name);//Add super constructor call;
+        enterpriseDirectory = new EnterpriseDirectory();
         healthCare = HealthCare.getInstance();
-        /*
-        infraProvider=InfraProvider.getInstance();remaove comments
-        stationaryProvider=StationaryProvider.getInstance();*/
-        
+        infraProvider = InfraProvider.getInstance();
+        stationaryProvider = StationaryProvider.getInstance(); 
+        enterpriseDirectory.getEnterprizeList().add(healthCare);
+        enterpriseDirectory.getEnterprizeList().add(infraProvider);
+        enterpriseDirectory.getEnterprizeList().add(stationaryProvider);
+        //enterpriseDirectory.getEnterprizeList().add(vaccineManufacturer);
     }
 
-    public SchoolDirectory getSchoolDirectory() {
-        return schoolDirectory;
+    public EnterpriseDirectory getEnterpriseDirectory() {
+        return enterpriseDirectory;
     }
 
-    public void setSchoolDirectory(SchoolDirectory schoolDirectory) {
-        this.schoolDirectory = schoolDirectory;
+    public VaccineManufacturer getVaccineManufacturer() {
+        return vaccineManufacturer;
+    }
+
+    public void setVaccineManufacturer(VaccineManufacturer vaccineManufacturer) {
+        this.vaccineManufacturer = vaccineManufacturer;
     }
 
     public HealthCare getHealthCare() {
@@ -76,10 +85,6 @@ public class Network extends Organization {
         this.networkName = networkName;
     }
 
-    public SchoolDirectory getEnterpriseDir() {
-        return schoolDirectory;
-    }
-
     @Override
     public String toString() {
         return networkName;
@@ -91,4 +96,3 @@ public class Network extends Organization {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
-
