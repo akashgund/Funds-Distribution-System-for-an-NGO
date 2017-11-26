@@ -53,22 +53,14 @@ public void populateGraph()
         {
             DefaultPieDataset  dataset= new DefaultPieDataset();
       String schoolSelected= schoolJCombo.getSelectedItem().toString();
-      
-       /* for (Supplier supplier:supplierList.getListOfSuppliers())
+      //print analytics for the selected school in this loop
+      for(Enterprize ent: network.getEnterpriseDir().getEnterprizeList() )
         {
-           //DefaultTableModel dtm= (DefaultTableModel) DisplayTable.getModel();
-            ProductCatalogue productCatalogue = supplier.getProductCatalogue();
-            int soldtotal=0;
-            for(Product product:productCatalogue.getListOfProducts())
-            {
-               soldtotal= soldtotal+product.getSold();
-                System.out.println(" in the foolowing loop");
-               
-            }
-             dataset.setValue(supplier.getSupplierName(),soldtotal);//dataset.setValue(orderItem.getProduct().getSold(),"Sales",orderItem.getProduct().getProductName());
+            
+           
+      //dataset.setValue(supplier.getSupplierName(),soldtotal);
         }
-        
-*/
+     
         
 
         JFreeChart chartdata=ChartFactory.createPieChart(

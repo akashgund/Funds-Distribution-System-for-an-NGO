@@ -6,6 +6,7 @@
 package Interfaces.Analytics.StateAdmin;
 
 import Business.Network.Network;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -40,22 +41,22 @@ public void populateMenu()
     private void initComponents() {
 
         JPanel = new javax.swing.JPanel();
-        loginButton = new javax.swing.JButton();
+        performAnalytucsButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         AnalyticsMenu = new javax.swing.JComboBox<>();
 
         JPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        loginButton.setBackground(new java.awt.Color(255, 0, 51));
-        loginButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        loginButton.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton.setText("Perform Analytics");
-        loginButton.setBorder(null);
-        loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
+        performAnalytucsButton.setBackground(new java.awt.Color(255, 0, 51));
+        performAnalytucsButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        performAnalytucsButton.setForeground(new java.awt.Color(255, 255, 102));
+        performAnalytucsButton.setText("Perform Analytics");
+        performAnalytucsButton.setBorder(null);
+        performAnalytucsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        performAnalytucsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                performAnalytucsButtonActionPerformed(evt);
             }
         });
 
@@ -89,7 +90,7 @@ public void populateMenu()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(AnalyticsMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(performAnalytucsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(199, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelLayout.createSequentialGroup()
                 .addContainerGap()
@@ -105,7 +106,7 @@ public void populateMenu()
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AnalyticsMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(253, 253, 253)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(performAnalytucsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(115, Short.MAX_VALUE))
         );
 
@@ -127,9 +128,26 @@ public void populateMenu()
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void performAnalytucsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_performAnalytucsButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_loginButtonActionPerformed
+        
+         String entry= AnalyticsMenu.getSelectedItem().toString();
+        
+        if(entry.equalsIgnoreCase("Funding"))// redirect to funding analytics home
+        {
+           FundingAnalyticsHome fundingAnalyticsHome = new FundingAnalyticsHome(userProcessContainer, network);
+userProcessContainer.add("FundingAnalyticsHome",fundingAnalyticsHome);
+CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+layout.next(userProcessContainer);
+        }
+        if(entry.equalsIgnoreCase("School Performance"))// redirect to funding analytics home
+        {
+           SchoolAnalyticsHome schoolAnalyticsHome = new SchoolAnalyticsHome(userProcessContainer, network);
+userProcessContainer.add("SchoolAnalyticsHome",schoolAnalyticsHome);
+CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+layout.next(userProcessContainer);
+        }
+    }//GEN-LAST:event_performAnalytucsButtonActionPerformed
 
     private void AnalyticsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalyticsMenuActionPerformed
         // TODO add your handling code here:
@@ -142,6 +160,6 @@ public void populateMenu()
     private javax.swing.JPanel JPanel;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JButton loginButton;
+    private javax.swing.JButton performAnalytucsButton;
     // End of variables declaration//GEN-END:variables
 }

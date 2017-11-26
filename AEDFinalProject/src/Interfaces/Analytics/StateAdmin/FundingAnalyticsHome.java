@@ -20,10 +20,12 @@ public class FundingAnalyticsHome extends javax.swing.JPanel {
      */
     Network network;
     JPanel userProcessContainer;
+    String input;
     public FundingAnalyticsHome( JPanel userProcessContainer,Network network) {
         initComponents();
         this.network=network;
         this.userProcessContainer=userProcessContainer;
+        //this.input=input;
     }
 
     /**
@@ -126,6 +128,13 @@ public class FundingAnalyticsHome extends javax.swing.JPanel {
     private void performAnalyticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_performAnalyticsButtonActionPerformed
         // TODO add your handling code here:
         
+        String entry= AnalyticsMenu.getSelectedItem().toString();
+        
+        
+           FundingAnalyticsPage fundingAnalyticsPage = new FundingAnalyticsPage(userProcessContainer, network, entry);
+userProcessContainer.add("FundingAnalyticsHome",fundingAnalyticsPage);
+CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+layout.next(userProcessContainer);
         
         
     }//GEN-LAST:event_performAnalyticsButtonActionPerformed
