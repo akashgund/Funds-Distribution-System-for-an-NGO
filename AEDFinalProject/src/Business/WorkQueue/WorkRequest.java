@@ -13,6 +13,7 @@ public class WorkRequest extends WorkRequestABS {
     String fundType;
     double fundRequested;
     double fundAccepted;
+    int teacherReq;
     String grantStatus;
 
     public String getGrantStatus() {

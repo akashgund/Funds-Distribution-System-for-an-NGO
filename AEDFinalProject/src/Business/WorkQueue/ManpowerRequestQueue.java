@@ -5,10 +5,17 @@
  */
 package Business.WorkQueue;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author akash
  */
 public class ManpowerRequestQueue {
+     ArrayList<ManpowerRequest> ManpwerWorkRequestQueue;
+
+    public ManpowerRequestQueue() {
+        ManpwerWorkRequestQueue= new ArrayList<ManpowerRequest>();
+    }
     
 }
