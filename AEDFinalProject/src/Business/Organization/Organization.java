@@ -30,7 +30,7 @@ public abstract class Organization {
     public Organization(String name)
     {
 
-        organisationName= name;
+        organizationName= name;
         workQueue = new WorkQueue();
         emailQueue = new EmailQueue();
 
@@ -76,11 +76,6 @@ public abstract class Organization {
     
     
     public abstract ArrayList<Role> getSupportedRole();
-
-    
-
-   
-   
 
     public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;

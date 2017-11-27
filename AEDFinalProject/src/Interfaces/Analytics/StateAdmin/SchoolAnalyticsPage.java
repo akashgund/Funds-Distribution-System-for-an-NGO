@@ -41,7 +41,7 @@ public class SchoolAnalyticsPage extends javax.swing.JPanel {
     {
         //network.getEnterpriseDir().getEnterprizeList();//thi will have list of schools
         schoolJCombo.removeAllItems();
-        for(Enterprize ent: network.getEnterpriseDir().getEnterprizeList() )
+        for(Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList() )
         {
             schoolJCombo.addItem(ent.getOrganisationName());
         }
@@ -54,7 +54,7 @@ public void populateGraph()
             DefaultPieDataset  dataset= new DefaultPieDataset();
       String schoolSelected= schoolJCombo.getSelectedItem().toString();
       //print analytics for the selected school in this loop
-      for(Enterprize ent: network.getEnterpriseDir().getEnterprizeList() )
+      for(Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList() )
         {
             
            
