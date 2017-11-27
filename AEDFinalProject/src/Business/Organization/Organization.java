@@ -77,11 +77,6 @@ public abstract class Organization {
     
     public abstract ArrayList<Role> getSupportedRole();
 
-    
-
-   
-   
-
     public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;
     }

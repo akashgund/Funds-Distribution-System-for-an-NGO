@@ -5,6 +5,7 @@
  */
 package Business.Network;
 
+import Business.Employee.EmployeeDirectory;
 import Business.Enterprize.EnterpriseDirectory;
 import Business.Enterprize.HealthCare;
 import Business.Enterprize.InfraProvider;
@@ -13,6 +14,7 @@ import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.Organization.VaccineManufacturer;
 import Business.Role.Role;
+import Business.Users.UserAccountDirectory;
 import java.util.ArrayList;
 
 /**
@@ -27,18 +29,32 @@ public class Network extends Organization {
     private StationaryProvider stationaryProvider;
     private VaccineManufacturer vaccineManufacturer;
     private EnterpriseDirectory enterpriseDirectory;
+    private UserAccountDirectory userAccountDirectory;
+    //private EmployeeDirectory employeeDirectory;
+            
     //make Builders,stionary/healthcare
     //public abstract ArrayList<networkRole> getSupportedRole();
     public Network(String name) {
         super(name);//Add super constructor call;
         enterpriseDirectory = new EnterpriseDirectory();
+        userAccountDirectory= new UserAccountDirectory();
+        //employeeDirectory= new EmployeeDirectory();
         healthCare = HealthCare.getInstance();
         infraProvider = InfraProvider.getInstance();
         stationaryProvider = StationaryProvider.getInstance(); 
         enterpriseDirectory.getEnterprizeList().add(healthCare);
         enterpriseDirectory.getEnterprizeList().add(infraProvider);
         enterpriseDirectory.getEnterprizeList().add(stationaryProvider);
+        
         //enterpriseDirectory.getEnterprizeList().add(vaccineManufacturer);
+    }
+
+    public UserAccountDirectory getUserAccountDirectory() {
+        return userAccountDirectory;
+    }
+
+    public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
+        this.userAccountDirectory = userAccountDirectory;
     }
 
     public EnterpriseDirectory getEnterpriseDirectory() {
