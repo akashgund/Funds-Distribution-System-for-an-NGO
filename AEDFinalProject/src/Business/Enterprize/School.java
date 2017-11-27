@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class School extends Enterprize {
 
     private Exam exam;
+    private static int count = 10010;
+    private int authorizationCode;
 
     public Exam getExam() {
         return exam;
@@ -29,7 +31,14 @@ public class School extends Enterprize {
     
     public School(String name) {
         super(name, Enterprize.Enterprisetype.School);
+        authorizationCode = ++count;
     }
+
+    public int getAuthorizationCode() {
+        return authorizationCode;
+    }
+    
+    
 
     @Override
     public ArrayList<Role> getSupportedRole() {

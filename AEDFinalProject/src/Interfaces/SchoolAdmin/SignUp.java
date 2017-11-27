@@ -5,7 +5,12 @@
  */
 package Interfaces.SchoolAdmin;
 
+import Business.Ecosystem.Ecosystem;
+import Business.Network.Network;
 import Interfaces.*;
+import UtilityClasses.JComboBoxDecorator;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -16,8 +21,29 @@ public class SignUp extends javax.swing.JPanel {
     /**
      * Creates new form LoginPage
      */
-    public SignUp() {
+    private JPanel container;
+    private Ecosystem system;
+    public SignUp(JPanel container,Ecosystem system) {
         initComponents();
+        this.container=container;
+        this.system=system;
+        jComboBox1.removeAllItems();
+        for (Network n : system.getNetworkList()) {
+            n.getEnterpriseDirectory().getEnterprizeList().stream()
+                    .filter(x -> x.getEnterpriseType().getValue().equals("School"))
+                    .forEach(
+                            x -> {
+                                    jComboBox1.addItem(x.getOrganisationName().toString());
+                            }
+                    );
+        }
+        autosuggest();
+    }
+    
+    public void autosuggest() {
+        JTextField text = (JTextField) jComboBox1.getEditor().getEditorComponent();
+        text.setText("");
+        text.addKeyListener(new JComboBoxDecorator(jComboBox1));
     }
 
     /**

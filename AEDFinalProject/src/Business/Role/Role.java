@@ -17,10 +17,12 @@ import javax.swing.JPanel;
  * @author akash
  */
 public abstract class Role {
+    /*
     public enum roletype{
         SystemAdmin("SystemAdmin"),SchoolAdminRole("School Admin"),Principal("principal"),Teacher("Teacher");
         
         public String value;
+        
         
         private roletype(String value)
         {
@@ -40,7 +42,7 @@ public abstract class Role {
             return(value);
         }
     }
-    
+    */
     public abstract JPanel createWorkArea(JPanel userProcessContainer, 
             UserAccount account,
             Network network,
