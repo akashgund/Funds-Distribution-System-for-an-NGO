@@ -34,11 +34,8 @@ public class UserAccountDirectory {
          //loop for testing if req. else comment it out
          for (UserAccount userAccount : userAccountList)
          {
-             //System.out.println("your stuff");
-            
              System.out.println(userAccount.getUsername());
          }
-        System.out.println("in auhtenticate");
         for (UserAccount userAccount : userAccountList){
            // System.out.println(userAccount.getUsername()+" "+ userAccount.getPassword());
             if (userAccount.getUsername().equals(username) && userAccount.getPassword().equals(password)){

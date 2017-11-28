@@ -7,31 +7,37 @@
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/SystemAdmin/ProcessRequest.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Role/SchoolAdminRole.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Organization/Organization.java</file>
-            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Enterprize/HealthCare.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Employee/EmployeeDirectory.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Organization/OrganizationDirectory.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Enterprize/School.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Organization/StationaryInventoryManager.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/SystemAdmin/ManageUserAccounts.java</file>
-            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Enterprize/EnterpriseDirectory.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/StateAdmin/ManageEmails.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Network/EnterpriseDirectory.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Ecosystem/Configuration.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/StateAdmin/ProcessRequests.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/StateAdmin/ViewEmails.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Users/UserAccountDirectory.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/Analytics/StateAdmin/SchoolAnalyticsPage.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/SystemAdmin/ProgressReports.java</file>
-            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/SystemAdmin/LoginPage.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/Analytics/StateAdmin/SchoolAnalyticsHome.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Network/Network.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/MainJFrame.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/SystemAdmin/SystemAdminWorkArea.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/StateAdmin/ManageAccounts.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Employee/Employee.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Organization/SchoolAdmin.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/Analytics/StateAdmin/FundingAnalyticsPage.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/StateAdmin/StateAdminWorkArea.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/LoginPage.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/SchoolAdmin/SignUp.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/SystemAdmin/ManageFunds.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Users/UserAccount.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/SystemAdmin/AssignManpower.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/SystemAdmin/ManageEmails.java</file>
-            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Enterprize/VaccineManufacturer.java</file>
-            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/SystemAdmin/Reports_1.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/SystemAdmin/Reports.java</file>
-            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Enterprize/StationaryProvider.java</file>
-            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Role/SystemAdminRole.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Ecosystem/Ecosystem.java</file>
-            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Enterprize/InfraProvider.java</file>
+            <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Role/SystemAdminRole.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Interfaces/SystemAdmin/ViewReplyMails.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Organization/SchoolTreasury.java</file>
             <file>file:/C:/Users/Dell/AED_LAB_DEMO/sparta101/AEDFinalProject/src/Business/Enterprize/Enterprize.java</file>

@@ -6,6 +6,7 @@
 package Interfaces.StateAdmin;
 
 import Interfaces.*;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +17,10 @@ public class ManageEmails extends javax.swing.JPanel {
     /**
      * Creates new form LoginPage
      */
-    public ManageEmails() {
+    JPanel container;
+    public ManageEmails(JPanel container) {
         initComponents();
+        this.container = container;
     }
 
     /**
@@ -34,8 +37,8 @@ public class ManageEmails extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
         loginButton1 = new javax.swing.JButton();
+        loginButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -98,10 +101,6 @@ public class ManageEmails extends javax.swing.JPanel {
                 .addContainerGap(156, Short.MAX_VALUE))
         );
 
-        jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("User Name");
-
         loginButton1.setBackground(new java.awt.Color(255, 0, 51));
         loginButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         loginButton1.setForeground(new java.awt.Color(255, 255, 102));
@@ -114,16 +113,23 @@ public class ManageEmails extends javax.swing.JPanel {
             }
         });
 
+        loginButton4.setBackground(new java.awt.Color(255, 0, 51));
+        loginButton4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        loginButton4.setForeground(new java.awt.Color(255, 255, 102));
+        loginButton4.setText("<<Back");
+        loginButton4.setBorder(null);
+        loginButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 592, Short.MAX_VALUE)
+                .addComponent(loginButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(521, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,9 +141,9 @@ public class ManageEmails extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 446, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(loginButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 478, Short.MAX_VALUE)
                 .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,12 +164,12 @@ public class ManageEmails extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton loginButton;
     private javax.swing.JButton loginButton1;
+    private javax.swing.JButton loginButton4;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
 }

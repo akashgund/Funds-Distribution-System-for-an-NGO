@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces.SystemAdmin;
+package Interfaces.SchoolAdmin;
 
+import Interfaces.StateAdmin.*;
 import Interfaces.*;
 import javax.swing.JPanel;
 
@@ -12,13 +13,13 @@ import javax.swing.JPanel;
  *
  * @author Dell
  */
-public class ViewReplyMails extends javax.swing.JPanel {
+public class ManageEmails extends javax.swing.JPanel {
 
     /**
      * Creates new form LoginPage
      */
     JPanel container;
-    public ViewReplyMails(JPanel container) {
+    public ManageEmails(JPanel container) {
         initComponents();
         this.container = container;
     }
@@ -33,71 +34,21 @@ public class ViewReplyMails extends javax.swing.JPanel {
     private void initComponents() {
 
         userProcessContainer = new javax.swing.JPanel();
-        txtUser = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        loginButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        loginButton = new javax.swing.JButton();
+        jTable1 = new javax.swing.JTable();
         loginButton1 = new javax.swing.JButton();
+        loginButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         userProcessContainer.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtUser.setText("School1");
-
-        jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("From :");
-
-        jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("View/Reply");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("nanabajnbjabskhxvhkasvxhasgbxcasghchkasbhcacv\nsalxdjbdaskjbxaksj\najsbxkjasbxkjansxja\njkasbxhhasbkb\njasbxjwqvdljqwb \njxbajbqljbxlqncnx");
-        jScrollPane1.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
-        userProcessContainer.setLayout(userProcessContainerLayout);
-        userProcessContainerLayout.setHorizontalGroup(
-            userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userProcessContainerLayout.createSequentialGroup()
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 184, Short.MAX_VALUE))
-                    .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(userProcessContainerLayout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
-        );
-        userProcessContainerLayout.setVerticalGroup(
-            userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userProcessContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
-        );
-
         loginButton.setBackground(new java.awt.Color(255, 0, 51));
         loginButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         loginButton.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton.setText("Reply");
+        loginButton.setText("Compose");
         loginButton.setBorder(null);
         loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -106,10 +57,55 @@ public class ViewReplyMails extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("MY EMAILS");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
+        userProcessContainer.setLayout(userProcessContainerLayout);
+        userProcessContainerLayout.setHorizontalGroup(
+            userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userProcessContainerLayout.createSequentialGroup()
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(userProcessContainerLayout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(userProcessContainerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(userProcessContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        userProcessContainerLayout.setVerticalGroup(
+            userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userProcessContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(24, 24, 24)
+                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(156, Short.MAX_VALUE))
+        );
+
         loginButton1.setBackground(new java.awt.Color(255, 0, 51));
         loginButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         loginButton1.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton1.setText("<<Back");
+        loginButton1.setText("View Mail");
         loginButton1.setBorder(null);
         loginButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,32 +114,39 @@ public class ViewReplyMails extends javax.swing.JPanel {
             }
         });
 
+        loginButton4.setBackground(new java.awt.Color(255, 0, 51));
+        loginButton4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        loginButton4.setForeground(new java.awt.Color(255, 255, 102));
+        loginButton4.setText("<<Back");
+        loginButton4.setBorder(null);
+        loginButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(532, Short.MAX_VALUE)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 592, Short.MAX_VALUE)
+                .addComponent(loginButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 7, Short.MAX_VALUE)
+                    .addGap(0, 3, Short.MAX_VALUE)
                     .addComponent(userProcessContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 7, Short.MAX_VALUE)))
+                    .addGap(0, 3, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(loginButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 478, Short.MAX_VALUE)
                 .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 433, Short.MAX_VALUE)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addGap(83, 83, 83))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -162,13 +165,12 @@ public class ViewReplyMails extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton loginButton;
     private javax.swing.JButton loginButton1;
-    private javax.swing.JTextField txtUser;
+    private javax.swing.JButton loginButton4;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
 }

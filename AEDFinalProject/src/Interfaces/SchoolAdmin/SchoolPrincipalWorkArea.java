@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces.StateAdmin;
+package Interfaces.SchoolAdmin;
+
 
 import Business.Ecosystem.Ecosystem;
+import Business.Enterprize.Enterprize;
 import Business.Network.Network;
 import Business.Users.UserAccount;
-import Interfaces.SystemAdmin.*;
-import Interfaces.*;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -17,22 +17,19 @@ import javax.swing.JPanel;
  *
  * @author Dell
  */
-public class StateAdminWorkArea extends javax.swing.JPanel {
+public class SchoolPrincipalWorkArea extends javax.swing.JPanel {
 
     /**
      * Creates new form LoginPage
      */
     JPanel container;
-    private Network network;
-    private Ecosystem business;
+    private Enterprize enterprise;
     private UserAccount account;
-    public StateAdminWorkArea(JPanel container,UserAccount account, Network network, Ecosystem business) {
+    public SchoolPrincipalWorkArea(JPanel container,UserAccount account, Enterprize enterprise) {
         initComponents();
         this.container = container;
-        this.network = network;
-        this.business = business;
+        this.enterprise = enterprise;
         this.account = account;
-        txtUser.setText(account.getEmployee().getName());
     }
 
     /**
@@ -213,7 +210,7 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
 
     private void loginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton2ActionPerformed
         // TODO add your handling code here:
-        ProcessRequests panel = new ProcessRequests(container);
+        Interfaces.SchoolAdmin.ProcessRequests panel = new Interfaces.SchoolAdmin.ProcessRequests(container);
         container.add("ProcessRequests", panel);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);

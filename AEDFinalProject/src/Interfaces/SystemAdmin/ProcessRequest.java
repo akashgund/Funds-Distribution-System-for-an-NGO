@@ -73,6 +73,7 @@ public class ProcessRequest extends javax.swing.JPanel {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel14 = new javax.swing.JLabel();
         loginButton1 = new javax.swing.JButton();
+        loginButton2 = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -220,11 +221,26 @@ public class ProcessRequest extends javax.swing.JPanel {
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
+        loginButton2.setBackground(new java.awt.Color(255, 0, 51));
+        loginButton2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        loginButton2.setForeground(new java.awt.Color(255, 255, 102));
+        loginButton2.setText("<<Back");
+        loginButton2.setBorder(null);
+        loginButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(556, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 41, Short.MAX_VALUE)
@@ -233,7 +249,10 @@ public class ProcessRequest extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 667, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(619, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -258,6 +277,10 @@ public class ProcessRequest extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_loginButton1ActionPerformed
 
+    private void loginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel10;
@@ -275,6 +298,7 @@ public class ProcessRequest extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton loginButton;
     private javax.swing.JButton loginButton1;
+    private javax.swing.JButton loginButton2;
     private java.awt.Scrollbar scrollbar1;
     private javax.swing.JTextField txtUser;
     private javax.swing.JPanel userProcessContainer;

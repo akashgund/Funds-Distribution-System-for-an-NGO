@@ -262,11 +262,11 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
 
     private void loginButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton5ActionPerformed
         // TODO add your handling code here:
-        Component[] componentArray = container.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        container.remove(component);
-        CardLayout layout = (CardLayout)container.getLayout();
-        layout.previous(container);
+        container.removeAll();
+        Interfaces.LoginPage njp = new Interfaces.LoginPage();
+        container.add("blank", njp);
+        CardLayout crdLyt = (CardLayout) container.getLayout();
+        crdLyt.next(container);
     }//GEN-LAST:event_loginButton5ActionPerformed
 
 

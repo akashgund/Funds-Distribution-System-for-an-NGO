@@ -7,6 +7,8 @@ package Business.Users;
 
 import Business.Employee.Employee;
 import Business.Role.Role;
+import Business.WorkQueue.EmailQueue;
+import Business.WorkQueue.WorkQueue;
 
 /**
  *
@@ -14,14 +16,16 @@ import Business.Role.Role;
  */
 public class UserAccount {
     
-     private String userName;
+    private String userName;
     private String password;
     private Employee employee;
     private Role role;
+    private WorkQueue workQueue;
+    private EmailQueue emailQueue;
     //add workqueue
     public UserAccount() {
-        //initialize workqueue here, add getter setter
-        
+       workQueue = new WorkQueue();
+       emailQueue = new EmailQueue();
     }
 
     public String getUsername() {

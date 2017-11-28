@@ -58,6 +58,7 @@ public class ForwardRequest extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         loginButton1 = new javax.swing.JButton();
         loginButton3 = new javax.swing.JButton();
+        loginButton4 = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +137,13 @@ public class ForwardRequest extends javax.swing.JPanel {
             }
         });
 
+        loginButton4.setBackground(new java.awt.Color(255, 0, 51));
+        loginButton4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        loginButton4.setForeground(new java.awt.Color(255, 255, 102));
+        loginButton4.setText("<<Back");
+        loginButton4.setBorder(null);
+        loginButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
         userProcessContainer.setLayout(userProcessContainerLayout);
         userProcessContainerLayout.setHorizontalGroup(
@@ -143,7 +151,9 @@ public class ForwardRequest extends javax.swing.JPanel {
             .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addGap(181, 181, 181)
+                        .addContainerGap()
+                        .addComponent(loginButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(userProcessContainerLayout.createSequentialGroup()
                         .addGap(82, 82, 82)
@@ -171,7 +181,9 @@ public class ForwardRequest extends javax.swing.JPanel {
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,6 +258,7 @@ public class ForwardRequest extends javax.swing.JPanel {
     private javax.swing.JButton loginButton;
     private javax.swing.JButton loginButton1;
     private javax.swing.JButton loginButton3;
+    private javax.swing.JButton loginButton4;
     private java.awt.Scrollbar scrollbar1;
     private javax.swing.JTextField txtUser;
     private javax.swing.JPanel userProcessContainer;

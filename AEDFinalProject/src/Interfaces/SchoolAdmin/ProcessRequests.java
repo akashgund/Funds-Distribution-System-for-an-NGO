@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces.StateAdmin;
+package Interfaces.SchoolAdmin;
 
+import Interfaces.StateAdmin.*;
 import Interfaces.SystemAdmin.*;
 import Interfaces.*;
 import javax.swing.JPanel;

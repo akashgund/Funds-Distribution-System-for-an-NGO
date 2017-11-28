@@ -72,6 +72,7 @@ public class Reports extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jProgressBar6 = new javax.swing.JProgressBar();
         loginButton = new javax.swing.JButton();
+        loginButton1 = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +149,18 @@ public class Reports extends javax.swing.JPanel {
             }
         });
 
+        loginButton1.setBackground(new java.awt.Color(255, 0, 51));
+        loginButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        loginButton1.setForeground(new java.awt.Color(255, 255, 102));
+        loginButton1.setText("<<Back");
+        loginButton1.setBorder(null);
+        loginButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
         userProcessContainer.setLayout(userProcessContainerLayout);
         userProcessContainerLayout.setHorizontalGroup(
@@ -155,7 +168,9 @@ public class Reports extends javax.swing.JPanel {
             .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addGap(181, 181, 181)
+                        .addContainerGap()
+                        .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(userProcessContainerLayout.createSequentialGroup()
                         .addGap(82, 82, 82)
@@ -183,7 +198,9 @@ public class Reports extends javax.swing.JPanel {
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -243,6 +260,10 @@ public class Reports extends javax.swing.JPanel {
         layout.next(container);
     }//GEN-LAST:event_loginButtonActionPerformed
 
+    private void loginButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel10;
@@ -260,6 +281,7 @@ public class Reports extends javax.swing.JPanel {
     private javax.swing.JProgressBar jProgressBar5;
     private javax.swing.JProgressBar jProgressBar6;
     private javax.swing.JButton loginButton;
+    private javax.swing.JButton loginButton1;
     private java.awt.Scrollbar scrollbar1;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
