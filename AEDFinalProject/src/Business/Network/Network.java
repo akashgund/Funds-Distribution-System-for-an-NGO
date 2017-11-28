@@ -30,6 +30,9 @@ public class Network extends Organization {
     private VaccineManufacturer vaccineManufacturer;
     private EnterpriseDirectory enterpriseDirectory;
     private UserAccountDirectory userAccountDirectory;
+    int healthcount;
+    int infracount;
+    int stationarycount;
     //private EmployeeDirectory employeeDirectory;
             
     //make Builders,stionary/healthcare
@@ -45,8 +48,33 @@ public class Network extends Organization {
         enterpriseDirectory.getEnterprizeList().add(healthCare);
         enterpriseDirectory.getEnterprizeList().add(infraProvider);
         enterpriseDirectory.getEnterprizeList().add(stationaryProvider);
+        healthcount=0;
         
         //enterpriseDirectory.getEnterprizeList().add(vaccineManufacturer);
+    }
+
+    public int getHealthcount() {
+        return healthcount;
+    }
+
+    public void setHealthcount(int healthcount) {
+        this.healthcount = healthcount;
+    }
+
+    public int getInfracount() {
+        return infracount;
+    }
+
+    public void setInfracount(int infracount) {
+        this.infracount = infracount;
+    }
+
+    public int getStationarycount() {
+        return stationarycount;
+    }
+
+    public void setStationarycount(int stationarycount) {
+        this.stationarycount = stationarycount;
     }
 
     public UserAccountDirectory getUserAccountDirectory() {

@@ -45,7 +45,7 @@ import Business.Organization.OrganizationDirectory;
 
    
     
-    public enum Enterprisetype {
+     public enum Enterprisetype {
       School("School"),Infrastructure("Infrastructure Provider"),Stationary("Stationary Provider"),Healthcare("Healthcare Provider"),Vaccine("Vaccine Manufacturer");
       //changes req
       private String value;
