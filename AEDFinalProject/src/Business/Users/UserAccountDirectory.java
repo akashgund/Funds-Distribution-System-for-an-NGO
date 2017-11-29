@@ -32,14 +32,13 @@ public class UserAccountDirectory {
     
     public UserAccount authenticateUser(String username, String password){
          //loop for testing if req. else comment it out
-         for (UserAccount userAccount : userAccountList)
+         /*for (UserAccount userAccount : userAccountList)
          {
              System.out.println(userAccount.getUsername());
-         }
+         }*/
         for (UserAccount userAccount : userAccountList){
            // System.out.println(userAccount.getUsername()+" "+ userAccount.getPassword());
             if (userAccount.getUsername().equals(username) && userAccount.getPassword().equals(password)){
-                //System.out.println(username+" "+password+"abababba");
                 return userAccount;
             }
         }
