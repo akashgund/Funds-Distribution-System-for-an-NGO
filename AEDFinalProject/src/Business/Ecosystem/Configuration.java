@@ -9,6 +9,7 @@ import Business.Employee.Employee;
 import Business.Enterprize.Enterprize;
 import static Business.Enterprize.Enterprize.Enterprisetype.School;
 import Business.Network.Network;
+import Business.Role.SchoolAdminRole;
 import Business.Role.StateAdminRole;
 import Business.Role.SystemAdminRole;
 import Business.Users.UserAccount;
@@ -28,6 +29,9 @@ public class Configuration {
         Employee e1 = state1.getEmployeeDirectory().createEmployee("sur");
         state1.getUserAccountDirectory().createUserAccount("sur", "sur", e1, new StateAdminRole());
         Enterprize s1 = state1.getEnterpriseDirectory().createAndAddEnterprise("Prestige High School", School);
+        e1 = s1.getEmployeeDirectory().createEmployee("prestige");
+        s1.getUserAccountDirectory().createUserAccount("prestige", "prestige", e1, new SchoolAdminRole());
+        s1.setAccount(true);
         Enterprize s2 = state1.getEnterpriseDirectory().createAndAddEnterprise("Centenary School", School);
         Enterprize s3 = state1.getEnterpriseDirectory().createAndAddEnterprise("Eveline Girls High School", School);
         Enterprize s4 = state1.getEnterpriseDirectory().createAndAddEnterprise("Prestige High School", School);
@@ -37,6 +41,9 @@ public class Configuration {
         e1 = state2.getEmployeeDirectory().createEmployee("chacha");
         state2.getUserAccountDirectory().createUserAccount("chacha", "chacha", e1, new StateAdminRole());
         s1 = state2.getEnterpriseDirectory().createAndAddEnterprise("Alan Wilson High School", School);
+        e1 = s1.getEmployeeDirectory().createEmployee("alan");
+        s1.getUserAccountDirectory().createUserAccount("alan", "alan", e1, new SchoolAdminRole());
+        s1.setAccount(true);
         s2 = state2.getEnterpriseDirectory().createAndAddEnterprise("Bob Marley High School", School);
         s3 = state2.getEnterpriseDirectory().createAndAddEnterprise("Churchill School", School);
         s4 = state2.getEnterpriseDirectory().createAndAddEnterprise("Hellenic Academy", School);
@@ -46,6 +53,9 @@ public class Configuration {
         e1 = state3.getEmployeeDirectory().createEmployee("idli");
         state3.getUserAccountDirectory().createUserAccount("idli", "idli", e1, new StateAdminRole());
         s1 = state3.getEnterpriseDirectory().createAndAddEnterprise("Chikwakwa High School", School);
+        e1 = s1.getEmployeeDirectory().createEmployee("chika");
+        s1.getUserAccountDirectory().createUserAccount("chika", "chika", e1, new SchoolAdminRole());
+        s1.setAccount(true);
         s2 = state3.getEnterpriseDirectory().createAndAddEnterprise("Gatsi Primary School", School);
         s3 = state3.getEnterpriseDirectory().createAndAddEnterprise("Mutare Junior School", School);
         s4 = state3.getEnterpriseDirectory().createAndAddEnterprise("Baring Junior School", School);
@@ -55,6 +65,9 @@ public class Configuration {
         e1 = state4.getEmployeeDirectory().createEmployee("chotu");
         state4.getUserAccountDirectory().createUserAccount("chotu", "chotu", e1, new StateAdminRole());
         s1 = state4.getEnterpriseDirectory().createAndAddEnterprise("Chindotwe Primary School", School);
+        e1 = s1.getEmployeeDirectory().createEmployee("chin");
+        s1.getUserAccountDirectory().createUserAccount("chin", "chin", e1, new SchoolAdminRole());
+        s1.setAccount(true);
         s2 = state4.getEnterpriseDirectory().createAndAddEnterprise("Howard High School", School);
         s3 = state4.getEnterpriseDirectory().createAndAddEnterprise("Mutare Junior School", School);
         s4 = state4.getEnterpriseDirectory().createAndAddEnterprise("Lady Enereta High School", School);
@@ -64,6 +77,9 @@ public class Configuration {
         e1 = state5.getEmployeeDirectory().createEmployee("bhai");
         state5.getUserAccountDirectory().createUserAccount("bhai", "bhai", e1, new StateAdminRole());
         s1 = state5.getEnterpriseDirectory().createAndAddEnterprise("Blackman School", School);
+        e1 = s1.getEmployeeDirectory().createEmployee("blackman");
+        s1.getUserAccountDirectory().createUserAccount("blackman", "blackman", e1, new SchoolAdminRole());
+        s1.setAccount(true);
         s2 = state5.getEnterpriseDirectory().createAndAddEnterprise("Ruwa Primary School", School);
         s3 = state5.getEnterpriseDirectory().createAndAddEnterprise("Windsor Primary School", School);
         s4 = state5.getEnterpriseDirectory().createAndAddEnterprise("Zimre Primary School", School);
