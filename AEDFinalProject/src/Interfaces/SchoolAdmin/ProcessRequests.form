@@ -68,10 +68,7 @@
                                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                   <Component id="jComboBox1" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="loginButton" min="-2" pref="157" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="loginButton" alignment="1" min="-2" pref="157" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -186,6 +183,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginButtonActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -254,6 +254,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginButton4ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces.SystemAdmin;
+package Interfaces.StateAdmin;
 
+import Interfaces.SystemAdmin.*;
 import Business.Ecosystem.Ecosystem;
 import Business.Network.Network;
 import Interfaces.*;

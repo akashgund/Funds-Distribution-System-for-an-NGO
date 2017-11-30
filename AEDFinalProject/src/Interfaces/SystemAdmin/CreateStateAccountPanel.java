@@ -11,6 +11,7 @@ import Business.Network.Network;
 import Business.Role.StateAdminRole;
 import Business.Users.UserAccount;
 import javax.swing.JOptionPane;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -64,6 +65,9 @@ public class CreateStateAccountPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         passwordField = new javax.swing.JPasswordField();
+        CreateButton2 = new javax.swing.JButton();
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -113,6 +117,18 @@ public class CreateStateAccountPanel extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Admin Name");
 
+        CreateButton2.setBackground(new java.awt.Color(255, 0, 51));
+        CreateButton2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        CreateButton2.setForeground(new java.awt.Color(255, 255, 102));
+        CreateButton2.setText("<<Back");
+        CreateButton2.setBorder(null);
+        CreateButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CreateButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -120,7 +136,9 @@ public class CreateStateAccountPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(242, 242, 242)
+                        .addContainerGap()
+                        .addComponent(CreateButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(84, 84, 84)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(170, 170, 170)
@@ -148,8 +166,13 @@ public class CreateStateAccountPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(CreateButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(125, 125, 125)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(StateJCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,9 +282,17 @@ public class CreateStateAccountPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameTextFieldActionPerformed
 
+    private void CreateButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButton2ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_CreateButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreateButton1;
+    private javax.swing.JButton CreateButton2;
     private javax.swing.JComboBox<String> StateJCombo;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

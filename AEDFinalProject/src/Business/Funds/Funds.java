@@ -17,7 +17,7 @@ public abstract class Funds {
         
     }
      public enum fundsType{
-         InfraFunds("Infra Funds"),StationaryFunds("Statinary Funds"),HealthCareFunds("HealthCare Funds");
+         InfraFunds("Infra Funds"),StationaryFunds("Stationary Funds"),HealthCareFunds("HealthCare Funds");
         private String value;
         private fundsType(String name)
         {

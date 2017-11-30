@@ -27,9 +27,9 @@ public abstract class Organization {
     private static int counter;
     private WorkQueue workQueue;
     private EmailQueue emailQueue;
+    private boolean account;
     public Organization(String name)
     {
-
         organizationName= name;
         workQueue = new WorkQueue();
         emailQueue = new EmailQueue();
@@ -40,6 +40,15 @@ public abstract class Organization {
         ++counter;
     }
 
+    public boolean isAccount() {
+        return account;
+    }
+
+    public void setAccount(boolean account) {
+        this.account = account;
+    }
+
+    
     public WorkQueue getWorkQueue() {
         return workQueue;
     }
