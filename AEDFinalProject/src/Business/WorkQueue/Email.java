@@ -15,6 +15,8 @@ public class Email extends WorkRequestABS{
     String emailContent;
     private Date requestDate;
     
+    
+    
     public Email()
     {
         requestDate= new Date();
@@ -36,5 +38,10 @@ public class Email extends WorkRequestABS{
         this.requestDate = requestDate;
     }
     
-    
+    @Override
+    public String toString()
+    {
+        return sender.getEmailId();
+    }
+
 }

@@ -153,8 +153,7 @@ public class ManageUserAccounts extends javax.swing.JPanel {
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
         // TODO add your handling code here:
-          CreateAccount createAccountsPanel = new CreateAccount(userProcessContainer,business);
-        CreateAccountPanel createAccountsPanel = new CreateAccountPanel(userProcessContainer,business);
+        CreateAccount createAccountsPanel = new CreateAccount(userProcessContainer,business);
         userProcessContainer.add("CreateAccountPanel", createAccountsPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

@@ -53,6 +53,7 @@ public class UserAccountDirectory {
         UserAccount userAccount = new UserAccount();
         userAccount.setUserName(username);
         userAccount.setPassword(password);
+        userAccount.setEmailId(username+"@eduloom.edu");
         userAccount.setEmployee(employee);
         userAccount.setRole(role);
         userAccountList.add(userAccount);

@@ -14,8 +14,8 @@ import java.util.Date;
  */
 public abstract class WorkRequestABS {
    
-    private UserAccount sender;
-    private UserAccount receiver;
+    UserAccount sender;
+   UserAccount receiver;
     
    
     
