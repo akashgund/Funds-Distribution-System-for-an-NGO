@@ -279,6 +279,9 @@ public class ProcessRequest extends javax.swing.JPanel {
 
     private void loginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton2ActionPerformed
         // TODO add your handling code here:
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
     }//GEN-LAST:event_loginButton2ActionPerformed
 
 

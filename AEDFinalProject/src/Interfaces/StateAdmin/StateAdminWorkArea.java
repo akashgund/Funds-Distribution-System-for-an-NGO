@@ -54,6 +54,7 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         loginButton5 = new javax.swing.JButton();
+        loginButton6 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -122,24 +123,28 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         loginButton5.setText("Logout");
         loginButton5.setBorder(null);
         loginButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButton5ActionPerformed(evt);
+            }
+        });
+
+        loginButton6.setBackground(new java.awt.Color(255, 0, 51));
+        loginButton6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        loginButton6.setForeground(new java.awt.Color(255, 255, 102));
+        loginButton6.setText("View Progress Reports");
+        loginButton6.setBorder(null);
+        loginButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
         userProcessContainer.setLayout(userProcessContainerLayout);
         userProcessContainerLayout.setHorizontalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userProcessContainerLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loginButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
-                        .addComponent(loginButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))))
             .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(loginButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,14 +154,32 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                        .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(userProcessContainerLayout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(userProcessContainerLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
                         .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loginButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                        .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(loginButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(231, 231, 231)))))))
+                                    .addComponent(loginButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(42, 42, 42))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(33, 33, 33)))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(429, 429, 429))
         );
         userProcessContainerLayout.setVerticalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,11 +193,13 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
                     .addGroup(userProcessContainerLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(loginButton5)))
-                .addGap(28, 28, 28)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 196, Short.MAX_VALUE))
@@ -235,6 +260,23 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         layout.next(container);
     }//GEN-LAST:event_loginButton4ActionPerformed
 
+    private void loginButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton5ActionPerformed
+        // TODO add your handling code here:
+        container.removeAll();
+        Interfaces.LoginPage njp = new Interfaces.LoginPage();
+        container.add("blank", njp);
+        CardLayout crdLyt = (CardLayout) container.getLayout();
+        crdLyt.next(container);
+    }//GEN-LAST:event_loginButton5ActionPerformed
+
+    private void loginButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton6ActionPerformed
+        // TODO add your handling code here:
+        ProgressReports panel = new ProgressReports(container,business);
+        container.add("ProgressReports", panel);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
+    }//GEN-LAST:event_loginButton6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -245,6 +287,7 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JButton loginButton3;
     private javax.swing.JButton loginButton4;
     private javax.swing.JButton loginButton5;
+    private javax.swing.JButton loginButton6;
     private javax.swing.JTextField txtUser;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables

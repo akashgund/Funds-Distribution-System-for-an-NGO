@@ -95,6 +95,11 @@ public class ProcessRequests extends javax.swing.JPanel {
         loginButton4.setText("<<Back");
         loginButton4.setBorder(null);
         loginButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
         userProcessContainer.setLayout(userProcessContainerLayout);
@@ -170,6 +175,10 @@ public class ProcessRequests extends javax.swing.JPanel {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

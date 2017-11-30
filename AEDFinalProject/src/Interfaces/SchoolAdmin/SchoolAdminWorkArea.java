@@ -30,6 +30,7 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
         this.container = container;
         this.enterprise = enterprise;
         this.account = account;
+        txtUser.setText(account.getEmployee().getName());
     }
 
     /**
@@ -119,6 +120,11 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
         loginButton5.setText("Logout");
         loginButton5.setBorder(null);
         loginButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
         userProcessContainer.setLayout(userProcessContainerLayout);
@@ -226,11 +232,20 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
 
     private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed
         // TODO add your handling code here:
-        ManageAccounts panel = new ManageAccounts(container);
+        ManageAccounts panel = new ManageAccounts(container , enterprise);
         container.add("ManageEmails", panel);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
     }//GEN-LAST:event_loginButton4ActionPerformed
+
+    private void loginButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton5ActionPerformed
+        // TODO add your handling code here:
+        container.removeAll();
+        Interfaces.LoginPage njp = new Interfaces.LoginPage();
+        container.add("blank", njp);
+        CardLayout crdLyt = (CardLayout) container.getLayout();
+        crdLyt.next(container);
+    }//GEN-LAST:event_loginButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

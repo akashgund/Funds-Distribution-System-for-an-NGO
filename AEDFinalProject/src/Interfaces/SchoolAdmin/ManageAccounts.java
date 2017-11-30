@@ -5,8 +5,10 @@
  */
 package Interfaces.SchoolAdmin;
 
+import Business.Enterprize.Enterprize;
 import Interfaces.StateAdmin.*;
 import Interfaces.SystemAdmin.*;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -19,9 +21,11 @@ public class ManageAccounts extends javax.swing.JPanel {
      * Creates new form LoginPage
      */
     JPanel container;
-    public ManageAccounts(JPanel container) {
+    private Enterprize enterprise;
+    public ManageAccounts(JPanel container , Enterprize enterprise) {
         initComponents();
         this.container = container;
+        this.enterprise = enterprise;
     }
 
     /**
@@ -48,7 +52,7 @@ public class ManageAccounts extends javax.swing.JPanel {
         createbutton.setBackground(new java.awt.Color(255, 0, 51));
         createbutton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         createbutton.setForeground(new java.awt.Color(255, 255, 102));
-        createbutton.setText("Create Account");
+        createbutton.setText("Create Department Accounts");
         createbutton.setBorder(null);
         createbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         createbutton.addActionListener(new java.awt.event.ActionListener() {
@@ -82,10 +86,10 @@ public class ManageAccounts extends javax.swing.JPanel {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(208, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
-                .addContainerGap(528, Short.MAX_VALUE)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(createbutton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(createbutton, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         userProcessContainerLayout.setVerticalGroup(
@@ -166,7 +170,10 @@ public class ManageAccounts extends javax.swing.JPanel {
 
     private void createbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createbuttonActionPerformed
         // TODO add your handling code here:
-        
+        CreateAccounts createAccountsPanel = new CreateAccounts(container,enterprise);
+        container.add("CreateAccountPanel", createAccountsPanel);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
     }//GEN-LAST:event_createbuttonActionPerformed
 
 

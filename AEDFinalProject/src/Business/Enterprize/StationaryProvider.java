@@ -5,12 +5,7 @@
  */
 package Business.Enterprize;
 
-import Business.Network.*;
-import Business.Enterprize.Enterprize;
-import Business.Organization.Organization;
 import Business.Role.Role;
-import Business.WorkQueue.EmailQueue;
-import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -37,7 +32,7 @@ public class StationaryProvider extends Enterprize {
    {
        if(stationaryProvider==null)     
        {
-           stationaryProvider = new StationaryProvider(null);//
+           stationaryProvider = new StationaryProvider("State Stationary Provider");//
        }
        return stationaryProvider;
    }

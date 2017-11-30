@@ -270,6 +270,11 @@ public class SignUp extends javax.swing.JPanel {
         {
             Employee e = selectedEnterprize.getEmployeeDirectory().createEmployee(txtName.getText());
             UserAccount ua = selectedEnterprize.getUserAccountDirectory().createUserAccount(txtUser.getText(), txtPassword.getText() , e, new SchoolAdminRole());
+            if(ua==null)
+            {
+                JOptionPane.showMessageDialog(null, "Username already taken!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             selectedEnterprize.setAccount(true);
             JOptionPane.showMessageDialog(null, "Successfully Created Account", "Success", JOptionPane.INFORMATION_MESSAGE);
             container.remove(this);

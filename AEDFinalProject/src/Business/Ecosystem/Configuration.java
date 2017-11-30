@@ -34,8 +34,9 @@ public class Configuration {
         s1.setAccount(true);
         Enterprize s2 = state1.getEnterpriseDirectory().createAndAddEnterprise("Centenary School", School);
         Enterprize s3 = state1.getEnterpriseDirectory().createAndAddEnterprise("Eveline Girls High School", School);
-        Enterprize s4 = state1.getEnterpriseDirectory().createAndAddEnterprise("Prestige High School", School);
+        Enterprize s4 = state1.getEnterpriseDirectory().createAndAddEnterprise("Coventry High School", School);
         Enterprize s5 = state1.getEnterpriseDirectory().createAndAddEnterprise("Dominican Convent High School", School);
+        System.out.println(s1.getOrganizationDirectory().getOrganisationList().size());
         
         Network state2 = system.createAndAddNetwork("Harare");
         e1 = state2.getEmployeeDirectory().createEmployee("chacha");

@@ -5,13 +5,8 @@
  */
 package Business.Enterprize;
 
-import Business.Network.*;
-import Business.Enterprize.Enterprize;
-import Business.Organization.Organization;
+import Business.Enterprize.Disease.Vaccine;
 import Business.Role.Role;
-import Business.WorkQueue.Email;
-import Business.WorkQueue.EmailQueue;
-import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +17,8 @@ public class HealthCare extends Enterprize {
 
     private String healthProviderName;
     private static HealthCare healthCareProvider;
+    private ArrayList<Disease> diseaseList;
+    private ArrayList<Vaccine> vaccineList;
 
     public String getHealthProviderName() {
         return healthProviderName;
@@ -41,11 +38,23 @@ public class HealthCare extends Enterprize {
 
     private HealthCare(String name) {
         super(name,Enterprize.Enterprisetype.Healthcare);
+        vaccineList = new ArrayList();
+        diseaseList = new ArrayList();
     }
+    
+    public Disease addDisease(String vaccineName)
+       {
+           Disease disease = new Disease();
+           diseaseList.add(disease);
+           Disease.Vaccine vaccine = disease.new Vaccine();
+           vaccine.setVaccineName(vaccineName);
+           vaccineList.add(vaccine);
+           return disease;
+       }
 
     public static HealthCare getInstance() {
         if (healthCareProvider == null) {
-            healthCareProvider = new HealthCare(null);// chk for the name passed
+            healthCareProvider = new HealthCare("State Healthcare Provider");// chk for the name passed
         }
         return healthCareProvider;
     }
