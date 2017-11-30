@@ -21,7 +21,7 @@ public class StateAdminRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network, Organization organisation, Enterprize enterprise, Ecosystem business) {
-        return new StateAdminWorkArea(userProcessContainer ,account, network, business);
+        return new StateAdminWorkArea(userProcessContainer ,account, network);
     }
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces.SystemAdmin;
+package Interfaces.SchoolAdmin;
 
 import Business.Ecosystem.Ecosystem;
 import Business.Users.UserAccount;
@@ -11,6 +11,7 @@ import Business.WorkQueue.Email;
 import Interfaces.*;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+
 
 /**
  *
@@ -26,13 +27,13 @@ public class ViewReplyMails extends javax.swing.JPanel {
     UserAccount userAccount; 
     Email email;
     String receiver;
-    public ViewReplyMails(JPanel container, Ecosystem business, UserAccount userAccount,Email email) {
+    public ViewReplyMails(JPanel container, UserAccount userAccount,Email email) {
         initComponents();
         this.userProcessContainer = container;
         this.email=email;
         this.userAccount=userAccount;
         populateMail();
-        
+        business=Ecosystem.getInstance();
     }
     public void populateMail()
     {
@@ -159,7 +160,7 @@ public class ViewReplyMails extends javax.swing.JPanel {
     private void ReplyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReplyButtonActionPerformed
         // TODO add your handling code here:
         receiver=email.getSender().getUsername();
-         ReplyEmail ReplyEmailPanel = new ReplyEmail(userProcessContainer,business,userAccount,receiver);
+         ReplyEmail ReplyEmailPanel = new ReplyEmail(userProcessContainer,userAccount,receiver);
         userProcessContainer.add("ManageAccountsPanel", ReplyEmailPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -167,6 +168,9 @@ public class ViewReplyMails extends javax.swing.JPanel {
 
     private void BuackbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuackbuttonActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_BuackbuttonActionPerformed
 
 

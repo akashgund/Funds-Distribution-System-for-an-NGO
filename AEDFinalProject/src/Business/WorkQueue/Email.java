@@ -41,6 +41,7 @@ public class Email extends WorkRequestABS{
     @Override
     public String toString()
     {
-        return sender;
+        return sender.getEmailId();
     }
+
 }

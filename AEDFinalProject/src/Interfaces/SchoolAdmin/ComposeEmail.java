@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces.SystemAdmin;
+package Interfaces.SchoolAdmin;
 
 import Business.Ecosystem.Ecosystem;
 import Business.Enterprize.Enterprize;
@@ -30,10 +30,10 @@ public class ComposeEmail extends javax.swing.JPanel {
     Ecosystem business;
     UserAccount loggedin;
 
-   public ComposeEmail(JPanel container, Ecosystem business,UserAccount loggedin) {
+   public ComposeEmail(JPanel container,UserAccount loggedin) {
          initComponents();
          userProcessContainer=container;
-         this.business=business;
+         this.business=Ecosystem.getInstance();
          populateReceiverList();
        autosuggest();
          this.loggedin=loggedin;
@@ -47,6 +47,7 @@ public class ComposeEmail extends javax.swing.JPanel {
    public void populateReceiverList()
    {
        jComboBox1.removeAllItems();
+       jComboBox1.addItem("sysadmin@eduloom.edu");
        
        for(Network network:business.getNetworkList())
        {
@@ -248,6 +249,11 @@ public class ComposeEmail extends javax.swing.JPanel {
        }
           
        }
+        UserAccount admin= business.getUserAccountDirectory().getUserAccount().get(0);
+        if(admin.getEmailId().equalsIgnoreCase(receiverEmail))
+        {
+            userAccount=admin;
+        }
         if(userAccount==null)
           {
               JOptionPane.showMessageDialog(null,"No such Emailid found");
