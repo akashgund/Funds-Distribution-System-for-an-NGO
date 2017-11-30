@@ -5,12 +5,7 @@
  */
 package Business.Enterprize;
 
-import Business.Network.*;
-import Business.Enterprize.Enterprize;
-import Business.Organization.Organization;
 import Business.Role.Role;
-import Business.WorkQueue.EmailQueue;
-import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -36,7 +31,7 @@ public class InfraProvider extends Enterprize {
 
     public static InfraProvider getInstance() {
         if (infraProvider == null) {
-            infraProvider = new InfraProvider(null);//chk name passed
+            infraProvider = new InfraProvider("State Infrastructure Provider");//chk name passed
         }
         return infraProvider;
     }

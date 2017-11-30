@@ -151,6 +151,11 @@ public class ManageEmails extends javax.swing.JPanel {
         loginButton3.setText("<<Back");
         loginButton3.setBorder(null);
         loginButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -195,6 +200,13 @@ public class ManageEmails extends javax.swing.JPanel {
     private void loginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_loginButton2ActionPerformed
+
+    private void loginButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton3ActionPerformed
+        // TODO add your handling code here:
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_loginButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
