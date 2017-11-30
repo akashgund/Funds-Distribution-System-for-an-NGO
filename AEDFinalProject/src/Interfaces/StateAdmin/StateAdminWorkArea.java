@@ -8,8 +8,6 @@ package Interfaces.StateAdmin;
 import Business.Ecosystem.Ecosystem;
 import Business.Network.Network;
 import Business.Users.UserAccount;
-import Interfaces.SystemAdmin.*;
-import Interfaces.*;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -53,7 +51,6 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        loginButton5 = new javax.swing.JButton();
         loginButton6 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -117,18 +114,6 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\email.PNG")); // NOI18N
 
-        loginButton5.setBackground(new java.awt.Color(255, 0, 51));
-        loginButton5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        loginButton5.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton5.setText("Logout");
-        loginButton5.setBorder(null);
-        loginButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButton5ActionPerformed(evt);
-            }
-        });
-
         loginButton6.setBackground(new java.awt.Color(255, 0, 51));
         loginButton6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         loginButton6.setForeground(new java.awt.Color(255, 255, 102));
@@ -146,16 +131,12 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         userProcessContainerLayout.setHorizontalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userProcessContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(loginButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
-                        .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(194, 194, 194)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(userProcessContainerLayout.createSequentialGroup()
+                .addContainerGap(502, Short.MAX_VALUE)
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,15 +165,10 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         userProcessContainerLayout.setVerticalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userProcessContainerLayout.createSequentialGroup()
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(loginButton5)))
+                .addGap(6, 6, 6)
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -260,15 +236,6 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         layout.next(container);
     }//GEN-LAST:event_loginButton4ActionPerformed
 
-    private void loginButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton5ActionPerformed
-        // TODO add your handling code here:
-        container.removeAll();
-        Interfaces.LoginPage njp = new Interfaces.LoginPage();
-        container.add("blank", njp);
-        CardLayout crdLyt = (CardLayout) container.getLayout();
-        crdLyt.next(container);
-    }//GEN-LAST:event_loginButton5ActionPerformed
-
     private void loginButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton6ActionPerformed
         // TODO add your handling code here:
         ProgressReports panel = new ProgressReports(container,business);
@@ -286,7 +253,6 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JButton loginButton2;
     private javax.swing.JButton loginButton3;
     private javax.swing.JButton loginButton4;
-    private javax.swing.JButton loginButton5;
     private javax.swing.JButton loginButton6;
     private javax.swing.JTextField txtUser;
     private javax.swing.JPanel userProcessContainer;
