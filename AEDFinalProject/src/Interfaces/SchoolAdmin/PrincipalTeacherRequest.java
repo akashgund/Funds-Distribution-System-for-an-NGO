@@ -134,8 +134,8 @@ this.ua=ua;//To change body of generated methods, choose Tools | Templates.
         manPowerRequest.setTecherRequested(numberReq);
         manPowerRequest.setStatus("Requested");
        
-        network.getManPowerRequestQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
-        ua.getManpowerRequestQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
+       // network.getManPowerRequestQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
+       // ua.getManpowerRequestQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
         
         
        

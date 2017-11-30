@@ -6,6 +6,7 @@
 package Interfaces.SystemAdmin;
 
 import Business.Ecosystem.Ecosystem;
+import Business.Users.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -21,10 +22,13 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
      */
     private JPanel container;
     private Ecosystem business;
-    public SystemAdminWorkArea(JPanel container,Ecosystem business) {
+    private UserAccount userAccount;
+    public SystemAdminWorkArea(JPanel container,Ecosystem business,UserAccount account) {
         initComponents();
         this.container = container;
         this.business = business;
+        this.userAccount=account;
+        
     }
 
     /**
@@ -41,7 +45,7 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         loginButton1 = new javax.swing.JButton();
         loginButton2 = new javax.swing.JButton();
-        loginButton3 = new javax.swing.JButton();
+        CheckMail = new javax.swing.JButton();
         loginButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -91,15 +95,15 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
             }
         });
 
-        loginButton3.setBackground(new java.awt.Color(255, 0, 51));
-        loginButton3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        loginButton3.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton3.setText("Check Mails");
-        loginButton3.setBorder(null);
-        loginButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton3.addActionListener(new java.awt.event.ActionListener() {
+        CheckMail.setBackground(new java.awt.Color(255, 0, 51));
+        CheckMail.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        CheckMail.setForeground(new java.awt.Color(255, 255, 102));
+        CheckMail.setText("Check Mails");
+        CheckMail.setBorder(null);
+        CheckMail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CheckMail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButton3ActionPerformed(evt);
+                CheckMailActionPerformed(evt);
             }
         });
 
@@ -125,7 +129,7 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
                     .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(loginButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(loginButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(CheckMail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -171,7 +175,7 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(loginButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckMail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -214,13 +218,13 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
         layout.next(container);
     }//GEN-LAST:event_loginButton2ActionPerformed
 
-    private void loginButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton3ActionPerformed
+    private void CheckMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckMailActionPerformed
         // TODO add your handling code here:
-       /* ManageEmails panel = new ManageEmails(container);
+       ManageEmails panel = new ManageEmails(container,business,userAccount);
         container.add("ManageEmails", panel);
         CardLayout layout = (CardLayout) container.getLayout();
-        layout.next(container);*/
-    }//GEN-LAST:event_loginButton3ActionPerformed
+        layout.next(container);
+    }//GEN-LAST:event_CheckMailActionPerformed
 
     private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed
         // TODO add your handling code here:
@@ -233,6 +237,7 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CheckMail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -240,7 +245,6 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JButton loginButton1;
     private javax.swing.JButton loginButton2;
-    private javax.swing.JButton loginButton3;
     private javax.swing.JButton loginButton4;
     private javax.swing.JTextField txtUser;
     private javax.swing.JPanel userProcessContainer;

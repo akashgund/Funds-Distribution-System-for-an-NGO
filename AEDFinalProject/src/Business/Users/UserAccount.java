@@ -18,6 +18,7 @@ public class UserAccount {
     
     private String userName;
     private String password;
+    private String emailId;
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
@@ -26,6 +27,30 @@ public class UserAccount {
     public UserAccount() {
        workQueue = new WorkQueue();
        emailQueue = new EmailQueue();
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public WorkQueue getWorkQueue() {
+        return workQueue;
+    }
+
+    public void setWorkQueue(WorkQueue workQueue) {
+        this.workQueue = workQueue;
+    }
+
+    public EmailQueue getEmailQueue() {
+        return emailQueue;
+    }
+
+    public void setEmailQueue(EmailQueue emailQueue) {
+        this.emailQueue = emailQueue;
     }
 
     public String getUsername() {
