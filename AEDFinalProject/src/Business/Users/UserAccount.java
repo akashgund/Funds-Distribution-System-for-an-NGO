@@ -8,6 +8,8 @@ package Business.Users;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import Business.WorkQueue.EmailQueue;
+import Business.WorkQueue.ManpowerRequestQueue;
+import Business.WorkQueue.VaccineWorkRequestQueue;
 import Business.WorkQueue.WorkQueue;
 
 /**
@@ -23,10 +25,30 @@ public class UserAccount {
     private Role role;
     private WorkQueue workQueue;
     private EmailQueue emailQueue;
+    private ManpowerRequestQueue manPowerQueue;
+    private VaccineWorkRequestQueue vacccineWorkQueue;
     //add workqueue
     public UserAccount() {
        workQueue = new WorkQueue();
        emailQueue = new EmailQueue();
+       manPowerQueue= new ManpowerRequestQueue();
+       vacccineWorkQueue= new VaccineWorkRequestQueue();
+    }
+
+    public VaccineWorkRequestQueue getVacccineWorkQueue() {
+        return vacccineWorkQueue;
+    }
+
+    public void setVacccineWorkQueue(VaccineWorkRequestQueue vacccineWorkQueue) {
+        this.vacccineWorkQueue = vacccineWorkQueue;
+    }
+
+    public ManpowerRequestQueue getManPowerQueue() {
+        return manPowerQueue;
+    }
+
+    public void setManPowerQueue(ManpowerRequestQueue manPowerQueue) {
+        this.manPowerQueue = manPowerQueue;
     }
 
     public String getEmailId() {

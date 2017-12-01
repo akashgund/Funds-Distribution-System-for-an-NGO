@@ -6,6 +6,7 @@
 package Interfaces.StateAdmin;
 
 import Business.WorkQueue.ManpowerRequest;
+import Business.WorkQueue.ManpowerRequestQueue;
 import javax.swing.JPanel;
 
 /**
@@ -21,7 +22,7 @@ public class ProcessManPowerRequest extends javax.swing.JPanel {
         initComponents();
     }
 
-    ProcessManPowerRequest(JPanel userProcessContainer, ManpowerRequest request) {
+    ProcessManPowerRequest(JPanel userProcessContainer, ManpowerRequestQueue requestqueue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

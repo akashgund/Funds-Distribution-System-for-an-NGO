@@ -17,5 +17,13 @@ public class ManpowerRequestQueue {
     public ManpowerRequestQueue() {
         ManpwerWorkRequestQueue= new ArrayList<ManpowerRequest>();
     }
+
+    public ArrayList<ManpowerRequest> getManpwerWorkRequestQueue() {
+        return ManpwerWorkRequestQueue;
+    }
+
+    public void setManpwerWorkRequestQueue(ArrayList<ManpowerRequest> ManpwerWorkRequestQueue) {
+        this.ManpwerWorkRequestQueue = ManpwerWorkRequestQueue;
+    }
     
 }

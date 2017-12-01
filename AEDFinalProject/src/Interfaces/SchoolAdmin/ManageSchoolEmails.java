@@ -11,6 +11,7 @@ import Business.WorkQueue.Email;
 import Interfaces.StateAdmin.*;
 import Interfaces.*;
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -59,40 +60,18 @@ public class ManageSchoolEmails extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ViewEmail = new javax.swing.JButton();
-        ComposeEmail = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         Panel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         DisplayTable = new javax.swing.JTable();
-        ViewEmail1 = new javax.swing.JButton();
-        ComposeEmail1 = new javax.swing.JButton();
-
-        ViewEmail.setBackground(new java.awt.Color(255, 0, 51));
-        ViewEmail.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        ViewEmail.setForeground(new java.awt.Color(255, 255, 102));
-        ViewEmail.setText("View Mail");
-        ViewEmail.setBorder(null);
-        ViewEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ViewEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewEmailActionPerformed(evt);
-            }
-        });
-
-        ComposeEmail.setBackground(new java.awt.Color(255, 0, 51));
-        ComposeEmail.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        ComposeEmail.setForeground(new java.awt.Color(255, 255, 102));
-        ComposeEmail.setText("Compose Email");
-        ComposeEmail.setBorder(null);
-        ComposeEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ComposeEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComposeEmailActionPerformed(evt);
-            }
-        });
+        ViewEmail = new javax.swing.JButton();
+        BackButton = new javax.swing.JButton();
+        ComposeEmail = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         Panel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -135,59 +114,99 @@ public class ManageSchoolEmails extends javax.swing.JPanel {
                 .addContainerGap(156, Short.MAX_VALUE))
         );
 
-        ViewEmail1.setBackground(new java.awt.Color(255, 0, 51));
-        ViewEmail1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        ViewEmail1.setForeground(new java.awt.Color(255, 255, 102));
-        ViewEmail1.setText("View Mail");
-        ViewEmail1.setBorder(null);
-        ViewEmail1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ViewEmail1.addActionListener(new java.awt.event.ActionListener() {
+        ViewEmail.setBackground(new java.awt.Color(255, 0, 51));
+        ViewEmail.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        ViewEmail.setForeground(new java.awt.Color(255, 255, 102));
+        ViewEmail.setText("View Mail");
+        ViewEmail.setBorder(null);
+        ViewEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ViewEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewEmail1ActionPerformed(evt);
+                ViewEmailActionPerformed(evt);
             }
         });
 
-        ComposeEmail1.setBackground(new java.awt.Color(255, 0, 51));
-        ComposeEmail1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        ComposeEmail1.setForeground(new java.awt.Color(255, 255, 102));
-        ComposeEmail1.setText("Compose Email");
-        ComposeEmail1.setBorder(null);
-        ComposeEmail1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ComposeEmail1.addActionListener(new java.awt.event.ActionListener() {
+        BackButton.setBackground(new java.awt.Color(255, 0, 51));
+        BackButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        BackButton.setForeground(new java.awt.Color(255, 255, 102));
+        BackButton.setText("<<Back");
+        BackButton.setBorder(null);
+        BackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComposeEmail1ActionPerformed(evt);
+                BackButtonActionPerformed(evt);
             }
         });
+
+        ComposeEmail.setBackground(new java.awt.Color(255, 0, 51));
+        ComposeEmail.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        ComposeEmail.setForeground(new java.awt.Color(255, 255, 102));
+        ComposeEmail.setText("Compose Email");
+        ComposeEmail.setBorder(null);
+        ComposeEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ComposeEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComposeEmailActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(521, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ComposeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(ViewEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(33, 33, 33)))))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 3, Short.MAX_VALUE)
+                    .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 3, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BackButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 467, Short.MAX_VALUE)
+                .addComponent(ViewEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ComposeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(536, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ComposeEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ViewEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+            .addGap(0, 709, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(3, 3, 3)
-                    .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(499, Short.MAX_VALUE)
-                .addComponent(ViewEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ComposeEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
+            .addGap(0, 634, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(3, 3, 3)
-                    .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -218,36 +237,29 @@ public class ManageSchoolEmails extends javax.swing.JPanel {
     private void ViewEmail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewEmail1ActionPerformed
         // TODO add your handling code here:
 
-        int selectedRow= DisplayTable.getSelectedRow();
-        if(selectedRow>=0)
-        {
-            Email email=(Email)DisplayTable.getValueAt(selectedRow, 0);
-
-            ViewReplyMails viewEmailpanel = new ViewReplyMails(userProcessContainer,userAccount,email);
-            userProcessContainer.add("ViewReplyMails", viewEmailpanel);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        }
+        
     }//GEN-LAST:event_ViewEmail1ActionPerformed
 
     private void ComposeEmail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComposeEmail1ActionPerformed
-        // TODO add your handling code here:
-        ComposeEmail composeEmail= new ComposeEmail(userProcessContainer,userAccount);
-        userProcessContainer.add("ComaposeEmail",composeEmail);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-
+        
     }//GEN-LAST:event_ComposeEmail1ActionPerformed
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BackButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
     private javax.swing.JButton ComposeEmail;
-    private javax.swing.JButton ComposeEmail1;
     private javax.swing.JTable DisplayTable;
     private javax.swing.JPanel Panel;
     private javax.swing.JButton ViewEmail;
-    private javax.swing.JButton ViewEmail1;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
