@@ -22,13 +22,13 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
      */
     JPanel container;
     private Network network;
-    private Ecosystem business;
+    //private Ecosystem business;
     private UserAccount account;
     public StateAdminWorkArea(JPanel container,UserAccount account, Network network) {
         initComponents();
         this.container = container;
         this.network = network;
-        this.business = Ecosystem.getInstance();
+        //this.business = Ecosystem.getInstance();
         this.account = account;
         txtUser.setText(account.getEmployee().getName());
     }
@@ -214,7 +214,7 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
 
     private void loginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton2ActionPerformed
         // TODO add your handling code here:
-        ProcessRequests panel = new ProcessRequests(container);
+        ProcessRequests panel = new ProcessRequests(container,account);
         container.add("ProcessRequests", panel);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
