@@ -6,6 +6,7 @@
 package Business.Organization;
 
 import Business.Organization.Organization.organizationType;
+import static Business.Organization.Organization.organizationType.principal;
 import java.util.ArrayList;
 
 /**
@@ -36,14 +37,15 @@ public class OrganizationDirectory {
 
     public Organization createOrganization(organizationType type) {
         Organization organization = null;
-        /*
-        if (type.getValue().equals(organizationType.Doctor.getValue())){
-            organization = new Doctor();
-            organisationList.add(organization);
+        
+        if (type == principal){
+            organization = SchoolPrincipal.getInstance();
         }
-         */
-        //add code here
-
+        
+        else
+        {
+            organization = SchoolTreasury.getInstance();
+        }
         return organization;
     }
 

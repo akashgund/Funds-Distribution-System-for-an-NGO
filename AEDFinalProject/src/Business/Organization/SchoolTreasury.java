@@ -21,15 +21,23 @@ import javax.swing.JPanel;
  */
 public class SchoolTreasury extends Organization{
 
-    public SchoolTreasury(String name) {
-        super(Organization.organizationType.treasury.getValue());
+    private static SchoolTreasury treasury;
+    private SchoolTreasury(String name) {
+        super(name);
     }
 
+    public static SchoolTreasury getInstance() {
+        if (treasury == null) {
+            treasury = new SchoolTreasury(Organization.organizationType.treasury.getValue());// chk for the name passed
+        }
+        return treasury;
+    }
+    
     @Override
     public ArrayList<Role> getSupportedRole() {
          ArrayList<Role> roles = new ArrayList<>();
         roles.add(new SchoolTreasuryRole());
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return roles;
     }
     
 

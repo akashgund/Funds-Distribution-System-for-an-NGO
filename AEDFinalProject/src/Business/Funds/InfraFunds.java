@@ -7,8 +7,16 @@ package Business.Funds;
 
 /**
  *
- * @author akash
+ * @author Dell
  */
-public class InfraFunds {
-    
+public class InfraFunds extends Funds {
+    private static final int maxLimit = 1000000;
+
+    public InfraFunds(fundsType type) {
+        super(Funds.fundsType.InfraFunds);
+    }
+
+    public static int getMaxLimit() {
+        return maxLimit;
+    }
 }

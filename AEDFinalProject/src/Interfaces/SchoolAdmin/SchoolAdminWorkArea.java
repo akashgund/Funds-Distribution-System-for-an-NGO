@@ -8,9 +8,15 @@ package Interfaces.SchoolAdmin;
 
 import Business.Ecosystem.Ecosystem;
 import Business.Enterprize.Enterprize;
+import static Business.Enterprize.Enterprize.Enterprisetype.School;
+import Business.Enterprize.School;
 import Business.Network.Network;
 import Business.Users.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -23,15 +29,44 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
      * Creates new form LoginPage
      */
     JPanel container;
-    private Enterprize enterprise;
+    private School enterprize;
     private UserAccount account;
     public SchoolAdminWorkArea(JPanel container,UserAccount account, Enterprize enterprise) {
         initComponents();
         this.container = container;
-        this.enterprise = enterprise;
+        this.enterprize = (School) enterprise;
         this.account = account;
+        txtUser.setText(account.getEmployee().getName());
+        //System.out.println(this.enterprise.getInfraScore()*100);
+        //populate();
     }
 
+     public void populate() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (;;) {
+                    try {
+                       /*double infra = enterprize.getInfraScore()*100;
+                        double util = enterprize.getStationaryScore()*100;
+                        double man = enterprize.getManpowerScore()*100;
+                        double health = enterprize.getHealthScore()*100;
+                        double total = enterprize.getOverallScore();
+                        */
+                        Thread.sleep(800);
+                        enterprize.setInfraFunds(enterprize.getInfraFunds() - 10000);
+                        System.out.println("Infra Funds "+enterprize.getInfraFunds()+" Infra Score " + enterprize.getInfraScore());
+                        
+                    } catch (InterruptedException ex) {
+                       
+                    }
+                }
+            }
+
+        }
+        ).start();
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,7 +85,6 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        loginButton5 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -113,13 +147,6 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\email.PNG")); // NOI18N
 
-        loginButton5.setBackground(new java.awt.Color(255, 0, 51));
-        loginButton5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        loginButton5.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton5.setText("Logout");
-        loginButton5.setBorder(null);
-        loginButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
         userProcessContainer.setLayout(userProcessContainerLayout);
         userProcessContainerLayout.setHorizontalGroup(
@@ -138,35 +165,26 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))))
             .addGroup(userProcessContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(loginButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(194, 194, 194)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(userProcessContainerLayout.createSequentialGroup()
+                .addContainerGap(270, Short.MAX_VALUE)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(231, 231, 231)))))))
+                    .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(231, 231, 231)))))
         );
         userProcessContainerLayout.setVerticalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userProcessContainerLayout.createSequentialGroup()
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(loginButton5)))
+                .addGap(6, 6, 6)
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -226,7 +244,7 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
 
     private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed
         // TODO add your handling code here:
-        ManageAccounts panel = new ManageAccounts(container);
+        ManageAccounts panel = new ManageAccounts(container , enterprize);
         container.add("ManageEmails", panel);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
@@ -241,7 +259,6 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JButton loginButton2;
     private javax.swing.JButton loginButton3;
     private javax.swing.JButton loginButton4;
-    private javax.swing.JButton loginButton5;
     private javax.swing.JTextField txtUser;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables

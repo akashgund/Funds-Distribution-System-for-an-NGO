@@ -6,9 +6,11 @@
 package Business.Users;
 
 import Business.Employee.Employee;
+import Business.OrderItems.Order;
 import Business.Role.Role;
 import Business.WorkQueue.EmailQueue;
 import Business.WorkQueue.WorkQueue;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,10 +24,12 @@ public class UserAccount {
     private Role role;
     private WorkQueue workQueue;
     private EmailQueue emailQueue;
+    private ArrayList<Order> orderList;
     //add workqueue
     public UserAccount() {
        workQueue = new WorkQueue();
        emailQueue = new EmailQueue();
+       orderList = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -60,6 +64,8 @@ public class UserAccount {
     public void setRole(Role role) {
         this.role = role;
     }
+    
+    
 
    
     

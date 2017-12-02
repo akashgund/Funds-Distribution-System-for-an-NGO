@@ -5,12 +5,8 @@
  */
 package Business.Enterprize;
 
-import Business.Network.*;
-import Business.Enterprize.Enterprize;
-import Business.Organization.Organization;
+import Business.OrderItems.InfrastructureItems;
 import Business.Role.Role;
-import Business.WorkQueue.EmailQueue;
-import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -21,9 +17,10 @@ public class InfraProvider extends Enterprize {
 
     private String infraProviderName;
     private static InfraProvider infraProvider;
-
-    public InfraProvider(String name) {
+    private InfrastructureItems infraItems;
+    private InfraProvider(String name) {
         super(name,Enterprize.Enterprisetype.Infrastructure);
+        infraItems = new InfrastructureItems();
     }
 
     public String getInfraProviderName() {
@@ -36,7 +33,7 @@ public class InfraProvider extends Enterprize {
 
     public static InfraProvider getInstance() {
         if (infraProvider == null) {
-            infraProvider = new InfraProvider(null);//chk name passed
+            infraProvider = new InfraProvider("State Infrastructure Provider");//chk name passed
         }
         return infraProvider;
     }

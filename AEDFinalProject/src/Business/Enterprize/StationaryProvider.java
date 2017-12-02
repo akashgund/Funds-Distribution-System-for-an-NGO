@@ -5,12 +5,8 @@
  */
 package Business.Enterprize;
 
-import Business.Network.*;
-import Business.Enterprize.Enterprize;
-import Business.Organization.Organization;
+import Business.OrderItems.StationaryItems;
 import Business.Role.Role;
-import Business.WorkQueue.EmailQueue;
-import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -20,11 +16,17 @@ import java.util.ArrayList;
 public class StationaryProvider extends Enterprize {
     private String stationaryProviderName;
     private static StationaryProvider stationaryProvider;
-
-    public StationaryProvider(String name) {
+    private StationaryItems stationaryItems;
+    
+    private StationaryProvider(String name) {
         super(name,Enterprize.Enterprisetype.Stationary);
+        stationaryItems = new StationaryItems();
     }
 
+    public StationaryItems getStationaryItems() {
+        return stationaryItems;
+    }
+    
     public String getStationaryProviderName() {
         return stationaryProviderName;
     }
@@ -37,7 +39,7 @@ public class StationaryProvider extends Enterprize {
    {
        if(stationaryProvider==null)     
        {
-           stationaryProvider = new StationaryProvider(null);//
+           stationaryProvider = new StationaryProvider("State Stationary Provider");//
        }
        return stationaryProvider;
    }

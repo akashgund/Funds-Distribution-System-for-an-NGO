@@ -5,8 +5,13 @@
  */
 package Interfaces.StateAdmin;
 
-import Interfaces.SystemAdmin.*;
+import Business.Enterprize.Enterprize;
+import Business.Enterprize.School;
+import Business.Network.Network;
+import Business.Users.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,9 +23,29 @@ public class ManageAccounts extends javax.swing.JPanel {
      * Creates new form LoginPage
      */
     JPanel container;
-    public ManageAccounts(JPanel container) {
+    private Network network;
+
+    public ManageAccounts(JPanel container, Network network) {
         initComponents();
         this.container = container;
+        this.network = network;
+        populatetable();
+    }
+
+    public void populatetable() {
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+        for (Enterprize e : network.getEnterpriseDirectory().getEnterprizeList()) {
+            if (e instanceof School) {
+                for (UserAccount ua : e.getUserAccountDirectory().getUserAccount()) {
+                    Object[] row = new Object[3];
+                    row[0] = e;
+                    row[1] = ua.getEmployee().getName();
+                    row[2] = ua.getUsername();
+                    dtm.addRow(row);
+                }
+            }
+        }
     }
 
     /**
@@ -33,9 +58,9 @@ public class ManageAccounts extends javax.swing.JPanel {
     private void initComponents() {
 
         userProcessContainer = new javax.swing.JPanel();
-        loginButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         loginButton1 = new javax.swing.JButton();
+        loginButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         loginButton2 = new javax.swing.JButton();
@@ -43,18 +68,6 @@ public class ManageAccounts extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         userProcessContainer.setBackground(new java.awt.Color(255, 255, 255));
-
-        loginButton.setBackground(new java.awt.Color(255, 0, 51));
-        loginButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        loginButton.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton.setText("Create Account");
-        loginButton.setBorder(null);
-        loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -72,6 +85,18 @@ public class ManageAccounts extends javax.swing.JPanel {
             }
         });
 
+        loginButton3.setBackground(new java.awt.Color(255, 0, 51));
+        loginButton3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        loginButton3.setForeground(new java.awt.Color(255, 255, 102));
+        loginButton3.setText("Create Facility Accounts");
+        loginButton3.setBorder(null);
+        loginButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
         userProcessContainer.setLayout(userProcessContainerLayout);
         userProcessContainerLayout.setHorizontalGroup(
@@ -82,9 +107,9 @@ public class ManageAccounts extends javax.swing.JPanel {
                 .addContainerGap(208, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(loginButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loginButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         userProcessContainerLayout.setVerticalGroup(
@@ -92,9 +117,9 @@ public class ManageAccounts extends javax.swing.JPanel {
             .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 381, Short.MAX_VALUE)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 403, Short.MAX_VALUE)
+                .addComponent(loginButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
         );
@@ -104,7 +129,7 @@ public class ManageAccounts extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "School ", "Admin", "Username"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -155,10 +180,6 @@ public class ManageAccounts extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginButtonActionPerformed
-
     private void loginButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_loginButton1ActionPerformed
@@ -167,14 +188,22 @@ public class ManageAccounts extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_loginButton2ActionPerformed
 
+    private void loginButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton3ActionPerformed
+        // TODO add your handling code here:
+        CreateAccounts createAccountsPanel = new CreateAccounts(container,network);
+        container.add("CreateAccountPanel", createAccountsPanel);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
+    }//GEN-LAST:event_loginButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton loginButton;
     private javax.swing.JButton loginButton1;
     private javax.swing.JButton loginButton2;
+    private javax.swing.JButton loginButton3;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
 }

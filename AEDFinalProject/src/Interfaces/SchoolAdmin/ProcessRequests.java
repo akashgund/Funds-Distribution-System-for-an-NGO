@@ -5,9 +5,6 @@
  */
 package Interfaces.SchoolAdmin;
 
-import Interfaces.StateAdmin.*;
-import Interfaces.SystemAdmin.*;
-import Interfaces.*;
 import javax.swing.JPanel;
 
 /**
@@ -73,6 +70,11 @@ public class ProcessRequests extends javax.swing.JPanel {
         loginButton.setText("Process Request");
         loginButton.setBorder(null);
         loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,6 +92,11 @@ public class ProcessRequests extends javax.swing.JPanel {
         loginButton4.setText("<<Back");
         loginButton4.setBorder(null);
         loginButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
         userProcessContainer.setLayout(userProcessContainerLayout);
@@ -111,9 +118,7 @@ public class ProcessRequests extends javax.swing.JPanel {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(37, 37, 37)
                                 .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(loginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(userProcessContainerLayout.createSequentialGroup()
                         .addGap(179, 179, 179)
                         .addComponent(jLabel6)
@@ -163,6 +168,14 @@ public class ProcessRequests extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

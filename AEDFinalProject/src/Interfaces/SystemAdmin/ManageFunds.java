@@ -134,6 +134,11 @@ public class ManageFunds extends javax.swing.JPanel {
         loginButton2.setText("<<Back");
         loginButton2.setBorder(null);
         loginButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -158,6 +163,11 @@ public class ManageFunds extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_loginButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
