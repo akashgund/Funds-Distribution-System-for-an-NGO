@@ -10,6 +10,7 @@ import Business.Enterprize.Enterprize;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Users.UserAccount;
+import Interfaces.SchoolAdmin.SchoolTreasuryWorkArea;
 import javax.swing.JPanel;
 
 /**
@@ -20,7 +21,7 @@ public class SchoolTreasuryRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network, Organization organisation, Enterprize enterprise, Ecosystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new SchoolTreasuryWorkArea(userProcessContainer, account, enterprise);
     }
 
     

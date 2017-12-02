@@ -11,10 +11,11 @@ package Business.Funds;
  */
 public abstract class Funds {
     String fundName;
-    int fundAccepted;
-    public Funds()
+    int fundAmount;
+    private fundsType type;
+    public Funds(fundsType type)
     {
-        
+       this.type = type;
     }
      public enum fundsType{
          InfraFunds("Infra Funds"),StationaryFunds("Stationary Funds"),HealthCareFunds("HealthCare Funds");
@@ -34,6 +35,15 @@ public abstract class Funds {
         
         
     }
+
+    public void setFundAmount(int fundAmount) {
+        this.fundAmount = fundAmount;
+    }
+
+    public int getFundAmount() {
+        return fundAmount;
+    }
+     
  
     
 }

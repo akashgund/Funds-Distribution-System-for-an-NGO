@@ -243,21 +243,11 @@ public class SignUp extends javax.swing.JPanel {
         {
             for(Enterprize e : n.getEnterpriseDirectory().getEnterprizeList())
             {
-                
                 if(e instanceof School && e.getOrganisationName().equalsIgnoreCase(jComboBox1.getSelectedItem().toString()))
                 {
                     selectedEnterprize = e;
                 }
             }
-        }
-        
-        
-        boolean b = selectedEnterprize.getUserAccountDirectory().checkIfUsernameIsUnique(txtUser.getText());
-        if(!b)
-        {
-            i++;
-            JOptionPane.showMessageDialog(null, "Username is not unique", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
         }
         
         if(!(txtPassword.getText().equals(txtPassword1.getText())))

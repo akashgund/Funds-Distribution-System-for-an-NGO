@@ -12,7 +12,6 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import java.util.ArrayList;
-import Business.Users.UserAccount;
 
 /**
  *
@@ -50,62 +49,51 @@ public class UserAccountDirectory {
     }
 
     public UserAccount createUserAccount(String username, String password, Employee employee, Role role) {
-        UserAccount userAccount = new UserAccount();
-        userAccount.setUserName(username);
-        userAccount.setPassword(password);
-        userAccount.setEmployee(employee);
-        userAccount.setRole(role);
-        userAccountList.add(userAccount);
-        return userAccount;
-    }
-
-    public boolean checkIfUsernameIsUnique(String username) {
-        for (UserAccount ua : userAccountList) {
-            if (ua.getUsername().equals(username)) {
-                return false;
-            }
+        if (checkUnique(username)) {
+            UserAccount userAccount = new UserAccount();
+            userAccount.setUserName(username);
+            userAccount.setPassword(password);
+            userAccount.setEmployee(employee);
+            userAccount.setRole(role);
+            userAccountList.add(userAccount);
+            return userAccount;
+        } else {
+            System.out.println("lund bazaar");
+            return null;
         }
-        return true;
     }
 
     public boolean checkUnique(String username) {
-        int count = 0;
-        for (UserAccount ua : Ecosystem.getInstance().getUserAccountDirectory().getUserAccount()) {
-            if (username.equalsIgnoreCase(ua.getUsername())) {
-                count++;
+        Ecosystem system = Ecosystem.getInstance();
+        for (UserAccount ua : system.getUserAccountDirectory().getUserAccount()) {
+            if (ua.getUsername().equalsIgnoreCase(username)) {
+                return false;
             }
-            for (Network n : Ecosystem.getInstance().getNetworkList()) {
-                for (UserAccount uan : n.getUserAccountDirectory().getUserAccount()) {
-                    if (username.equalsIgnoreCase(uan.getUsername())) {
-                        //System.out.println("looaoa");
-                        count++;
+        }
+
+        for (Network n : system.getNetworkList()) {
+            for (UserAccount ua : n.getUserAccountDirectory().getUserAccount()) {
+                if (ua.getUsername().equalsIgnoreCase(username)) {
+                    return false;
+                }
+            }
+            for (Enterprize e : n.getEnterpriseDirectory().getEnterprizeList()) {
+                for (UserAccount ua : e.getUserAccountDirectory().getUserAccount()) {
+                    if (ua.getUsername().equalsIgnoreCase(username)) {
+                        return false;
                     }
                 }
 
-                for (Enterprize e : n.getEnterpriseDirectory().getEnterprizeList()) {
-                    for (UserAccount uae : e.getUserAccountDirectory().getUserAccount()) {
-                        if (username.equalsIgnoreCase(uae.getUsername())) {
-                            //System.out.println("looaoa");
-                            count++;
-                        }
-                    }
-
-                    for (Organization o : e.getOrganizationDirectory().getOrganisationList()) {
-                        for (UserAccount uao : n.getUserAccountDirectory().getUserAccount()) {
-                            if (username.equalsIgnoreCase(uao.getUsername())) {
-                                //System.out.println("looaoa");
-                                count++;
-                            }
+                for (Organization o : e.getOrganizationDirectory().getOrganisationList()) {
+                    for (UserAccount ua : o.getUserAccountDirectory().getUserAccount()) {
+                        if (ua.getUsername().equalsIgnoreCase(username)) {
+                            return false;
                         }
                     }
                 }
             }
         }
-        System.out.println(count);
-        if (count == 0) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
 }

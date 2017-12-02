@@ -8,10 +8,15 @@ package Interfaces.SchoolAdmin;
 
 import Business.Ecosystem.Ecosystem;
 import Business.Enterprize.Enterprize;
+import static Business.Enterprize.Enterprize.Enterprisetype.School;
+import Business.Enterprize.School;
 import Business.Network.Network;
 import Business.Users.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -24,16 +29,44 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
      * Creates new form LoginPage
      */
     JPanel container;
-    private Enterprize enterprise;
+    private School enterprize;
     private UserAccount account;
     public SchoolAdminWorkArea(JPanel container,UserAccount account, Enterprize enterprise) {
         initComponents();
         this.container = container;
-        this.enterprise = enterprise;
+        this.enterprize = (School) enterprise;
         this.account = account;
         txtUser.setText(account.getEmployee().getName());
+        //System.out.println(this.enterprise.getInfraScore()*100);
+        //populate();
     }
 
+     public void populate() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (;;) {
+                    try {
+                       /*double infra = enterprize.getInfraScore()*100;
+                        double util = enterprize.getStationaryScore()*100;
+                        double man = enterprize.getManpowerScore()*100;
+                        double health = enterprize.getHealthScore()*100;
+                        double total = enterprize.getOverallScore();
+                        */
+                        Thread.sleep(800);
+                        enterprize.setInfraFunds(enterprize.getInfraFunds() - 10000);
+                        System.out.println("Infra Funds "+enterprize.getInfraFunds()+" Infra Score " + enterprize.getInfraScore());
+                        
+                    } catch (InterruptedException ex) {
+                       
+                    }
+                }
+            }
+
+        }
+        ).start();
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -211,7 +244,7 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
 
     private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed
         // TODO add your handling code here:
-        ManageAccounts panel = new ManageAccounts(container , enterprise);
+        ManageAccounts panel = new ManageAccounts(container , enterprize);
         container.add("ManageEmails", panel);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);

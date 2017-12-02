@@ -8,8 +8,12 @@ package Business.Ecosystem;
 import Business.Employee.Employee;
 import Business.Enterprize.Enterprize;
 import static Business.Enterprize.Enterprize.Enterprisetype.School;
+import Business.Funds.HealthFunds;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Role.SchoolAdminRole;
+import Business.Role.SchoolPrincipalRole;
+import Business.Role.SchoolTreasuryRole;
 import Business.Role.StateAdminRole;
 import Business.Role.SystemAdminRole;
 import Business.Users.UserAccount;
@@ -32,6 +36,14 @@ public class Configuration {
         e1 = s1.getEmployeeDirectory().createEmployee("prestige");
         s1.getUserAccountDirectory().createUserAccount("prestige", "prestige", e1, new SchoolAdminRole());
         s1.setAccount(true);
+        e1 = s1.getEmployeeDirectory().createEmployee("Shardul");
+        Organization prestigePrincipal = s1.getOrganizationDirectory().createOrganization(Organization.organizationType.principal);
+        prestigePrincipal.getUserAccountDirectory().createUserAccount("prestigeP", "prestigeP", e1, new SchoolPrincipalRole());
+        prestigePrincipal.setAccount(true);
+        e1 = s1.getEmployeeDirectory().createEmployee("Virat");
+        Organization prestigeTreasury = s1.getOrganizationDirectory().createOrganization(Organization.organizationType.treasury);
+        prestigeTreasury.getUserAccountDirectory().createUserAccount("prestigeT", "prestigeT", e1, new SchoolTreasuryRole());
+        prestigeTreasury.setAccount(true);
         Enterprize s2 = state1.getEnterpriseDirectory().createAndAddEnterprise("Centenary School", School);
         Enterprize s3 = state1.getEnterpriseDirectory().createAndAddEnterprise("Eveline Girls High School", School);
         Enterprize s4 = state1.getEnterpriseDirectory().createAndAddEnterprise("Coventry High School", School);
@@ -135,9 +147,8 @@ public class Configuration {
         //initialize some organizations
         //have some employees 
         //create user account
-
         Employee employee = system.getEmployeeDirectory().createEmployee("Tanmay Sinha");
-
+        
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         return system;
     }

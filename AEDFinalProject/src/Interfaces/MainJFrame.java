@@ -8,13 +8,15 @@ package Interfaces;
 import Business.Ecosystem.Configuration;
 import Business.Ecosystem.Ecosystem;
 import Business.Enterprize.Enterprize;
+import Business.Enterprize.School;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Users.UserAccount;
 import Interfaces.SchoolAdmin.SignUp;
-import Interfaces.SystemAdmin.SystemAdminWorkArea;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -32,6 +34,37 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         system = Configuration.configure();
+        populate();
+    }
+
+    public void populate() {
+
+        system.getNetworkList().stream()
+                .forEach(x -> {
+                    for (Enterprize e : x.getEnterpriseDirectory().getEnterprizeList()) {
+                        if (e instanceof School) {
+
+                            School s = (School) e;
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    for (;;) {
+                                        try {
+                                            Thread.sleep(3000);
+                                            s.setInfraFunds(s.getInfraFunds() - 7000);
+                                            s.setStationaryFunds(s.getStationaryFunds() - 1500);
+                                            s.setHealthFunds(s.getHealthFunds() - 800);
+                                        } catch (InterruptedException ex) {
+                                            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                    }
+                                }
+
+                            }
+                            ).start();
+                        }
+                    }
+                });
     }
 
     /**
@@ -229,12 +262,12 @@ public class MainJFrame extends javax.swing.JFrame {
                     inNetwork = network;
                     break;
                 }
-                if (inNetwork != null || inEnterprise!=null) {
+                if (inNetwork != null || inEnterprise != null) {
                     break;
                 }
             }
         }
-        
+
         if (userAccount == null) {
             JOptionPane.showMessageDialog(null, "Invalid Credentails!");
             return;
@@ -243,13 +276,15 @@ public class MainJFrame extends javax.swing.JFrame {
             container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inNetwork, inOrganization, inEnterprise, system));
             layout.next(container);
         }
-
-
+        txtUser.setText("");
+        txtPassword.setText("");
+        loginButton.setEnabled(false);
+        loginButton2.setEnabled(true);
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void loginButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton1ActionPerformed
         // TODO add your handling code here:
-        SignUp panel = new SignUp(container,system);
+        SignUp panel = new SignUp(container, system);
         container.add("Reports", panel);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
@@ -263,6 +298,8 @@ public class MainJFrame extends javax.swing.JFrame {
         container.add("blank", njp);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
+        loginButton.setEnabled(true);
+        loginButton2.setEnabled(false);
     }//GEN-LAST:event_loginButton2ActionPerformed
 
     /**

@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Enterprize;
+package Business.OrderItems;
+
+import Business.Enterprize.*;
 
 /**
  *
@@ -21,7 +23,7 @@ public class Disease {
         this.name = name;
     }
    
-    public class Vaccine {
+    public class Vaccine extends OrderItem {
 
         private String vaccineName;
         private int quantity;

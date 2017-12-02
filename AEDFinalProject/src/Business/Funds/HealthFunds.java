@@ -9,14 +9,17 @@ package Business.Funds;
  *
  * @author Dell
  */
-public class InfraFunds extends Funds {
-    private static final int maxLimit = 1000000;
+public class HealthFunds extends Funds {
+    
+    private static final int maxLimit = 150000;
 
-    public InfraFunds(fundsType type) {
-        super(Funds.fundsType.InfraFunds);
+    public HealthFunds(fundsType type) {
+        super(Funds.fundsType.HealthCareFunds);
     }
 
     public static int getMaxLimit() {
         return maxLimit;
     }
+    
+    
 }

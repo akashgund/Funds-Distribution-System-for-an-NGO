@@ -5,7 +5,8 @@
  */
 package Business.Enterprize;
 
-import Business.Enterprize.Disease.Vaccine;
+import Business.OrderItems.Disease.Vaccine;
+import Business.OrderItems.Disease;
 import Business.Role.Role;
 import java.util.ArrayList;
 

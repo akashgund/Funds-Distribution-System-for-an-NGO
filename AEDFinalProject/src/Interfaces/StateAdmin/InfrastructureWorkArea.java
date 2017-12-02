@@ -5,48 +5,29 @@
  */
 package Interfaces.StateAdmin;
 
-import Business.Ecosystem.Ecosystem;
-import Business.Enterprize.Enterprize;
-import Business.Enterprize.School;
 import Business.Network.Network;
-import UtilityClasses.JComboBoxDecorator;
+import Business.Users.UserAccount;
+import Interfaces.*;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
  *
  * @author Dell
  */
-public class ProgressReports extends javax.swing.JPanel {
+public class InfrastructureWorkArea extends javax.swing.JPanel {
 
     /**
      * Creates new form LoginPage
      */
-    JPanel container;
-    private Ecosystem business;
+    private JPanel container;
+    private UserAccount account;
     private Network network;
-
-    public ProgressReports(JPanel container, Ecosystem business, Network network) {
+    public InfrastructureWorkArea(JPanel container , UserAccount account , Network network) {
         initComponents();
         this.container = container;
-        this.business = business;
+        this.account = account;
         this.network = network;
-        jComboBox1.removeAllItems();
-        network.getEnterpriseDirectory().getEnterprizeList().stream()
-                .filter(x -> (x instanceof School))
-                .forEach(x
-                        -> {
-                    jComboBox1.addItem(x);
-                }
-                );
-        //autosuggest();
-    }
-    
-    public void autosuggest() {
-        JTextField text = (JTextField) jComboBox1.getEditor().getEditorComponent();
-        text.setText("");
-        text.addKeyListener(new JComboBoxDecorator(jComboBox1));
     }
 
     /**
@@ -59,24 +40,20 @@ public class ProgressReports extends javax.swing.JPanel {
     private void initComponents() {
 
         userProcessContainer = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         loginButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         userProcessContainer.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Select School");
-
         loginButton.setBackground(new java.awt.Color(255, 0, 51));
         loginButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         loginButton.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton.setText("View Reports");
+        loginButton.setText("Process");
         loginButton.setBorder(null);
         loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -85,20 +62,19 @@ public class ProgressReports extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Progress Reports");
+        jLabel6.setText("Infrastructure Provider");
 
-        jComboBox1.setBackground(new java.awt.Color(255, 0, 51));
-        jComboBox1.setEditable(true);
-        jComboBox1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "gund", "chacha", "nair", "bhai" }));
-        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        });
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         loginButton1.setBackground(new java.awt.Color(255, 0, 51));
         loginButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -117,30 +93,31 @@ public class ProgressReports extends javax.swing.JPanel {
         userProcessContainerLayout.setHorizontalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userProcessContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, 0, 309, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(userProcessContainerLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         userProcessContainerLayout.setVerticalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(107, 107, 107)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110)
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -167,30 +144,20 @@ public class ProgressReports extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-        Enterprize enterprize = (Enterprize) jComboBox1.getSelectedItem();
-        Reports panel = new Reports(container,enterprize);
-        container.add("Reports", panel);
-        CardLayout layout = (CardLayout) container.getLayout();
-        layout.next(container);
     }//GEN-LAST:event_loginButtonActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        Enterprize enterprize = null;
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void loginButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton1ActionPerformed
         // TODO add your handling code here:
-        container.remove(this);
+        /*container.remove(this);
         CardLayout layout = (CardLayout) container.getLayout();
-        layout.previous(container);
+        layout.previous(container);*/
     }//GEN-LAST:event_loginButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton loginButton;
     private javax.swing.JButton loginButton1;
     private javax.swing.JPanel userProcessContainer;

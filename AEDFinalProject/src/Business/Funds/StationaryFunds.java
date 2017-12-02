@@ -7,8 +7,16 @@ package Business.Funds;
 
 /**
  *
- * @author akash
+ * @author Dell
  */
-public class StationaryFunds {
-    
+public class StationaryFunds extends Funds {
+    private static final int maxLimit = 500000;
+
+    public StationaryFunds(fundsType type) {
+        super(Funds.fundsType.HealthCareFunds);
+    }
+
+    public static int getMaxLimit() {
+        return maxLimit;
+    }
 }

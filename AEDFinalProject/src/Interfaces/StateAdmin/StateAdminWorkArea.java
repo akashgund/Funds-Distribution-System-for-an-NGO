@@ -31,8 +31,10 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         this.business = business;
         this.account = account;
         txtUser.setText(account.getEmployee().getName());
+        
     }
-
+    
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -238,7 +240,7 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
 
     private void loginButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton6ActionPerformed
         // TODO add your handling code here:
-        ProgressReports panel = new ProgressReports(container,business);
+        ProgressReports panel = new ProgressReports(container,business,network);
         container.add("ProgressReports", panel);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);

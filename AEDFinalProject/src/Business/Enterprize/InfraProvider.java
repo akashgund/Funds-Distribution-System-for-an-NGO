@@ -5,6 +5,7 @@
  */
 package Business.Enterprize;
 
+import Business.OrderItems.InfrastructureItems;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -16,9 +17,10 @@ public class InfraProvider extends Enterprize {
 
     private String infraProviderName;
     private static InfraProvider infraProvider;
-
-    public InfraProvider(String name) {
+    private InfrastructureItems infraItems;
+    private InfraProvider(String name) {
         super(name,Enterprize.Enterprisetype.Infrastructure);
+        infraItems = new InfrastructureItems();
     }
 
     public String getInfraProviderName() {

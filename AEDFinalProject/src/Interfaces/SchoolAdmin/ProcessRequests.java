@@ -5,9 +5,6 @@
  */
 package Interfaces.SchoolAdmin;
 
-import Interfaces.StateAdmin.*;
-import Interfaces.SystemAdmin.*;
-import Interfaces.*;
 import javax.swing.JPanel;
 
 /**
