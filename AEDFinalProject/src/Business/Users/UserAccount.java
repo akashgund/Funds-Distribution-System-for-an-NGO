@@ -26,21 +26,21 @@ public class UserAccount {
     private WorkQueue workQueue;
     private EmailQueue emailQueue;
     private ManpowerRequestQueue manPowerQueue;
-    private VaccineWorkRequestQueue vacccineWorkQueue;
+    private VaccineWorkRequestQueue vacccineWorkRequestQueue;
     //add workqueue
     public UserAccount() {
        workQueue = new WorkQueue();
        emailQueue = new EmailQueue();
        manPowerQueue= new ManpowerRequestQueue();
-       vacccineWorkQueue= new VaccineWorkRequestQueue();
+       vacccineWorkRequestQueue= new VaccineWorkRequestQueue();
     }
 
-    public VaccineWorkRequestQueue getVacccineWorkQueue() {
-        return vacccineWorkQueue;
+    public VaccineWorkRequestQueue getVacccineWorkRequestQueue() {
+        return vacccineWorkRequestQueue;
     }
 
-    public void setVacccineWorkQueue(VaccineWorkRequestQueue vacccineWorkQueue) {
-        this.vacccineWorkQueue = vacccineWorkQueue;
+    public void setVacccineWorkRequestQueue(VaccineWorkRequestQueue vacccineWorkQueue) {
+        this.vacccineWorkRequestQueue = vacccineWorkQueue;
     }
 
     public ManpowerRequestQueue getManPowerQueue() {

@@ -217,7 +217,7 @@ public class ProcessRequests extends javax.swing.JPanel {
         
         if(requestTypeChoice.equalsIgnoreCase("Vaccine Request"))
         {
-            VaccineWorkRequestQueue requestQueue= userAccount.getVacccineWorkQueue();
+            VaccineWorkRequestQueue requestQueue= userAccount.getVacccineWorkRequestQueue();
              ProcessVaccineRequest processManPowerRequest= new ProcessVaccineRequest(userProcessContainer,requestQueue);
         userProcessContainer.add("ComaposeEmail",processManPowerRequest);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();

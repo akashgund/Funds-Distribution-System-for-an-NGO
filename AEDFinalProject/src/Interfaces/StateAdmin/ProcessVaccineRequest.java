@@ -5,6 +5,9 @@
  */
 package Interfaces.StateAdmin;
 
+import Business.WorkQueue.VaccineWorkRequestQueue;
+import javax.swing.JPanel;
+
 /**
  *
  * @author akash
@@ -16,6 +19,10 @@ public class ProcessVaccineRequest extends javax.swing.JPanel {
      */
     public ProcessVaccineRequest() {
         initComponents();
+    }
+
+    ProcessVaccineRequest(JPanel userProcessContainer, VaccineWorkRequestQueue requestQueue) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

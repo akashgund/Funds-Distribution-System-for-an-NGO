@@ -14,6 +14,12 @@ public class ManpowerRequest extends WorkRequestABS {
     private int techerRequested;
     private int teacherGranted;
     private String status;
+    private String requestType;
+
+    public ManpowerRequest() {
+        this.requestType = "Man Power Request";
+    }
+    
 
     public int getTecherRequested() {
         return techerRequested;

@@ -5,6 +5,9 @@
  */
 package Interfaces.StateAdmin;
 
+import Business.WorkQueue.WorkQueue;
+import javax.swing.JPanel;
+
 /**
  *
  * @author akash
@@ -16,6 +19,10 @@ public class ProcessFundRequest extends javax.swing.JPanel {
      */
     public ProcessFundRequest() {
         initComponents();
+    }
+
+    ProcessFundRequest(JPanel userProcessContainer, WorkQueue requestQueue) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
