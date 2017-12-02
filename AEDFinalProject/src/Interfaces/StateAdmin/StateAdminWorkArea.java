@@ -238,10 +238,10 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
 
     private void loginButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton6ActionPerformed
         // TODO add your handling code here:
-        ProgressReports panel = new ProgressReports(container,business);
+       /* ProgressReports panel = new ProgressReports(container,business);
         container.add("ProgressReports", panel);
         CardLayout layout = (CardLayout) container.getLayout();
-        layout.next(container);
+        layout.next(container);*/
     }//GEN-LAST:event_loginButton6ActionPerformed
 
 

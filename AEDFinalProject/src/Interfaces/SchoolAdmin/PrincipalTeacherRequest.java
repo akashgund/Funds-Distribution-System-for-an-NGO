@@ -10,6 +10,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Users.UserAccount;
 import Business.WorkQueue.ManpowerRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -24,12 +25,12 @@ public class PrincipalTeacherRequest extends javax.swing.JPanel {
     JPanel userProcessContainer;
     Enterprize enterprize;
     UserAccount ua;
-    Network network;
-    PrincipalTeacherRequest(JPanel userProcessContainer, Enterprize enterprize,UserAccount ua,Network network) {
+ 
+    PrincipalTeacherRequest(JPanel userProcessContainer, Enterprize enterprize,UserAccount ua) {
          initComponents();
          this.userProcessContainer=userProcessContainer;
         this.enterprize=enterprize;
-        this.network=network;
+        
 this.ua=ua;//To change body of generated methods, choose Tools | Templates.
     }
 
@@ -74,20 +75,18 @@ this.ua=ua;//To change body of generated methods, choose Tools | Templates.
         JPanel.setLayout(JPanelLayout);
         JPanelLayout.setHorizontalGroup(
             JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
             .addGroup(JPanelLayout.createSequentialGroup()
-                .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPanelLayout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JPanelLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(teacherNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JPanelLayout.createSequentialGroup()
+                            .addGap(232, 232, 232)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(JPanelLayout.createSequentialGroup()
+                            .addGap(39, 39, 39)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(teacherNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(306, Short.MAX_VALUE))
         );
         JPanelLayout.setVerticalGroup(
@@ -99,9 +98,9 @@ this.ua=ua;//To change body of generated methods, choose Tools | Templates.
                 .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(teacherNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(138, 138, 138)
+                .addGap(18, 18, 18)
                 .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addContainerGap(420, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -133,8 +132,10 @@ this.ua=ua;//To change body of generated methods, choose Tools | Templates.
         manPowerRequest.setSender(ua);
         manPowerRequest.setTecherRequested(numberReq);
         manPowerRequest.setStatus("Requested");
-       network.getManpowerQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
+        System.out.println(enterprize.getOrganisationName()+"  hfjsbjdfsjd");
+       enterprize.getManpowerQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
        ua.getManPowerQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
+       JOptionPane.showMessageDialog(null,"Request sent!");
        //network.getManPowerRequestQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
         //ua.getManpowerRequestQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
         

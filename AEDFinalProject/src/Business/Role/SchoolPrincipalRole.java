@@ -10,6 +10,8 @@ import Business.Enterprize.Enterprize;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Users.UserAccount;
+import Interfaces.SchoolAdmin.SchoolPrincipalWorkArea;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -20,7 +22,9 @@ public class SchoolPrincipalRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network, Organization organisation, Enterprize enterprise, Ecosystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        JOptionPane.showMessageDialog(null, network);
+        return new SchoolPrincipalWorkArea(userProcessContainer, account, enterprise); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

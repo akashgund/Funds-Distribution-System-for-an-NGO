@@ -10,6 +10,7 @@ import Business.Role.Role;
 import Business.Users.UserAccountDirectory;
 import Business.WorkQueue.EmailQueue;
 import Business.WorkQueue.ManpowerRequestQueue;
+import Business.WorkQueue.VaccineWorkRequestQueue;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public abstract class Organization {
     private WorkQueue workQueue;
     private EmailQueue emailQueue;
     private ManpowerRequestQueue manpowerQueue;
+    private VaccineWorkRequestQueue vaccineWorkRequestQueue;
     private boolean account;
     public Organization(String name)
     {
@@ -38,8 +40,17 @@ public abstract class Organization {
         manpowerQueue= new ManpowerRequestQueue();
         employeeDirectory= new EmployeeDirectory();
         userAccountDirectory= new UserAccountDirectory();
+        vaccineWorkRequestQueue= new VaccineWorkRequestQueue();
         organizationID=counter;
         ++counter;
+    }
+
+    public VaccineWorkRequestQueue getVaccineWorkRequestQueue() {
+        return vaccineWorkRequestQueue;
+    }
+
+    public void setVaccineWorkRequestQueue(VaccineWorkRequestQueue vaccineWrokRequestQueue) {
+        this.vaccineWorkRequestQueue = vaccineWrokRequestQueue;
     }
 
     public String getOrganizationName() {
