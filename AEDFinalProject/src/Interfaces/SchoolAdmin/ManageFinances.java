@@ -6,9 +6,18 @@
 package Interfaces.SchoolAdmin;
 
 import Business.Enterprize.Enterprize;
+import Business.Enterprize.School;
+import Business.Funds.Funds;
+import Business.Funds.HealthFunds;
+import Business.Funds.InfraFunds;
+import Business.Funds.StationaryFunds;
+import Business.Role.SchoolAdminRole;
 import Business.Users.UserAccount;
-import Interfaces.*;
+import Business.WorkQueue.WorkRequest;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  *
@@ -20,13 +29,58 @@ public class ManageFinances extends javax.swing.JPanel {
      * Creates new form LoginPage
      */
     JPanel container;
-    private Enterprize enterprise;
+    private School enterprise;
     private UserAccount account;
-    public ManageFinances(JPanel container,UserAccount account, Enterprize enterprise) {
+    private double infrafunds, stationaryfunds, healthfunds;
+
+    public ManageFinances(JPanel container, UserAccount account, Enterprize enterprise) {
         initComponents();
         this.container = container;
-        this.enterprise = enterprise;
+        this.enterprise = (School) enterprise;
         this.account = account;
+        this.infrafunds = this.enterprise.getInfraFunds();
+        this.stationaryfunds = this.enterprise.getStationaryFunds();
+        this.healthfunds = this.enterprise.getHealthFunds();
+        populatecombobox();
+    }
+
+    public void load() {
+        final Timer t = new Timer(200, (ActionEvent e) -> {
+            simulate();
+            if (jProgressBar2.getValue() == 30) {
+                ((Timer) e.getSource()).stop();
+            }
+        });
+        t.start();
+    }
+
+    public void simulate() {
+        double infra = enterprise.getInfraScore() * 100;
+        double util = enterprise.getStationaryScore() * 100;
+        double health = enterprise.getHealthScore() * 100;
+        if (fundsCombo.getSelectedIndex() == 0) {
+            txtFunds.setText("");
+        }
+        if (fundsCombo.getSelectedIndex() == 1) {
+            txtFunds.setText(String.valueOf(enterprise.getInfraFunds()));
+            jProgressBar2.setValue((int) infra);
+        }
+        if (fundsCombo.getSelectedIndex() == 2) {
+            txtFunds.setText(String.valueOf(enterprise.getStationaryFunds()));
+            jProgressBar2.setValue((int) util);
+        }
+        if (fundsCombo.getSelectedIndex() == 3) {
+            txtFunds.setText(String.valueOf(enterprise.getHealthFunds()));
+            jProgressBar2.setValue((int) health);
+        }
+    }
+
+    public void populatecombobox() {
+        fundsCombo.removeAllItems();
+        fundsCombo.addItem(null);
+        fundsCombo.addItem(Funds.fundsType.InfraFunds);
+        fundsCombo.addItem(Funds.fundsType.StationaryFunds);
+        fundsCombo.addItem(Funds.fundsType.HealthCareFunds);
     }
 
     /**
@@ -41,13 +95,13 @@ public class ManageFinances extends javax.swing.JPanel {
         userProcessContainer = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        schoolJCombo = new javax.swing.JComboBox();
+        fundsCombo = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
+        txtFunds = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jProgressBar2 = new javax.swing.JProgressBar();
         jLabel9 = new javax.swing.JLabel();
-        txtName1 = new javax.swing.JTextField();
+        txtAmount = new javax.swing.JTextField();
         loginButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -62,13 +116,13 @@ public class ManageFinances extends javax.swing.JPanel {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Manage Finances");
 
-        schoolJCombo.setBackground(new java.awt.Color(255, 0, 51));
-        schoolJCombo.setEditable(true);
-        schoolJCombo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        schoolJCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        schoolJCombo.addActionListener(new java.awt.event.ActionListener() {
+        fundsCombo.setBackground(new java.awt.Color(255, 0, 51));
+        fundsCombo.setEditable(true);
+        fundsCombo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        fundsCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        fundsCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                schoolJComboActionPerformed(evt);
+                fundsComboActionPerformed(evt);
             }
         });
 
@@ -104,9 +158,9 @@ public class ManageFinances extends javax.swing.JPanel {
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(94, 94, 94)
                         .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
-                            .addComponent(schoolJCombo, 0, 309, Short.MAX_VALUE)
-                            .addComponent(txtName1, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                            .addComponent(txtFunds, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                            .addComponent(fundsCombo, 0, 309, Short.MAX_VALUE)
+                            .addComponent(txtAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                             .addComponent(jProgressBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,15 +179,15 @@ public class ManageFinances extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(schoolJCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fundsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(98, 98, 98)
-                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFunds, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(130, 130, 130))
             .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(userProcessContainerLayout.createSequentialGroup()
@@ -184,17 +238,75 @@ public class ManageFinances extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void schoolJComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schoolJComboActionPerformed
+    private void fundsComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundsComboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_schoolJComboActionPerformed
+        load();
+    }//GEN-LAST:event_fundsComboActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-       
+        double diff = 0;
+        if (fundsCombo.getSelectedIndex() == 1) {
+            diff = InfraFunds.getMaxLimit() - enterprise.getInfraFunds();
+            if (Double.parseDouble(txtAmount.getText()) > diff) {
+                JOptionPane.showMessageDialog(null, "Amount exceeded max limit!", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            WorkRequest request = new WorkRequest();
+            request.setFundType(Funds.fundsType.InfraFunds.getValue());
+            request.setSender(account);
+            enterprise.getUserAccountDirectory().getUserAccount().stream()
+                    .filter(x -> x.getRole() instanceof SchoolAdminRole)
+                    .forEach(x -> {
+                        request.setReceiver(x);
+                        request.setFundRequested(Double.parseDouble(txtAmount.getText()));
+                        x.getWorkQueue().getWorkRequestList().add(request);
+                    });
+            JOptionPane.showMessageDialog(null, "Sent request to school admin!", "Sent", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        if (fundsCombo.getSelectedIndex() == 2) {
+            diff = StationaryFunds.getMaxLimit() - enterprise.getStationaryFunds();
+            if (Double.parseDouble(txtAmount.getText()) > diff) {
+                JOptionPane.showMessageDialog(null, "Amount exceeded max limit!", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            WorkRequest request = new WorkRequest();
+            request.setFundType(Funds.fundsType.StationaryFunds.getValue());
+            request.setSender(account);
+            enterprise.getUserAccountDirectory().getUserAccount().stream()
+                    .filter(x -> x.getRole() instanceof SchoolAdminRole)
+                    .forEach(x -> {
+                        request.setReceiver(x);
+                        request.setFundRequested(Double.parseDouble(txtAmount.getText()));
+                        x.getWorkQueue().getWorkRequestList().add(request);
+                    });
+            JOptionPane.showMessageDialog(null, "Sent request to school admin!", "Sent", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        if (fundsCombo.getSelectedIndex() == 3) {
+            diff = HealthFunds.getMaxLimit() - enterprise.getHealthFunds();
+            if (Double.parseDouble(txtAmount.getText()) > diff) {
+                JOptionPane.showMessageDialog(null, "Amount exceeded max limit!", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            WorkRequest request = new WorkRequest();
+            request.setFundType(Funds.fundsType.HealthCareFunds.getValue());
+            request.setSender(account);
+            enterprise.getUserAccountDirectory().getUserAccount().stream()
+                    .filter(x -> x.getRole() instanceof SchoolAdminRole)
+                    .forEach(x -> {
+                        request.setReceiver(x);
+                        request.setFundRequested(Double.parseDouble(txtAmount.getText()));
+                        x.getWorkQueue().getWorkRequestList().add(request);
+                    });
+            JOptionPane.showMessageDialog(null, "Sent request to school admin!", "Sent", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox fundsCombo;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -202,9 +314,8 @@ public class ManageFinances extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JButton loginButton;
-    private javax.swing.JComboBox schoolJCombo;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtName1;
+    private javax.swing.JTextField txtAmount;
+    private javax.swing.JTextField txtFunds;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
 }

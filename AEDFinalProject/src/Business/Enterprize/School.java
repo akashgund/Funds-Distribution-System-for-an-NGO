@@ -31,7 +31,34 @@ public class School extends Enterprize {
     private Funds funds;
     private double overallScore;
     private double manpowerScore =0.80;
+    private double ispendingRate;
+    private double sspendingRate;
+    private double hspendingRate;
 
+    public double getIspendingRate() {
+        return ispendingRate;
+    }
+
+    public void setIspendingRate(double ispendingRate) {
+        this.ispendingRate = ispendingRate;
+    }
+
+    public double getSspendingRate() {
+        return sspendingRate;
+    }
+
+    public void setSspendingRate(double sspendingRate) {
+        this.sspendingRate = sspendingRate;
+    }
+
+    public double getHspendingRate() {
+        return hspendingRate;
+    }
+
+    public void setHspendingRate(double hspendingRate) {
+        this.hspendingRate = hspendingRate;
+    }
+    
     public void setInfraFunds(double infraFunds) {
         this.infraFunds = infraFunds;
         setScores();

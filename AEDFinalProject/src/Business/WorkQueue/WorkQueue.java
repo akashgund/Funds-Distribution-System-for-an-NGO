@@ -12,13 +12,13 @@ import java.util.ArrayList;
  * @author akash
  */
 public class WorkQueue {
-    private ArrayList<WorkRequestABS> workRequestList;
+    private ArrayList<WorkRequest> workRequestList;
 
     public WorkQueue() {
         workRequestList = new ArrayList<>();
     }
 
-    public ArrayList<WorkRequestABS> getWorkRequestList() {
+    public ArrayList<WorkRequest> getWorkRequestList() {
         return workRequestList;
     }
 }

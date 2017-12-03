@@ -41,7 +41,11 @@ public abstract class WorkRequestABS {
         this.receiver = receiver;
     }
 
-   
+    @Override
+    public String toString()
+    {
+        return sender.getEmployee().getName();
+    }
 }
     
     

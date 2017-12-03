@@ -24,14 +24,14 @@ public class ProcessRequests extends javax.swing.JPanel {
     /**
      * Creates new form LoginPage
      */
-    JPanel userProcessContainer;
+    JPanel container;
     UserAccount userAccount;
   
     
 
     public ProcessRequests(JPanel container, UserAccount account) {
        initComponents();
-        this.userProcessContainer = container;
+        this.container = container;
         this.userAccount=userAccount;; //To change body of generated methods, choose Tools | Templates.
     }
     public void populateRequest()
@@ -214,19 +214,19 @@ public class ProcessRequests extends javax.swing.JPanel {
         if(requestTypeChoice.equalsIgnoreCase("Man Power Request"))
         {
             ManpowerRequestQueue requestQueue= userAccount.getManPowerQueue();
-             ProcessManPowerRequest processManPowerRequest= new ProcessManPowerRequest(userProcessContainer,requestQueue);
-        userProcessContainer.add("ComaposeEmail",processManPowerRequest);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+             ProcessManPowerRequest processManPowerRequest= new ProcessManPowerRequest(container,requestQueue);
+        container.add("ComaposeEmail",processManPowerRequest);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
         }
         
         if(requestTypeChoice.equalsIgnoreCase("Vaccine Request"))
         {
             VaccineWorkRequestQueue requestQueue= userAccount.getVacccineWorkRequestQueue();
-             ProcessVaccineRequest processManPowerRequest= new ProcessVaccineRequest(userProcessContainer,requestQueue);
-        userProcessContainer.add("ComaposeEmail",processManPowerRequest);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+             ProcessVaccineRequest processManPowerRequest= new ProcessVaccineRequest(container,requestQueue);
+        container.add("ComaposeEmail",processManPowerRequest);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
         }
     }//GEN-LAST:event_processRequestActionPerformed
 

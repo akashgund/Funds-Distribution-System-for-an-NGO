@@ -239,7 +239,7 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
 
     private void loginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton2ActionPerformed
         // TODO add your handling code here:
-      ProcessRequests panel = new  ProcessRequests(container);
+      ProcessRequests panel = new  ProcessRequests(container , account );
         container.add("ProcessRequests", panel);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
