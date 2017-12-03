@@ -30,6 +30,7 @@ public class ProgressReports extends javax.swing.JPanel {
     public ProgressReports(JPanel container, Network network) {
         initComponents();
         this.container = container;
+        //this.business = business;
         this.network = network;
         jComboBox1.removeAllItems();
         network.getEnterpriseDirectory().getEnterprizeList().stream()
