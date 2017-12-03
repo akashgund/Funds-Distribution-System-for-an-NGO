@@ -145,7 +145,7 @@ public class SchoolTreasuryWorkArea extends javax.swing.JPanel {
 
     private void loginButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton3ActionPerformed
         // TODO add your handling code here:
-        ManageEmails panel = new ManageEmails(container);
+        ManageSchoolEmails panel = new ManageSchoolEmails(container,account);
         container.add("ManageEmails", panel);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);

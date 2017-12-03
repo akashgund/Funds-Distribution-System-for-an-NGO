@@ -6,12 +6,15 @@
 package Interfaces.SchoolAdmin;
 
 import Business.Enterprize.Enterprize;
+import Business.Enterprize.School;
 import Business.Network.Network;
 import Business.Users.UserAccount;
 import Interfaces.SystemAdmin.CreateFacilityProviderAccount;
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  *
@@ -29,14 +32,43 @@ public class SchoolPrincipalWorkRequestGenrate extends javax.swing.JPanel {
     public SchoolPrincipalWorkRequestGenrate(JPanel userProcessContainer,Enterprize enterprize,UserAccount ua,Network network) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
-        this.enterprize=enterprize;
+        this.enterprize=(School)enterprize;
         this.ua=ua;
         this.network= network;
        // populateMenu();
        JOptionPane.showMessageDialog(null,"in work req gen");
     }
-    
-
+    public void load() {
+        final Timer t = new Timer(200, (ActionEvent e) -> {
+            simulate();
+            if (jProgressBar2.getValue() == 30) {
+                ((Timer) e.getSource()).stop();
+            }
+        });
+        t.start();
+    }
+public void simulate() {
+    /*
+        double infra = enterprise.getInfraScore() * 100;
+        double util = enterprise.getStationaryScore() * 100;
+        double health = enterprise.getHealthScore() * 100;
+        if (fundsCombo.getSelectedIndex() == 0) {
+            txtFunds.setText("");
+        }
+        if (fundsCombo.getSelectedIndex() == 1) {
+            txtFunds.setText(String.valueOf(enterprise.getInfraFunds()));
+            jProgressBar2.setValue((int) infra);
+        }
+        if (fundsCombo.getSelectedIndex() == 2) {
+            txtFunds.setText(String.valueOf(enterprise.getStationaryFunds()));
+            jProgressBar2.setValue((int) util);
+        }
+        if (fundsCombo.getSelectedIndex() == 3) {
+            txtFunds.setText(String.valueOf(enterprise.getHealthFunds()));
+            jProgressBar2.setValue((int) health);
+        }
+    */
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,6 +83,8 @@ public class SchoolPrincipalWorkRequestGenrate extends javax.swing.JPanel {
         FacilityProviderLabel1 = new javax.swing.JLabel();
         RequestMenu = new javax.swing.JComboBox<>();
         CreateButton1 = new javax.swing.JButton();
+        jProgressBar2 = new javax.swing.JProgressBar();
+        jLabel9 = new javax.swing.JLabel();
 
         Panel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -65,7 +99,7 @@ public class SchoolPrincipalWorkRequestGenrate extends javax.swing.JPanel {
         RequestMenu.setBackground(new java.awt.Color(255, 0, 51));
         RequestMenu.setEditable(true);
         RequestMenu.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        RequestMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Request Staff", "Request Vaccine" }));
+        RequestMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Request Staff" }));
         RequestMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         RequestMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,23 +119,40 @@ public class SchoolPrincipalWorkRequestGenrate extends javax.swing.JPanel {
             }
         });
 
+        jProgressBar2.setBackground(new java.awt.Color(51, 51, 255));
+        jProgressBar2.setForeground(new java.awt.Color(0, 0, 0));
+        jProgressBar2.setStringPainted(true);
+
+        jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel9.setText("Score:");
+
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
         PanelLayout.setHorizontalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
-                .addContainerGap(191, Short.MAX_VALUE)
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PanelLayout.createSequentialGroup()
-                        .addComponent(FacilityProviderLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(RequestMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(166, 166, 166))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
+            .addGroup(PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
+                        .addGap(0, 174, Short.MAX_VALUE)
+                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelLayout.createSequentialGroup()
+                                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(FacilityProviderLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PanelLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(RequestMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(PanelLayout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(154, 154, 154))))
         );
         PanelLayout.setVerticalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,9 +163,13 @@ public class SchoolPrincipalWorkRequestGenrate extends javax.swing.JPanel {
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RequestMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FacilityProviderLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(114, 114, 114)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(90, 90, 90)
                 .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(406, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -167,5 +222,7 @@ String choice= RequestMenu.getSelectedItem().toString();
     private javax.swing.JPanel Panel;
     private javax.swing.JComboBox<String> RequestMenu;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JProgressBar jProgressBar2;
     // End of variables declaration//GEN-END:variables
 }

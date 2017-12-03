@@ -8,6 +8,7 @@ package Interfaces.SchoolAdmin;
 import Business.Enterprize.Enterprize;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Role.SchoolAdminRole;
 import Business.Users.UserAccount;
 import Business.WorkQueue.ManpowerRequest;
 import javax.swing.JOptionPane;
@@ -134,6 +135,15 @@ this.ua=ua;//To change body of generated methods, choose Tools | Templates.
         manPowerRequest.setStatus("Requested");
         System.out.println(enterprize.getOrganisationName()+"  hfjsbjdfsjd");
        enterprize.getManpowerQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
+      // enterprize.getUserAccountDirectory().getUserAccount()
+      enterprize.getUserAccountDirectory().getUserAccount().stream()
+                    .filter(x -> x.getRole() instanceof SchoolAdminRole)
+                    .forEach(x -> {
+                        manPowerRequest.setReceiver(x);
+                        manPowerRequest.setTecherRequested(numberReq);
+                        x.getManPowerQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
+                    });
+            JOptionPane.showMessageDialog(null, "Sent request to school admin!", "Sent", JOptionPane.INFORMATION_MESSAGE);
        ua.getManPowerQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
        JOptionPane.showMessageDialog(null,"Request sent!");
        //network.getManPowerRequestQueue().getManpwerWorkRequestQueue().add(manPowerRequest);
