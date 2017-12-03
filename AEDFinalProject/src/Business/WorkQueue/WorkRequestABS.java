@@ -40,7 +40,11 @@ public abstract class WorkRequestABS {
     public void setReceiver(UserAccount receiver) {
         this.receiver = receiver;
     }
-
+@Override
+public String toString()
+{
+    return sender.getUsername();
+}
    
 }
     

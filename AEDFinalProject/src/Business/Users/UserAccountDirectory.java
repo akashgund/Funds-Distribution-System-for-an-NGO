@@ -55,10 +55,11 @@ public class UserAccountDirectory {
             userAccount.setPassword(password);
             userAccount.setEmployee(employee);
             userAccount.setRole(role);
+            userAccount.setEmailId(username+"@eduloom.edu");
             userAccountList.add(userAccount);
             return userAccount;
         } else {
-            System.out.println("lund bazaar");
+            //System.out.println("lund bazaar");
             return null;
         }
     }
