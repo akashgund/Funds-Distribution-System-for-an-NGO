@@ -5,7 +5,11 @@
  */
 package Interfaces.SchoolAdmin;
 
+import Business.Users.UserAccount;
+import Business.WorkQueue.ManpowerRequest;
+import Business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,9 +21,34 @@ public class ProcessRequests extends javax.swing.JPanel {
      * Creates new form LoginPage
      */
     JPanel container;
-    public ProcessRequests(JPanel container) {
+    private UserAccount account;
+    public ProcessRequests(JPanel container , UserAccount account) {
         initComponents();
         this.container = container;
+        this.account = account;
+        populateTable();
+    }
+    
+    public void populateTable()
+    {
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+        for(WorkRequest request : account.getWorkQueue().getWorkRequestList())
+        {
+            Object []row = new Object[3];
+            row[0] = request;
+            row[1] = request.getFundType();
+            row[2] = request.getFundRequested();
+            dtm.addRow(row);
+        }
+        for(ManpowerRequest mn : account.getManPowerQueue().getManpwerWorkRequestQueue())
+        {
+            Object []row = new Object[3];
+            row[0] = mn;
+            row[1] = mn.getRequestType();
+            row[2] = mn.getTecherRequested();
+            dtm.addRow(row);
+        }
     }
 
     /**
@@ -81,7 +110,7 @@ public class ProcessRequests extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Sender", "Request Type", "Amount"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

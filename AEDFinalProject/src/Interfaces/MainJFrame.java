@@ -50,10 +50,17 @@ public class MainJFrame extends javax.swing.JFrame {
                                 public void run() {
                                     for (;;) {
                                         try {
-                                            Thread.sleep(3000);
-                                            s.setInfraFunds(s.getInfraFunds() - 7000);
-                                            s.setStationaryFunds(s.getStationaryFunds() - 1500);
-                                            s.setHealthFunds(s.getHealthFunds() - 800);
+                                            if(s.getInfraScore()<0.30 || s.getStationaryScore()<0.30 || s.getHealthScore()<0.30)
+                                            {
+                                                Thread.sleep(12000);
+                                            }
+                                            else
+                                            {
+                                                Thread.sleep(6000);
+                                            }
+                                            s.setInfraFunds(s.getInfraFunds() - s.getIspendingRate());
+                                            s.setStationaryFunds(s.getStationaryFunds() - s.getSspendingRate());
+                                            s.setHealthFunds(s.getHealthFunds() - s.getHspendingRate());
                                         } catch (InterruptedException ex) {
                                             Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
                                         }

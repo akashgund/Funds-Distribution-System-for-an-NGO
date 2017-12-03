@@ -197,7 +197,7 @@ public class ViewFundingHistory extends javax.swing.JPanel {
     private void ViewEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewEmailActionPerformed
         // TODO add your handling code here:
 
-        int selectedRow= FinancialDisplayTable.getSelectedRow();
+        /*int selectedRow= FinancialDisplayTable.getSelectedRow();
         if(selectedRow>=0)
         {
           if()
@@ -210,7 +210,7 @@ public class ViewFundingHistory extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
-        }
+        }*/
     }//GEN-LAST:event_ViewEmailActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
