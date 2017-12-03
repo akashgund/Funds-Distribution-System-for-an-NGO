@@ -44,6 +44,14 @@ public class ManpowerRequest extends WorkRequestABS {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
+    }
     
     
 }

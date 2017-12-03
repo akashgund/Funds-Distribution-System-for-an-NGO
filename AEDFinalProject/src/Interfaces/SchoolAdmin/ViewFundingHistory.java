@@ -200,6 +200,7 @@ public class ViewFundingHistory extends javax.swing.JPanel {
         /*int selectedRow= FinancialDisplayTable.getSelectedRow();
         if(selectedRow>=0)
         {
+            /*
           if()
         
         {

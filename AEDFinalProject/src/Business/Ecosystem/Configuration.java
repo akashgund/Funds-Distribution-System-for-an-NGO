@@ -33,6 +33,7 @@ public class Configuration {
         Network state1 = system.createAndAddNetwork("Bulawayo");
         Employee e1 = state1.getEmployeeDirectory().createEmployee("sur");
         state1.getUserAccountDirectory().createUserAccount("sur", "sur", e1, new StateAdminRole());
+        //Organization statesur=state1.get
         Enterprize s1 = state1.getEnterpriseDirectory().createAndAddEnterprise("Prestige High School", School);
         e1 = s1.getEmployeeDirectory().createEmployee("prestige");
         s1.getUserAccountDirectory().createUserAccount("prestige", "prestige", e1, new SchoolAdminRole());
