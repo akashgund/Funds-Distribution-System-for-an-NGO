@@ -9,6 +9,8 @@ import Business.Employee.Employee;
 import Business.OrderItems.Order;
 import Business.Role.Role;
 import Business.WorkQueue.EmailQueue;
+import Business.WorkQueue.ManpowerRequestQueue;
+import Business.WorkQueue.VaccineWorkRequestQueue;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
@@ -20,16 +22,61 @@ public class UserAccount {
     
     private String userName;
     private String password;
+    private String emailId;
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
     private EmailQueue emailQueue;
     private ArrayList<Order> orderList;
+    private ManpowerRequestQueue manPowerQueue;
+    private VaccineWorkRequestQueue vacccineWorkRequestQueue;
     //add workqueue
     public UserAccount() {
        workQueue = new WorkQueue();
        emailQueue = new EmailQueue();
        orderList = new ArrayList<>();
+       manPowerQueue= new ManpowerRequestQueue();
+       vacccineWorkRequestQueue= new VaccineWorkRequestQueue();
+    }
+
+    public VaccineWorkRequestQueue getVacccineWorkRequestQueue() {
+        return vacccineWorkRequestQueue;
+    }
+
+    public void setVacccineWorkRequestQueue(VaccineWorkRequestQueue vacccineWorkQueue) {
+        this.vacccineWorkRequestQueue = vacccineWorkQueue;
+    }
+
+    public ManpowerRequestQueue getManPowerQueue() {
+        return manPowerQueue;
+    }
+
+    public void setManPowerQueue(ManpowerRequestQueue manPowerQueue) {
+        this.manPowerQueue = manPowerQueue;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public WorkQueue getWorkQueue() {
+        return workQueue;
+    }
+
+    public void setWorkQueue(WorkQueue workQueue) {
+        this.workQueue = workQueue;
+    }
+
+    public EmailQueue getEmailQueue() {
+        return emailQueue;
+    }
+
+    public void setEmailQueue(EmailQueue emailQueue) {
+        this.emailQueue = emailQueue;
     }
 
     public String getUsername() {

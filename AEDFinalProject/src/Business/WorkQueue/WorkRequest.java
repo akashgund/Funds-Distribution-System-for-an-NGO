@@ -15,6 +15,12 @@ public class WorkRequest extends WorkRequestABS {
     double fundAccepted;
     int teacherReq;
     String grantStatus;
+    private String requestType;
+
+    public WorkRequest() {
+        requestType="Fund Request";
+    }
+    
 
     public String getGrantStatus() {
         return grantStatus;

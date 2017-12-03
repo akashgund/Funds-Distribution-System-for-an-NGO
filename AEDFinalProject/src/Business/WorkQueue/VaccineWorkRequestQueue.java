@@ -17,6 +17,14 @@ public class VaccineWorkRequestQueue {
     public VaccineWorkRequestQueue() {
         vaccineWorkRequestQueue= new ArrayList<VaccineWorkRequest>();
     }
+
+    public ArrayList<VaccineWorkRequest> getVaccineWorkRequestQueue() {
+        return vaccineWorkRequestQueue;
+    }
+
+    public void setVaccineWorkRequestQueue(ArrayList<VaccineWorkRequest> vaccineWorkRequestQueue) {
+        this.vaccineWorkRequestQueue = vaccineWorkRequestQueue;
+    }
     
     
 }

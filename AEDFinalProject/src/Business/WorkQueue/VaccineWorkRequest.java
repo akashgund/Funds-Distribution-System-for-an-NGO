@@ -14,6 +14,29 @@ public class VaccineWorkRequest extends WorkRequestABS {
     private int quantityReq;
     private double bill;
     private String paymentStatus;
+    private String requestType;
+    private String status;
+
+    public VaccineWorkRequest() {
+        requestType= "Vaccine Request";
+    }
+
+    public String getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
 
     public String getPaymentStatus() {
         return paymentStatus;

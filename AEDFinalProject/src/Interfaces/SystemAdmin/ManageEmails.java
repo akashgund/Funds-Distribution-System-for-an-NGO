@@ -5,9 +5,16 @@
  */
 package Interfaces.SystemAdmin;
 
+import Business.Ecosystem.Ecosystem;
+import Business.Enterprize.Enterprize;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.Users.UserAccount;
+import Business.WorkQueue.Email;
 import Interfaces.*;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,11 +26,32 @@ public class ManageEmails extends javax.swing.JPanel {
      * Creates new form LoginPage
      */
     JPanel container;
-    public ManageEmails(JPanel container) {
+    Ecosystem business;    UserAccount userAccount;
+    public ManageEmails(JPanel container, Ecosystem business,UserAccount userAccount) {
         initComponents();
         this.container = container;
+        this.business= business;
+        this.userAccount=userAccount;
+        populateTable();
+        
     }
-
+public void populateTable()
+{
+    DefaultTableModel dtm=(DefaultTableModel)DisplayTable.getModel();
+    dtm.setRowCount(0);
+            
+    for(Email email: userAccount.getEmailQueue().getEmailQueue())
+    {
+       Object row[] = new Object[2];
+            row[0] = email;
+            row[1] = email.getRequestDate();
+            
+            
+            
+            dtm.addRow(row);
+    }
+}
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,10 +64,9 @@ public class ManageEmails extends javax.swing.JPanel {
         userProcessContainer = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        loginButton = new javax.swing.JButton();
-        loginButton1 = new javax.swing.JButton();
-        loginButton2 = new javax.swing.JButton();
+        DisplayTable = new javax.swing.JTable();
+        OpenMailButton = new javax.swing.JButton();
+        ComposeEmail = new javax.swing.JButton();
         loginButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -50,62 +77,38 @@ public class ManageEmails extends javax.swing.JPanel {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Mailbox");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        DisplayTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Sender ", "Received Date"
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(jTable1);
+        DisplayTable.setGridColor(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(DisplayTable);
 
-        loginButton.setBackground(new java.awt.Color(255, 0, 51));
-        loginButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        loginButton.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton.setText("Open Mail");
-        loginButton.setBorder(null);
-        loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
+        OpenMailButton.setBackground(new java.awt.Color(255, 0, 51));
+        OpenMailButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        OpenMailButton.setForeground(new java.awt.Color(255, 255, 102));
+        OpenMailButton.setText("Open Mail");
+        OpenMailButton.setBorder(null);
+        OpenMailButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        OpenMailButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                OpenMailButtonActionPerformed(evt);
             }
         });
 
-        loginButton1.setBackground(new java.awt.Color(255, 0, 51));
-        loginButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        loginButton1.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton1.setText("View Unread");
-        loginButton1.setBorder(null);
-        loginButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton1.addActionListener(new java.awt.event.ActionListener() {
+        ComposeEmail.setBackground(new java.awt.Color(255, 0, 51));
+        ComposeEmail.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        ComposeEmail.setForeground(new java.awt.Color(255, 255, 102));
+        ComposeEmail.setText("Compose");
+        ComposeEmail.setBorder(null);
+        ComposeEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ComposeEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButton1ActionPerformed(evt);
-            }
-        });
-
-        loginButton2.setBackground(new java.awt.Color(255, 0, 51));
-        loginButton2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        loginButton2.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton2.setText("Compose");
-        loginButton2.setBorder(null);
-        loginButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButton2ActionPerformed(evt);
+                ComposeEmailActionPerformed(evt);
             }
         });
 
@@ -124,9 +127,8 @@ public class ManageEmails extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(loginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(loginButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(loginButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(OpenMailButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComposeEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         userProcessContainerLayout.setVerticalGroup(
@@ -137,12 +139,10 @@ public class ManageEmails extends javax.swing.JPanel {
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(OpenMailButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addComponent(ComposeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(183, Short.MAX_VALUE))
         );
 
         loginButton3.setBackground(new java.awt.Color(255, 0, 51));
@@ -185,21 +185,30 @@ public class ManageEmails extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void OpenMailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenMailButtonActionPerformed
         // TODO add your handling code here:
-        ViewReplyMails panel = new ViewReplyMails(container);
-        container.add("ManageEmails", panel);
+       int selectedRow= DisplayTable.getSelectedRow();
+        if(selectedRow>=0)
+        {
+            Email email=(Email)DisplayTable.getValueAt(selectedRow, 0);
+        
+        ViewReplyMails viewEmailpanel = new ViewReplyMails(container,business,userAccount,email);
+        container.add("ViewReplyMails", viewEmailpanel);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
-    }//GEN-LAST:event_loginButtonActionPerformed
+        }
+    }//GEN-LAST:event_OpenMailButtonActionPerformed
 
-    private void loginButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton1ActionPerformed
+    private void ComposeEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComposeEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_loginButton1ActionPerformed
-
-    private void loginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginButton2ActionPerformed
+        
+        ComposeEmail composeEmail= new ComposeEmail(container,business,userAccount);
+        container.add("ComaposeEmail",composeEmail);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
+        
+        
+    }//GEN-LAST:event_ComposeEmailActionPerformed
 
     private void loginButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton3ActionPerformed
         // TODO add your handling code here:
@@ -210,12 +219,11 @@ public class ManageEmails extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ComposeEmail;
+    private javax.swing.JTable DisplayTable;
+    private javax.swing.JButton OpenMailButton;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton loginButton;
-    private javax.swing.JButton loginButton1;
-    private javax.swing.JButton loginButton2;
     private javax.swing.JButton loginButton3;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables

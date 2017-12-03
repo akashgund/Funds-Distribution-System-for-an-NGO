@@ -5,43 +5,37 @@
  */
 package Interfaces.SystemAdmin;
 
-import Business.Ecosystem.Ecosystem;
 import Business.Employee.Employee;
+import Business.Enterprize.Enterprize;
 import Business.Network.Network;
-import Business.Role.StateAdminRole;
+import Business.Role.HealthProviderAdminRole;
+import Business.Role.InfraProviderAdminRole;
+import Business.Role.StationaryAdminRole;
 import Business.Users.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
  * @author akash
  */
-public class CreateAccountPanel extends javax.swing.JPanel {
+public class CreateFacilityProviderAccount extends javax.swing.JPanel {
 
     /**
-     * Creates new form CreateAccountPanel
+     * Creates new form CreateFacilityProviderAccount
      */
     JPanel userProcessContainer;
-    Ecosystem business;
-    Network selectednetwork;
+    Enterprize ent;
+    Network network;
 
-    public CreateAccountPanel(JPanel userProcessContainer, Ecosystem business) {
-        initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.business = business;
-        System.out.println(business.getNetworkList().size());
-        populateMenu();
-        
-        //populate();
-    }
-
-    public void populateMenu() {
-        System.out.println("in pops");
-        //StateJCombo.removeAllItems();;
-        for (Network network : business.getNetworkList()) {
-            StateJCombo.addItem(network.getOrganisationName());
-        }
+    CreateFacilityProviderAccount(JPanel userProcessContainer, Enterprize selectedEnt, Network selectednetwork) {
+       initComponents();
+       this.userProcessContainer=userProcessContainer;
+       ent=selectedEnt;
+       network=selectednetwork;
+       System.out.println("loda"+ ent);
     }
 
     /**
@@ -59,14 +53,10 @@ public class CreateAccountPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         userNameTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        StateJCombo = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         passwordField = new javax.swing.JPasswordField();
-        CreateButton2 = new javax.swing.JButton();
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1 = new javax.swing.JButton();
 
         jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -98,33 +88,14 @@ public class CreateAccountPanel extends javax.swing.JPanel {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Password");
 
-        jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("Select State");
-
-        StateJCombo.setBackground(new java.awt.Color(255, 0, 51));
-        StateJCombo.setEditable(true);
-        StateJCombo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        StateJCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        StateJCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StateJComboActionPerformed(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Admin Name");
 
-        CreateButton2.setBackground(new java.awt.Color(255, 0, 51));
-        CreateButton2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        CreateButton2.setForeground(new java.awt.Color(255, 255, 102));
-        CreateButton2.setText("<<Back");
-        CreateButton2.setBorder(null);
-        CreateButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CreateButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("BAck");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateButton2ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -135,48 +106,35 @@ public class CreateAccountPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(CreateButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84)
+                        .addGap(242, 242, 242)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(170, 170, 170)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(passwordField))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(StateJCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(passwordField))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(238, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(CreateButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(125, 125, 125)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(StateJCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel7)
+                .addGap(202, 202, 202)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -189,7 +147,9 @@ public class CreateAccountPanel extends javax.swing.JPanel {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
-                .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(138, 138, 138))
         );
 
@@ -217,79 +177,63 @@ public class CreateAccountPanel extends javax.swing.JPanel {
         String password = String.valueOf(passwordField.getText());
         String name = nameTextField.getText();
 
-        Employee employee = selectednetwork.getEmployeeDirectory().createEmployee(name);
-
-        UserAccount account = selectednetwork.getUserAccountDirectory().createUserAccount(username, password, employee, new StateAdminRole());
-
+        Employee employee = ent.getEmployeeDirectory().createEmployee(name);
+            if(ent.getEnterpriseType().getValue().equalsIgnoreCase("Healthcare Provider"))
+            {
+                UserAccount account = ent.getUserAccountDirectory().createUserAccount(username, password, employee, new HealthProviderAdminRole());
+            network.setHealthcount(1);
+            
+            }
+            if(ent.getEnterpriseType().getValue().equalsIgnoreCase("Infrastructure Provider"))
+            {
+                UserAccount account = ent.getUserAccountDirectory().createUserAccount(username, password, employee, new InfraProviderAdminRole());
+            network.setInfracount(1);
+            }
+            if(ent.getEnterpriseType().getValue().equalsIgnoreCase("Stationary Provider"))
+            {
+                UserAccount account = ent.getUserAccountDirectory().createUserAccount(username, password, employee, new StationaryAdminRole());
+            network.setStationarycount(1);
+            }
+        JOptionPane.showMessageDialog(null, "Account Created Succesfully");
+        userNameTextField.setText("");
+        passwordField.setText("");
+        nameTextField.setText("");
+        for(UserAccount ua: network.getUserAccountDirectory().getUserAccount())
+              {
+                  System.out.println("created in"+network.getOrganisationName());
+                  System.out.println(ua.getUsername());
+              }
+        //for(Enterprize)
     }//GEN-LAST:event_CreateButton1ActionPerformed
-
-    private void StateJComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StateJComboActionPerformed
-        // TODO add your handling code here:
-        System.out.println("blalala");
-        String selected = StateJCombo.getSelectedItem().toString();
-        Network selectednetwork = null;
-        for (Network network : business.getNetworkList()) {
-            int k = 0;
-            if (network.getOrganisationName().equalsIgnoreCase(selected)) {
-                for (UserAccount ua : network.getUserAccountDirectory().getUserAccount()) {
-
-                    if (ua != null) {
-                        selectednetwork = network;
-                        k = 1;
-                        break;
-
-                    }
-                }
-                if (k == 1) {
-                    break;
-                }
-            }
-        }
-
-        if (selectednetwork != null) {
-            for (UserAccount ua : selectednetwork.getUserAccountDirectory().getUserAccount()) {
-                userNameTextField.setText(ua.getUsername());
-                passwordField.setText(ua.getPassword());
-                CreateButton1.setEnabled(false);
-            }
-
-        } else {
-            CreateButton1.setEnabled(true);
-            for (Network network : business.getNetworkList()) {
-            //int k = 0;
-            if (network.getOrganisationName().equalsIgnoreCase(selected)) {
-            this.selectednetwork = network;
-            }
-            }
-            
-            
-            
-        }
-        // Network selected=Network(StateJCombo.)
-        //if()
-
-    }//GEN-LAST:event_StateJComboActionPerformed
 
     private void userNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameTextFieldActionPerformed
 
-    private void CreateButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButton2ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         userProcessContainer.remove(this);
+       
+       Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+       CreateFacilityProvider createFacilityProvider = (CreateFacilityProvider) component;
+        createFacilityProvider.populateFacilityProvider();
+
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        
+        
+        
         layout.previous(userProcessContainer);
-    }//GEN-LAST:event_CreateButton2ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreateButton1;
-    private javax.swing.JButton CreateButton2;
-    private javax.swing.JComboBox<String> StateJCombo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nameTextField;
