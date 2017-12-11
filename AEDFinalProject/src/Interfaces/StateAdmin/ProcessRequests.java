@@ -28,7 +28,7 @@ public class ProcessRequests extends javax.swing.JPanel {
     /**
      * Creates new form LoginPage
      */
-    JPanel container;
+    JPanel userProcessContainer;
     UserAccount userAccount;
    Network network;
   
@@ -299,7 +299,3 @@ public class ProcessRequests extends javax.swing.JPanel {
     private javax.swing.JButton processRequest;
     // End of variables declaration//GEN-END:variables
 }
-             ProcessVaccineRequest processManPowerRequest= new ProcessVaccineRequest(userProcessContainer,requestQueue);
-        userProcessContainer.add("ProcessVaccineRequest",processManPowerRequest);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
