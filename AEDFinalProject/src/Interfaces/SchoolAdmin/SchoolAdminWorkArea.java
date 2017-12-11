@@ -6,17 +6,10 @@
 package Interfaces.SchoolAdmin;
 
 
-import Business.Ecosystem.Ecosystem;
 import Business.Enterprize.Enterprize;
-import static Business.Enterprize.Enterprize.Enterprisetype.School;
 import Business.Enterprize.School;
-import Business.Network.Network;
 import Business.Users.UserAccount;
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**

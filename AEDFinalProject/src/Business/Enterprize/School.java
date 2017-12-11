@@ -14,6 +14,7 @@ import Business.Organization.SchoolPrincipal;
 import Business.Organization.SchoolTreasury;
 import Business.Role.Role;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -28,12 +29,16 @@ public class School extends Enterprize {
     private double infraFunds=900000,infraScore;
     private double healthFunds=138000,healthScore;
     private double stationaryFunds=499760,stationaryScore;
+    private double averageMarks=100;
     private Funds funds;
     private double overallScore;
     private double manpowerScore =0.80;
     private double ispendingRate;
     private double sspendingRate;
     private double hspendingRate;
+    private int rangeMin = 10;
+    private int rangeMax = 100;
+    
 
     public double getIspendingRate() {
         return ispendingRate;
@@ -58,6 +63,15 @@ public class School extends Enterprize {
     public void setHspendingRate(double hspendingRate) {
         this.hspendingRate = hspendingRate;
     }
+
+    public double getAverageMarks() {
+        return averageMarks;
+    }
+
+    public void setAverageMarks(double averageMarks) {
+        this.averageMarks = averageMarks;
+        setScores();
+    }
     
     public void setInfraFunds(double infraFunds) {
         this.infraFunds = infraFunds;
@@ -81,6 +95,7 @@ public class School extends Enterprize {
 
     public void setExam(Exam exam) {
         this.exam = exam;
+        setScores();
     }
 
     public Funds getFunds() {
@@ -110,10 +125,43 @@ public class School extends Enterprize {
          infraScore = (infraFunds) / (InfraFunds.getMaxLimit());
          stationaryScore = (stationaryFunds) / (StationaryFunds.getMaxLimit());
          healthScore = (healthFunds) / (HealthFunds.getMaxLimit());
-         //manpowerScore = manpowerScore / WRITE SOME CODE
-         overallScore = infraScore*40 + stationaryScore*25 + manpowerScore*20 + healthScore*15;
+         setMScore();
+         overallScore = infraScore*40 + stationaryScore*25 + manpowerScore*0.20 + healthScore*15;
+    }
+    
+    public void setMScore()
+    {
+        Random r = new Random();
+        double d = rangeMin + (rangeMax - rangeMin) * r.nextDouble(); 
+        averageMarks = d;
+        if(d> 75)
+            manpowerScore = 100;
+        else if(d>60 && d< 75)
+            manpowerScore = 80;
+        else if(d> 45 && d<60)
+            manpowerScore = 60;
+        else if (d> 35 && d<45)
+            manpowerScore = 40;
+        else
+            manpowerScore = 30;      
     }
 
+    public int getRangeMin() {
+        return rangeMin;
+    }
+
+    public void setRangeMin(int rangeMin) {
+        this.rangeMin = rangeMin;
+    }
+
+    public int getRangeMax() {
+        return rangeMax;
+    }
+
+    public void setRangeMax(int rangeMax) {
+        this.rangeMax = rangeMax;
+    }
+    
     public double getOverallScore() {
         return overallScore;
     }
