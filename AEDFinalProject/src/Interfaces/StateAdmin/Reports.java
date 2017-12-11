@@ -49,7 +49,7 @@ public class Reports extends javax.swing.JPanel {
     public void populate() {
        double infra = enterprize.getInfraScore()*100;
        double util = enterprize.getStationaryScore()*100;
-       double man = enterprize.getManpowerScore()*100;
+       double man = enterprize.getManpowerScore();
        double health = enterprize.getHealthScore()*100;
        double total = enterprize.getOverallScore();
        jProgressBar2.setValue((int)infra);
@@ -59,6 +59,7 @@ public class Reports extends javax.swing.JPanel {
        jProgressBar1.setValue((int)total);
        jLabel12.setText(String.valueOf("$ "+enterprize.getInfraFunds()));
        jLabel13.setText(String.valueOf("$ "+enterprize.getStationaryFunds()));
+       jLabel14.setText(String.valueOf("Average Exam Scores:   "+Math.ceil(enterprize.getAverageMarks())));
        jLabel15.setText(String.valueOf("$ "+enterprize.getHealthFunds()));
        //System.out.println(enterprize.getOverallScore());
     }
@@ -239,13 +240,10 @@ public class Reports extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(userProcessContainerLayout.createSequentialGroup()
-                                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(userProcessContainerLayout.createSequentialGroup()
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jProgressBar6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jProgressBar6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
         userProcessContainerLayout.setVerticalGroup(

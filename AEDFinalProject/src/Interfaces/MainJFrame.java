@@ -8,6 +8,7 @@ package Interfaces;
 import Business.Ecosystem.Configuration;
 import Business.Ecosystem.Ecosystem;
 import Business.Enterprize.Enterprize;
+import Business.Enterprize.Exam;
 import Business.Enterprize.School;
 import Business.Network.Network;
 import Business.Organization.Organization;
@@ -42,7 +43,7 @@ public class MainJFrame extends javax.swing.JFrame {
         system.getNetworkList().stream()
                 .forEach(x -> {
                     for (Enterprize e : x.getEnterpriseDirectory().getEnterprizeList()) {
-                        if (e instanceof School) {
+                        if (e instanceof School && e.isAccount()) {
 
                             School s = (School) e;
                             new Thread(new Runnable() {
@@ -56,13 +57,14 @@ public class MainJFrame extends javax.swing.JFrame {
                                             }
                                             else
                                             {
-                                                Thread.sleep(6000);
+                                                Thread.sleep(1000);
                                             }
                                             s.setInfraFunds(s.getInfraFunds() - s.getIspendingRate());
                                             s.setStationaryFunds(s.getStationaryFunds() - s.getSspendingRate());
                                             s.setHealthFunds(s.getHealthFunds() - s.getHspendingRate());
+                                            s.setAverageMarks(s.getAverageMarks());
                                         } catch (InterruptedException ex) {
-                                            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                                            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, "Thread Exception!", ex);
                                         }
                                     }
                                 }

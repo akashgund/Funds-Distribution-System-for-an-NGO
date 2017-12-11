@@ -5,6 +5,9 @@
  */
 package Business.Enterprize;
 
+import Business.Ecosystem.Ecosystem;
+import Business.Network.Network;
+
 /**
  *
  * @author Dell
@@ -12,6 +15,21 @@ package Business.Enterprize;
 public class Exam {
     private double average_marks;
     private String year_conducted;
+    
+    
+    public Exam()
+    {
+        for(Network n : Ecosystem.getInstance().getNetworkList())
+        {
+            for(Enterprize e : n.getEnterpriseDirectory().getEnterprizeList())
+            {
+                if(e instanceof School && e.isAccount())
+                {
+                    ((School) e).setExam(this);
+                }
+            }
+        }
+    }
 
     public double getAverage_marks() {
         return average_marks;
