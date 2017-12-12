@@ -12,16 +12,21 @@ import Business.Network.Network;
 import Business.WorkQueue.ManpowerRequest;
 import Business.WorkQueue.VaccineWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import UtilityClasses.JComboBoxDecorator;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.Timer;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
@@ -33,95 +38,81 @@ public class FundingAnalyticsPagesysadmin extends javax.swing.JPanel {
 
     /**
      * Creates new form FundingAnalyticsPagesysadmin
-     */ Network network;
-     Ecosystem business;
+     */
+    Network network;
+    Ecosystem business;
     JPanel userProcessContainer;
     String input;
-    public FundingAnalyticsPagesysadmin( JPanel userProcessContainer,Ecosystem business,String input) {
+    static double infrafund = 10;
+    static double healthkitfund = 100;
+    static double manpowerfund = 1000;
+    static double totalfund = 0;
+    String schoolchoice="";
+
+    public FundingAnalyticsPagesysadmin(JPanel userProcessContainer, Ecosystem business, String input) {
         initComponents();
-        this.business= business;
-        this.userProcessContainer=userProcessContainer;
-        this.input=input;
-        populateGraph();
-    }
-    public void populateGraph()
-    {
-        //View by Fund Type, View by Funding History, View by Schools Funded
-        JOptionPane.showMessageDialog(null, "In populategraph");
-        if(input.equalsIgnoreCase("view by Fund Type"))
+        this.business = business;
+        this.userProcessContainer = userProcessContainer;
+        this.input = input;
+        jComboBox1.removeAllItems();
+        for(Network network:business.getNetworkList())
         {
-            DefaultPieDataset  dataset= new DefaultPieDataset();
-      
-        
-
-       double infrafund=10;
-       double healthkitfund=100;
-       double manpowerfund=1000;
-       for(Network network : business.getNetworkList())
-       {
-           /*for(Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList())
-           {
-               if(ent instanceof School)
-               {
-               for(WorkRequest wr: ent.getWorkQueue().getWorkRequestList())
-               {
-                   infrafund=infrafund+wr.getFundAccepted();
-               }
-               for(VaccineWorkRequest vr:ent.getVaccineWorkRequestQueue().getVaccineWorkRequestQueue())
-               {
-                   healthkitfund=healthkitfund+vr.getBill();
-               }
-               for(ManpowerRequest mn: ent.getManpowerQueue().getManpwerWorkRequestQueue())
-               {
-                   manpowerfund= manpowerfund+(mn.getTeacherGranted()*1000);
-               }
-              
-               
-               
-               
-               }
-           }*/
-           dataset.setValue("Infrafund",infrafund);
-           dataset.setValue("HealthKit Fund",healthkitfund);
-           dataset.setValue("ManpowerFund",manpowerfund);
-           //infrafund=0;
-           //healthkitfund=0;
-           //manpowerfund=0;
-       }
-        
-
-        JFreeChart chartdata=ChartFactory.createPieChart(
-            "Funds Distibution",  // chart title
-            dataset,             // data
-            true,               // include legend
-            true,
-            false
-        );
-       // CategoryPlot areachart= chartdata.getCategoryPlot();
-       // areachart.setRangeCrosshairPaint(Color.BLUE);
-        ChartPanel panel= new ChartPanel(chartdata);
-        
-        PiePlot plot =(PiePlot)chartdata.getPlot();
-        plot.setLabelFont(new Font("Tempus Sans ITC", Font.PLAIN, 14));
-        plot.setNoDataMessage("data missing");
-        plot.setCircular(false);
-        plot.setLabelGap(0.03);
-        GraphPanel.removeAll();
-        GraphPanel.add(panel);
-        GraphPanel.validate();
+        network.getEnterpriseDirectory().getEnterprizeList().stream()
+                .filter(x -> (x instanceof School))
+                .forEach(x
+                        -> {
+                    jComboBox1.addItem(x);
+                }
+                );
         }
-        if(input.equalsIgnoreCase("View by Schools Funded"))
-        {
-            
-             DefaultCategoryDataset dataset= new DefaultCategoryDataset();
-             business.getNetworkList().stream().map((_item) -> ChartFactory.createBarChart3D("SalesData","Sales Person", "Revenue", dataset)).map((chartdata) -> {
-                /*for(Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList())
+        //jComboBox1.setEnabled(false);
+        load();
+        
+        //autosuggest();
+    }
+    
+    public void autosuggest() {
+        JTextField text = (JTextField) jComboBox1.getEditor().getEditorComponent();
+        text.setText("");
+        text.addKeyListener(new JComboBoxDecorator(jComboBox1));
+    }
+    
+
+    public void load() {
+        final Timer t = new Timer(2000, (ActionEvent e) -> {
+            populateGraph();
+            /*if (jProgressBar1.getValue() == 30) {
+                ((Timer) e.getSource()).stop();
+            }*/
+        });
+        t.start();
+    }
+
+    public void populateGraph() {
+        //View by Fund Type, View by Funding History, View by Schools Funded
+        //JOptionPane.showMessageDialog(null, "In populategraph");
+        if (input.equalsIgnoreCase("view by Fund Type")) {
+
+            DefaultPieDataset dataset = new DefaultPieDataset();
+            System.out.println("in populate graph");
+
+            //System.out.println("ababa"+business.getNetworkList().size()+ infrafund);
+            for (Network network : business.getNetworkList()) {
+                /*
+                for(Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList())
                 {
-                if(ent instanceof School)
+                    infrafund=0;
+                healthkitfund=0;
+                healthkitfund=0;
+                 
+                if(ent instanceof School && ent.isAccount())
                 {
+                    //JOptionPane.showMessageDialog(null,"in school");
                 for(WorkRequest wr: ent.getWorkQueue().getWorkRequestList())
                 {
                 infrafund=infrafund+wr.getFundAccepted();
+                System.out.println(infrafund);
+                JOptionPane.showMessageDialog(null,"in loop");
                 }
                 for(VaccineWorkRequest vr:ent.getVaccineWorkRequestQueue().getVaccineWorkRequestQueue())
                 {
@@ -131,39 +122,152 @@ public class FundingAnalyticsPagesysadmin extends javax.swing.JPanel {
                 {
                 manpowerfund= manpowerfund+(mn.getTeacherGranted()*1000);
                 }
+                infrafund=infrafund++;
+                dataset.setValue("Infrafund",infrafund);
+                dataset.setValue("HealthKit Fund",healthkitfund);
+                dataset.setValue("ManpowerFund",healthkitfund);
+                
                 }
-                }*/
-                //dataset.setValue(2000,"contribution","Sales1");
-                //dataset.setValue(3000,"contribution","Sales2");
-                //JFreeChart dataSet = ChartFactory.createBarChart("Sales data", "Salesdata", "SSS", dataset);
-                CategoryPlot areachart = chartdata.getCategoryPlot();
-                areachart.setRangeCrosshairPaint(Color.BLUE);
-                ChartPanel panel= new ChartPanel(chartdata);
-                return panel;
-            }).map((panel) -> {
-                GraphPanel.removeAll();
-                return panel;
-            }).map((panel) -> {
-                GraphPanel.add(panel);
-                return panel;
-            }).forEachOrdered((_item) -> {
-                GraphPanel.validate();
-            });
+                 */
+                infrafund = infrafund + 10;
+                healthkitfund = healthkitfund + 10;
+                manpowerfund = manpowerfund + 5;
+                dataset.setValue("Infrafund", infrafund);//remove this to outer loop;
+                dataset.setValue("HealthKit Fund", healthkitfund);
+                dataset.setValue("ManpowerFund", manpowerfund);
+            }
+
+            //infrafund=0;
+            //healthkitfund=0;
+            //manpowerfund=0;
+            /*infrafund=infrafund++;
+                dataset.setValue("Infrafund",infrafund);
+                dataset.setValue("HealthKit Fund",healthkitfund);
+                dataset.setValue("ManpowerFund",manpowerfund);*/
+            //}
+            JFreeChart chartdata = ChartFactory.createPieChart(
+                    "Funds Distibution", // chart title
+                    dataset, // data
+                    true, // include legend
+                    true,
+                    false
+            );
+            // CategoryPlot areachart= chartdata.getCategoryPlot();
+            // areachart.setRangeCrosshairPaint(Color.BLUE);
+            ChartPanel panel = new ChartPanel(chartdata);
+
+            PiePlot plot = (PiePlot) chartdata.getPlot();
+            plot.setLabelFont(new Font("Times new roman", Font.PLAIN, 14));
+            plot.setNoDataMessage("data missing");
+            plot.setCircular(false);
+            plot.setLabelGap(0.03);
+            GraphPanel.removeAll();
+            GraphPanel.add(panel);
+            //JOptionPane.showMessageDialog(null,"sddfs aDDING GRAPH MFK");
+            GraphPanel.validate();
         }
-         if(input.equalsIgnoreCase("View by Funding History"))
-        {
-         DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-          JFreeChart chartdata=ChartFactory.createLineChart3D("Funding History","Year", "Fund Granted", dataset);
-        CategoryPlot areachart= chartdata.getCategoryPlot();
-        areachart.setRangeCrosshairPaint(Color.BLUE);
-        ChartPanel panel= new ChartPanel(chartdata);
-        GraphPanel.removeAll();
-        GraphPanel.add(panel);
-        GraphPanel.validate();
+
+        if (input.equalsIgnoreCase("View by Schools Funded")) {
+            //double totalfund=0;
+            //GraphPanel.removeAll();
+             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            //DefaultCategoryDataset dataset= new DefaultCategoryDataset();//DefaultCategoryDataset dataset= new DefaultCategoryDataset();
+            for (Network network : business.getNetworkList()) {
+               
+                for (Enterprize ent : network.getEnterpriseDirectory().getEnterprizeList()) {
+                    //totalfund=0;
+                   
+
+                    if (ent instanceof School && ent.isAccount()) {
+                        System.out.println(ent.getOrganisationName());
+                        //JOptionPane.showMessageDialog(null,"in school");
+                        for (WorkRequest wr : ent.getWorkQueue().getWorkRequestList()) {
+                            totalfund = totalfund + wr.getFundAccepted();
+                            System.out.println(infrafund);
+                            //JOptionPane.showMessageDialog(null,"in loop");
+                        }
+                        for (VaccineWorkRequest vr : ent.getVaccineWorkRequestQueue().getVaccineWorkRequestQueue()) {
+                            totalfund = totalfund + vr.getBill();
+                        }
+                        for (ManpowerRequest mn : ent.getManpowerQueue().getManpwerWorkRequestQueue()) {
+                            totalfund = totalfund + (mn.getTeacherGranted() * 100);
+                        }
+
+                        //dataset.setValue(salesPerson.getSalesValueCurrent(),"Sales",salesPerson.getSalesPersonID());
+                        totalfund = totalfund + Math.random();
+                        dataset.setValue(totalfund, "", ent.getOrganizationName());
+
+                    }
+
+                    
+                }
+                JFreeChart chartdata = ChartFactory.createBarChart("School Funding data", "School", "Funds Total", dataset);
+                    CategoryPlot areachart = chartdata.getCategoryPlot();
+                    areachart.setRangeCrosshairPaint(Color.BLUE);
+                    ChartPanel panel = new ChartPanel(chartdata);
+                    GraphPanel.removeAll();
+                    GraphPanel.add(panel);
+                    //JOptionPane.showMessageDialog(null,"sddfs aDDING GRAPH MFK");
+                    GraphPanel.validate();
+            }//end of network
+
+        }
+        if (input.equalsIgnoreCase("View by Funding History")) {
+            
+            //String schoolchoice= jComboBox1.getSelectedItem().toString();
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            
+            for (Network network : business.getNetworkList()) {
+               
+                for (Enterprize ent : network.getEnterpriseDirectory().getEnterprizeList()) {
+                    //totalfund=0;
+                   double tempinfra=0;
+                        double temphealthkit=0;
+                        double tempmanpower=0;
+                            //JOptionPane.showMessageDialog(null,schoolchoice);
+                    if (ent instanceof School && ent.isAccount()&& ent.getOrganisationName().equalsIgnoreCase(schoolchoice))
+                    {
+                        //JOptionPane.showMessageDialog(null,"In if");
+                       /* for (WorkRequest wr : ent.getWorkQueue().getWorkRequestList()) {
+                            
+                            //JOptionPane.showMessageDialog(null,"in loop");
+                            tempinfra=tempinfra+wr.getFundAccepted();
+                        }
+                        for (VaccineWorkRequest vr : ent.getVaccineWorkRequestQueue().getVaccineWorkRequestQueue()) {
+                            temphealthkit=temphealthkit + vr.getBill();
+                        }
+                        for (ManpowerRequest mn : ent.getManpowerQueue().getManpwerWorkRequestQueue()) {
+                            tempmanpower= tempmanpower + (mn.getTeacherGranted() * 100);
+                        }*/
+                       temphealthkit++;
+                       tempinfra++;
+                       tempmanpower++;
+                       System.out.println(tempinfra+" "+temphealthkit+" "+tempmanpower);
+                        dataset.setValue(tempinfra,"infraFund",schoolchoice);//remove this to outer loop;
+                dataset.setValue( temphealthkit,"HealthKit Fund",schoolchoice);
+                dataset.setValue( tempmanpower,"ManpowerFund",schoolchoice);
+               
+                    }
+                }
+                  System.out.println("dataset"+dataset);
+            //ChartFactory.createLineChart3D("Funding history", "Year", "fund granted ", dataset);
+            //JFreeChart chartdata = ChartFactory.createXYLineChart("Funding History", "Year", "Fund Granted", dataset);
+             JFreeChart chartdata = ChartFactory.createBarChart3D("Funding History", "Year", "Fund Granted", dataset);
+               /* BarRenderer renderer=null;
+                CategoryPlot category=null;
+                renderer= new BarRenderer();*/
+            System.out.println("chartdata"+chartdata.getTitle()); 
+            CategoryPlot areachart = chartdata.getCategoryPlot();
+            areachart.setRangeCrosshairPaint(Color.green);
+            ChartPanel panel = new ChartPanel(chartdata);
+            panel.setVisible(true);
+            GraphPanel.removeAll();
+            GraphPanel.add(panel);
+            GraphPanel.validate();
+                    }
+          
         }
     }
-        
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,10 +280,12 @@ public class FundingAnalyticsPagesysadmin extends javax.swing.JPanel {
 
         JPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        performAnalyticsButton2 = new javax.swing.JButton();
-        performAnalyticsButton3 = new javax.swing.JButton();
+        FundingHistory = new javax.swing.JButton();
+        schoolFunded = new javax.swing.JButton();
         fundTypeButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        GOBUTTON = new javax.swing.JButton();
         GraphPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -188,27 +294,27 @@ public class FundingAnalyticsPagesysadmin extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        performAnalyticsButton2.setBackground(new java.awt.Color(255, 0, 51));
-        performAnalyticsButton2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        performAnalyticsButton2.setForeground(new java.awt.Color(255, 255, 102));
-        performAnalyticsButton2.setText("Funding History");
-        performAnalyticsButton2.setBorder(null);
-        performAnalyticsButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        performAnalyticsButton2.addActionListener(new java.awt.event.ActionListener() {
+        FundingHistory.setBackground(new java.awt.Color(255, 0, 51));
+        FundingHistory.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        FundingHistory.setForeground(new java.awt.Color(255, 255, 102));
+        FundingHistory.setText("Funding History");
+        FundingHistory.setBorder(null);
+        FundingHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        FundingHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                performAnalyticsButton2ActionPerformed(evt);
+                FundingHistoryActionPerformed(evt);
             }
         });
 
-        performAnalyticsButton3.setBackground(new java.awt.Color(255, 0, 51));
-        performAnalyticsButton3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        performAnalyticsButton3.setForeground(new java.awt.Color(255, 255, 102));
-        performAnalyticsButton3.setText("School Funded");
-        performAnalyticsButton3.setBorder(null);
-        performAnalyticsButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        performAnalyticsButton3.addActionListener(new java.awt.event.ActionListener() {
+        schoolFunded.setBackground(new java.awt.Color(255, 0, 51));
+        schoolFunded.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        schoolFunded.setForeground(new java.awt.Color(255, 255, 102));
+        schoolFunded.setText("School Funded");
+        schoolFunded.setBorder(null);
+        schoolFunded.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        schoolFunded.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                performAnalyticsButton3ActionPerformed(evt);
+                schoolFundedActionPerformed(evt);
             }
         });
 
@@ -228,38 +334,61 @@ public class FundingAnalyticsPagesysadmin extends javax.swing.JPanel {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Fund Analytics ");
 
+        jComboBox1.setBackground(new java.awt.Color(255, 0, 51));
+        jComboBox1.setEditable(true);
+        jComboBox1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "gund", "chacha", "nair", "bhai" }));
+        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        GOBUTTON.setBackground(new java.awt.Color(255, 0, 51));
+        GOBUTTON.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        GOBUTTON.setForeground(new java.awt.Color(255, 255, 102));
+        GOBUTTON.setText("GO");
+        GOBUTTON.setBorder(null);
+        GOBUTTON.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        GOBUTTON.setEnabled(false);
+        GOBUTTON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GOBUTTONActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 997, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(53, 53, 53)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(37, 37, 37)
-                            .addComponent(fundTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(performAnalyticsButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(performAnalyticsButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(54, 54, 54)))
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(fundTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                .addComponent(schoolFunded, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(152, 152, 152)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(GOBUTTON, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(FundingHistory, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 347, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(95, 95, 95)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(25, 25, 25)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(fundTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(performAnalyticsButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(performAnalyticsButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(95, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(schoolFunded, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fundTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FundingHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(GOBUTTON, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         GraphPanel.setLayout(new java.awt.BorderLayout());
@@ -271,10 +400,8 @@ public class FundingAnalyticsPagesysadmin extends javax.swing.JPanel {
             .addGroup(JPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPanelLayout.createSequentialGroup()
-                        .addComponent(GraphPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 925, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(GraphPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         JPanelLayout.setVerticalGroup(
@@ -303,93 +430,53 @@ public class FundingAnalyticsPagesysadmin extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void performAnalyticsButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_performAnalyticsButton2ActionPerformed
+    private void FundingHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FundingHistoryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_performAnalyticsButton2ActionPerformed
+        input = "View by Funding History";
+        load();
+    }//GEN-LAST:event_FundingHistoryActionPerformed
 
-    private void performAnalyticsButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_performAnalyticsButton3ActionPerformed
+    private void schoolFundedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schoolFundedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_performAnalyticsButton3ActionPerformed
+        input = "View by Schools Funded";
+        load();
+    }//GEN-LAST:event_schoolFundedActionPerformed
 
     private void fundTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundTypeButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, input);
-        if(input.equalsIgnoreCase("View By Fund Type"))
-        {
-            DefaultPieDataset  dataset= new DefaultPieDataset();
-            System.out.println("in populate graph");
-            
-            double infrafund=10;
-            double healthkitfund=100;
-            double manpowerfund=1000;
-            System.out.println("ababa"+business.getNetworkList().size()+ infrafund);
-            
-            business.getNetworkList().stream().map((_item) -> {
-                /*for(Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList())
-                {
-                if(ent instanceof School)
-                {
-                for(WorkRequest wr: ent.getWorkQueue().getWorkRequestList())
-                {
-                infrafund=infrafund+wr.getFundAccepted();
-                }
-                for(VaccineWorkRequest vr:ent.getVaccineWorkRequestQueue().getVaccineWorkRequestQueue())
-                {
-                healthkitfund=healthkitfund+vr.getBill();
-                }
-                for(ManpowerRequest mn: ent.getManpowerQueue().getManpwerWorkRequestQueue())
-                {
-                manpowerfund= manpowerfund+(mn.getTeacherGranted()*1000);
-                }
-                
-                }
-                }*/
-                dataset.setValue("Infrafund",infrafund);
-                return _item;
-            }).map((_item) -> {
-                dataset.setValue("HealthKit Fund",healthkitfund);
-                return _item;
-            }).map((_item) -> {
-                dataset.setValue("ManpowerFund",manpowerfund);
-                return _item;
-            }).forEachOrdered((_item) -> {
-                System.out.println(dataset);
-                //infrafund=0;
-                //healthkitfund=0;
-                //manpowerfund=0;
-            });
-
-            JFreeChart chartdata=ChartFactory.createPieChart(
-                "Funds Distibution",  // chart title
-                dataset,             // data
-                true,               // include legend
-                true,
-                false
-            );
-            // CategoryPlot areachart= chartdata.getCategoryPlot();
-            // areachart.setRangeCrosshairPaint(Color.BLUE);
-            ChartPanel panel= new ChartPanel(chartdata);
-
-            PiePlot plot =(PiePlot)chartdata.getPlot();
-            plot.setLabelFont(new Font("Tempus Sans ITC", Font.PLAIN, 14));
-            plot.setNoDataMessage("data missing");
-            plot.setCircular(false);
-            plot.setLabelGap(0.03);
-            GraphPanel.removeAll();
-            GraphPanel.add(panel);
-            JOptionPane.showMessageDialog(null,"sddfs aDDING GRAPH MFK");
-            GraphPanel.validate();
-        }
+        input = "View by Funding History";
+        jComboBox1.setEnabled(true);
+        schoolchoice= jComboBox1.getSelectedItem().toString();
+        //load();
+        JOptionPane.showMessageDialog(null,"passed test");
+        //jComboBox1.setEnabled(false);
+       
     }//GEN-LAST:event_fundTypeButtonActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        GOBUTTON.setEnabled(true);
+        //Enterprize enterprize = null;
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void GOBUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GOBUTTONActionPerformed
+        // TODO add your handling code here:
+       schoolchoice= jComboBox1.getSelectedItem().toString();
+       input = "View by Funding History";
+       JOptionPane.showMessageDialog(null,"from go button"+schoolchoice);
+        load();
+    }//GEN-LAST:event_GOBUTTONActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton FundingHistory;
+    private javax.swing.JButton GOBUTTON;
     private javax.swing.JPanel GraphPanel;
     private javax.swing.JPanel JPanel;
     private javax.swing.JButton fundTypeButton;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton performAnalyticsButton2;
-    private javax.swing.JButton performAnalyticsButton3;
+    private javax.swing.JButton schoolFunded;
     // End of variables declaration//GEN-END:variables
 }

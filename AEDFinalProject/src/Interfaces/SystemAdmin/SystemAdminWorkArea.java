@@ -7,6 +7,7 @@ package Interfaces.SystemAdmin;
 
 import Business.Ecosystem.Ecosystem;
 import Business.Users.UserAccount;
+import Interfaces.Analytics.SysAdmin.AnalyticsHome;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -44,13 +45,14 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
         txtUser = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         loginButton1 = new javax.swing.JButton();
-        loginButton2 = new javax.swing.JButton();
+        VieAnalytics = new javax.swing.JButton();
         CheckMail = new javax.swing.JButton();
         loginButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        ViewProgress = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -83,15 +85,15 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
             }
         });
 
-        loginButton2.setBackground(new java.awt.Color(255, 0, 51));
-        loginButton2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        loginButton2.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton2.setText("View Progress Reports");
-        loginButton2.setBorder(null);
-        loginButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton2.addActionListener(new java.awt.event.ActionListener() {
+        VieAnalytics.setBackground(new java.awt.Color(255, 0, 51));
+        VieAnalytics.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        VieAnalytics.setForeground(new java.awt.Color(255, 255, 102));
+        VieAnalytics.setText("ViewAnalytics");
+        VieAnalytics.setBorder(null);
+        VieAnalytics.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        VieAnalytics.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButton2ActionPerformed(evt);
+                VieAnalyticsActionPerformed(evt);
             }
         });
 
@@ -119,6 +121,18 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
             }
         });
 
+        ViewProgress.setBackground(new java.awt.Color(255, 0, 51));
+        ViewProgress.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        ViewProgress.setForeground(new java.awt.Color(255, 255, 102));
+        ViewProgress.setText("View Progress Reports");
+        ViewProgress.setBorder(null);
+        ViewProgress.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ViewProgress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewProgressActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
         userProcessContainer.setLayout(userProcessContainerLayout);
         userProcessContainerLayout.setHorizontalGroup(
@@ -136,12 +150,13 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
                         .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(loginButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1))
+                            .addComponent(loginButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(ViewProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
+                        .addComponent(VieAnalytics, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))))
             .addGroup(userProcessContainerLayout.createSequentialGroup()
@@ -166,13 +181,16 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ViewProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
+                    .addGroup(userProcessContainerLayout.createSequentialGroup()
+                        .addComponent(VieAnalytics, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CheckMail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,21 +202,21 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 717, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 1, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(userProcessContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 1, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(userProcessContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 1, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -210,13 +228,14 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_loginButton1ActionPerformed
 
-    private void loginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton2ActionPerformed
+    private void VieAnalyticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VieAnalyticsActionPerformed
         // TODO add your handling code here:
-        ProgressReports panel = new ProgressReports(container,business);
-        container.add("ProgressReports", panel);
+        AnalyticsHome analyticsHome=new AnalyticsHome(container,business);
+        container.add("AnalyticsHome", analyticsHome);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
-    }//GEN-LAST:event_loginButton2ActionPerformed
+        
+    }//GEN-LAST:event_VieAnalyticsActionPerformed
 
     private void CheckMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckMailActionPerformed
         // TODO add your handling code here:
@@ -235,16 +254,25 @@ public class SystemAdminWorkArea extends javax.swing.JPanel {
         layout.next(container);
     }//GEN-LAST:event_loginButton4ActionPerformed
 
+    private void ViewProgressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProgressActionPerformed
+        // TODO add your handling code here:
+        ProgressReports panel = new ProgressReports(container,business);
+        container.add("ProgressReports", panel);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
+    }//GEN-LAST:event_ViewProgressActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CheckMail;
+    private javax.swing.JButton VieAnalytics;
+    private javax.swing.JButton ViewProgress;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JButton loginButton1;
-    private javax.swing.JButton loginButton2;
     private javax.swing.JButton loginButton4;
     private javax.swing.JTextField txtUser;
     private javax.swing.JPanel userProcessContainer;
