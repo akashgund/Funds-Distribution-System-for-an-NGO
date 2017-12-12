@@ -9,6 +9,7 @@ import Business.Enterprize.Enterprize;
 import Business.Enterprize.HealthCare;
 import Business.Users.UserAccount;
 import Business.WorkQueue.VaccineWorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -149,19 +150,28 @@ public class ProcessRequest extends javax.swing.JPanel {
 
     private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_loginButton4ActionPerformed
 
     private void OrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderButtonActionPerformed
         // TODO add your handling code here:
-       
+       if(v.getStatus().equalsIgnoreCase("delivered"))
+       {
+           JOptionPane.showMessageDialog(null,"Already Delivered");
+       }
+       else
+       {
         int healthKitQuantity =Integer.parseInt(QuantityHealth.getText());
       
                 
         v.setBill(healthKitQuantity*100);
         v.setReceiver(ua);
-        
+        v.setStatus("delivered");
         v.setPaymentStatus("Not Paid");
         JOptionPane.showMessageDialog(null, "Request Accepted");
+       }
 
     }//GEN-LAST:event_OrderButtonActionPerformed
 

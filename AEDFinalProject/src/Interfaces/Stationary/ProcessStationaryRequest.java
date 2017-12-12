@@ -5,6 +5,13 @@
  */
 package Interfaces.Stationary;
 
+import Business.Enterprize.Enterprize;
+import Business.Users.UserAccount;
+import Business.WorkQueue.StationaryRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author akash
@@ -14,10 +21,22 @@ public class ProcessStationaryRequest extends javax.swing.JPanel {
     /**
      * Creates new form PrecessStationaryRequest
      */
-    public ProcessStationaryRequest() {
-        initComponents();
+    JPanel userProcessContainer;
+    Enterprize enterprize;
+    UserAccount ua;
+    StationaryRequest s;
+    
+    ProcessStationaryRequest(JPanel userProcessContainer,StationaryRequest s, UserAccount ua) {
+        initComponents(); //To change body of generated methods, choose Tools | Templates.
+        this.userProcessContainer=userProcessContainer;
+        this.s=s;
+        this.ua=ua;
+        populate();
     }
-
+public void populate()
+{
+    QuantityHealth.setText(String.valueOf(s.getStationaryRequested()));
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,19 +46,131 @@ public class ProcessStationaryRequest extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Panel = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        loginButton4 = new javax.swing.JButton();
+        QuantityHealth = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        OrderButton = new javax.swing.JButton();
+
+        Panel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Requests");
+
+        loginButton4.setBackground(new java.awt.Color(255, 0, 51));
+        loginButton4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        loginButton4.setForeground(new java.awt.Color(255, 255, 102));
+        loginButton4.setText("<<Back");
+        loginButton4.setBorder(null);
+        loginButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButton4ActionPerformed(evt);
+            }
+        });
+
+        QuantityHealth.setEnabled(false);
+
+        jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Accepted Quantity:");
+
+        OrderButton.setBackground(new java.awt.Color(255, 0, 51));
+        OrderButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        OrderButton.setForeground(new java.awt.Color(255, 255, 102));
+        OrderButton.setText("Order");
+        OrderButton.setBorder(null);
+        OrderButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        OrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
+        Panel.setLayout(PanelLayout);
+        PanelLayout.setHorizontalGroup(
+            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelLayout.createSequentialGroup()
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(loginButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(OrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelLayout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(QuantityHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(128, Short.MAX_VALUE))
+        );
+        PanelLayout.setVerticalGroup(
+            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(loginButton4)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(QuantityHealth, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addGap(81, 81, 81)
+                .addComponent(OrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(396, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(Panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_loginButton4ActionPerformed
+
+    private void OrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderButtonActionPerformed
+        // TODO add your handling code here:
+if(s.getStatus().equalsIgnoreCase("delivered"))
+       {
+           JOptionPane.showMessageDialog(null,"Already Delivered");
+       }
+       else
+       {
+        int stationaryQuantity =Integer.parseInt(QuantityHealth.getText());
+        s.setStationaryGranted(stationaryQuantity);
+        s.setStatus("Delivered");
+        s.setReceiver(ua);
+        JOptionPane.showMessageDialog(null, "Request Accepted");
+       }
+    }//GEN-LAST:event_OrderButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton OrderButton;
+    private javax.swing.JPanel Panel;
+    private javax.swing.JTextField QuantityHealth;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton loginButton4;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,6 +13,8 @@ import Business.Network.Network;
 import Business.Users.UserAccount;
 import Business.WorkQueue.StationaryRequest;
 import Business.WorkQueue.VaccineWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -159,9 +161,19 @@ public class OrderUtilities extends javax.swing.JPanel {
 
     private void OrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderButtonActionPerformed
         // TODO add your handling code here:
-        int sationaryquantity= Integer.parseInt(QuantityStationary.getText());
-        int healthKitQuantity =Integer.parseInt(QuantityHealth.getText());
-        
+        int sationaryquantity= 0;
+        int healthKitQuantity=0;
+        try
+        {
+        sationaryquantity= Integer.parseInt(QuantityStationary.getText());
+        healthKitQuantity =Integer.parseInt(QuantityHealth.getText());
+        }
+        catch(Exception e )
+        {
+            JOptionPane.showMessageDialog(null,"pls fill out details correctly");
+        }
+        if(sationaryquantity>0 &&healthKitQuantity>0)
+        {
         for (Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList())
         {
             if(ent instanceof HealthCare)
@@ -170,7 +182,9 @@ public class OrderUtilities extends javax.swing.JPanel {
                 v.setQuantityReq(healthKitQuantity);
                 v.setSender(ua);
                 v.setRequestType("Health Kit");
+                v.setStatus("Processing");
              ent.getVaccineWorkRequestQueue().getVaccineWorkRequestQueue().add(v);
+             JOptionPane.showMessageDialog(null,"Vaccine Work Req Sent");
             }
             
             //add for stationary
@@ -179,9 +193,12 @@ public class OrderUtilities extends javax.swing.JPanel {
                 StationaryRequest s= new StationaryRequest();
                 s.setStationaryRequested(sationaryquantity);
                 s.setSender(ua);
+                s.setStatus("Processing");
                 s.setRequestType("Stationary");
              ent.getStationaryRequestQueue().getStationaryWorkRequestQueue().add(s);
+             JOptionPane.showMessageDialog(null,"Staionary Work Req Sent");
             }
+        }
         }
 
         
@@ -190,6 +207,9 @@ public class OrderUtilities extends javax.swing.JPanel {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_BackActionPerformed
 
 
