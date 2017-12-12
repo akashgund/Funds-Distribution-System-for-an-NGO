@@ -287,7 +287,7 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
 
     private void OrderUtilitiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderUtilitiesButtonActionPerformed
         // TODO add your handling code here:
-        OrderUtilities order = new OrderUtilities(container,enterprize,network);
+        OrderUtilities order = new OrderUtilities(container,enterprize,network,account);
         container.add("OrderUtilities", order);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
