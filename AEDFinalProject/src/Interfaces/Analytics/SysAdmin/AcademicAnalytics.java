@@ -3,19 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces.Stationary;
+package Interfaces.Analytics.SysAdmin;
+
+import Business.Ecosystem.Ecosystem;
+import Business.Network.Network;
+import javax.swing.JPanel;
 
 /**
  *
  * @author akash
  */
-public class ViewRequestPanel extends javax.swing.JPanel {
+public class AcademicAnalytics extends javax.swing.JPanel {
 
     /**
-     * Creates new form ViewRequestPanel
+     * Creates new form AcademicAnlytics
      */
-    public ViewRequestPanel() {
-        initComponents();
+  
+
+    public AcademicAnalytics(JPanel userProcessContainer,Ecosystem business, String entry) {
+         initComponents();//To change body of generated methods, choose Tools | Templates.
     }
 
     /**

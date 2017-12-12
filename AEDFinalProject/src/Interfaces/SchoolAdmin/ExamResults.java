@@ -24,12 +24,11 @@ public class ExamResults extends javax.swing.JPanel {
      * Creates new form LoginPage
      */
     JPanel userProcessContainer;
-    School enterprize;
-    static int examno=0;
-    static double totalmks=0;
-    DefaultTableModel dtm =null;
-
-    public ExamResults(JPanel userProcessContainer, Enterprize enterprize) {
+    Enterprize enterprize;
+     int examno;
+     double totalmks;
+    
+    public ExamResults(JPanel userProcessContainer,Enterprize enterprize) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprize =(School) enterprize;
@@ -38,7 +37,7 @@ public class ExamResults extends javax.swing.JPanel {
 
     public void load() {
         final Timer t = new Timer(5000, (ActionEvent e) -> {
-            //populateExamResults();
+            populateExamResults();
             populate();
             /*if (jProgressBar1.getValue() == 30) {
                 ((Timer) e.getSource()).stop();

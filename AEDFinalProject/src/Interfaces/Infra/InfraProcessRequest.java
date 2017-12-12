@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces.HealthCare;
+package Interfaces.Infra;
 
 import Business.Enterprize.Enterprize;
-import Business.Enterprize.HealthCare;
 import Business.Users.UserAccount;
-import Business.WorkQueue.VaccineWorkRequest;
+import Business.WorkQueue.InfraRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,30 +16,31 @@ import javax.swing.JPanel;
  *
  * @author akash
  */
-public class ProcessRequest extends javax.swing.JPanel {
+public class InfraProcessRequest extends javax.swing.JPanel {
 
     /**
-     * Creates new form ProcessRequest
+     * Creates new form InfraProcessRequest
      */
     JPanel userProcessContainer;
-    Enterprize enterprize;
-    UserAccount ua;
-    VaccineWorkRequest v;
-
-    public ProcessRequest(JPanel userProcessContainer, VaccineWorkRequest v, UserAccount ua) {
-       initComponents();
-     this.userProcessContainer=userProcessContainer;
-        this.enterprize=HealthCare.getInstance();
-        this.v=v;
-        this.ua=ua; //To change body of generated methods, choose Tools | Templates.
-        populate();
+   UserAccount ua;
+   Enterprize enterprize;
+   InfraRequest i;
+    
+    
+    public InfraProcessRequest(JPanel userProcessContainer, InfraRequest i, UserAccount ua) {
+        initComponents();
+        this.userProcessContainer=userProcessContainer;
+         this.ua=ua;
+         this.enterprize=enterprize;
+         this.i=i;
+         populate();
+         
     }
-    public void populate()
+public void populate()
     {
-        int quant= v.getQuantityReq();
+        int quant= i.getInfraRequested();
         QuantityHealth.setText(String.valueOf(quant));
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,7 +113,7 @@ public class ProcessRequest extends javax.swing.JPanel {
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(QuantityHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(260, Short.MAX_VALUE))
         );
         PanelLayout.setVerticalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,8 +124,8 @@ public class ProcessRequest extends javax.swing.JPanel {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(QuantityHealth, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(QuantityHealth))
                 .addGap(81, 81, 81)
                 .addComponent(OrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(396, Short.MAX_VALUE))
@@ -135,16 +135,11 @@ public class ProcessRequest extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 5, Short.MAX_VALUE)
-                .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 5, Short.MAX_VALUE)
-                .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(Panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -157,22 +152,21 @@ public class ProcessRequest extends javax.swing.JPanel {
 
     private void OrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderButtonActionPerformed
         // TODO add your handling code here:
-       if(v.getStatus().equalsIgnoreCase("delivered"))
-       {
-           JOptionPane.showMessageDialog(null,"Already Delivered");
-       }
-       else
-       {
-        int healthKitQuantity =Integer.parseInt(QuantityHealth.getText());
-      
-                
-        v.setBill(healthKitQuantity*100);
-        v.setReceiver(ua);
-        v.setStatus("delivered");
-        v.setPaymentStatus("Not Paid");
-        JOptionPane.showMessageDialog(null, "Request Accepted");
-       }
+        if(i.getStatus().equalsIgnoreCase("delivered"))
+        {
+            JOptionPane.showMessageDialog(null,"Already Delivered");
+        }
+        else
+        {
+            int infrgranted =Integer.parseInt(QuantityHealth.getText());
 
+            //i.setBill(healthKitQuantity*100);
+            i.setReceiver(ua);
+            i.setStatus("delivered");
+            i.setInfraGranted(infrgranted);
+            //i.setPaymentStatus("Not Paid");
+            JOptionPane.showMessageDialog(null, "Request Accepted");
+        }
     }//GEN-LAST:event_OrderButtonActionPerformed
 
 

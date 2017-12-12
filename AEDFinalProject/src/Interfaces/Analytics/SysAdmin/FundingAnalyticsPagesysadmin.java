@@ -444,7 +444,7 @@ public class FundingAnalyticsPagesysadmin extends javax.swing.JPanel {
 
     private void fundTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundTypeButtonActionPerformed
         // TODO add your handling code here:
-        input = "View by Funding History";
+        input = "view by Fund Type";
         jComboBox1.setEnabled(true);
         schoolchoice= jComboBox1.getSelectedItem().toString();
         //load();

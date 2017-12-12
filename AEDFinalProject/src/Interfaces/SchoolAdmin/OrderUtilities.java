@@ -7,12 +7,16 @@ package Interfaces.SchoolAdmin;
 
 import Business.Enterprize.Enterprize;
 import Business.Enterprize.HealthCare;
+import Business.Enterprize.InfraProvider;
 import Business.Enterprize.School;
 import Business.Enterprize.StationaryProvider;
 import Business.Network.Network;
 import Business.Users.UserAccount;
+import Business.WorkQueue.InfraRequest;
 import Business.WorkQueue.StationaryRequest;
 import Business.WorkQueue.VaccineWorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -59,6 +63,8 @@ public class OrderUtilities extends javax.swing.JPanel {
         QuantityHealth = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         QuantityStationary = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        QuantityInfr = new javax.swing.JTextField();
 
         Panel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -98,10 +104,18 @@ public class OrderUtilities extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Enter Quantity of Stationary :");
 
+        jLabel10.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Enter Infra Requirement:");
+
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
         PanelLayout.setHorizontalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(OrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(196, 196, 196))
             .addGroup(PanelLayout.createSequentialGroup()
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelLayout.createSequentialGroup()
@@ -111,16 +125,18 @@ public class OrderUtilities extends javax.swing.JPanel {
                     .addGroup(PanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(OrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(PanelLayout.createSequentialGroup()
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(QuantityHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PanelLayout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(QuantityHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(PanelLayout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(QuantityStationary, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(QuantityStationary, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelLayout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(QuantityInfr, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(74, Short.MAX_VALUE))
         );
         PanelLayout.setVerticalGroup(
@@ -135,12 +151,16 @@ public class OrderUtilities extends javax.swing.JPanel {
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(QuantityHealth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(QuantityStationary, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(QuantityStationary, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(QuantityInfr, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addGap(87, 87, 87)
                 .addComponent(OrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(393, 393, 393))
+                .addGap(276, 276, 276))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -159,9 +179,21 @@ public class OrderUtilities extends javax.swing.JPanel {
 
     private void OrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderButtonActionPerformed
         // TODO add your handling code here:
-        int sationaryquantity= Integer.parseInt(QuantityStationary.getText());
-        int healthKitQuantity =Integer.parseInt(QuantityHealth.getText());
-        
+        int sationaryquantity= 0;
+        int healthKitQuantity=0;
+        int infra=0;
+        try
+        {
+        sationaryquantity= Integer.parseInt(QuantityStationary.getText());
+        healthKitQuantity =Integer.parseInt(QuantityHealth.getText());
+        infra= Integer.parseInt(QuantityInfr.getText());
+        }
+        catch(Exception e )
+        {
+            JOptionPane.showMessageDialog(null,"pls fill out details correctly");
+        }
+        if(sationaryquantity>0 &&healthKitQuantity>0)
+        {
         for (Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList())
         {
             if(ent instanceof HealthCare)
@@ -170,7 +202,9 @@ public class OrderUtilities extends javax.swing.JPanel {
                 v.setQuantityReq(healthKitQuantity);
                 v.setSender(ua);
                 v.setRequestType("Health Kit");
+                v.setStatus("Processing");
              ent.getVaccineWorkRequestQueue().getVaccineWorkRequestQueue().add(v);
+             JOptionPane.showMessageDialog(null,"Vaccine Work Req Sent");
             }
             
             //add for stationary
@@ -179,9 +213,22 @@ public class OrderUtilities extends javax.swing.JPanel {
                 StationaryRequest s= new StationaryRequest();
                 s.setStationaryRequested(sationaryquantity);
                 s.setSender(ua);
+                s.setStatus("Processing");
                 s.setRequestType("Stationary");
              ent.getStationaryRequestQueue().getStationaryWorkRequestQueue().add(s);
+             JOptionPane.showMessageDialog(null,"Staionary Work Req Sent");
             }
+            if(ent instanceof InfraProvider)
+            {
+                InfraRequest i = new InfraRequest();
+                i.setInfraRequested(infra);
+                i.setStatus("Processing");
+                i.setRequestType("Infra");
+                i.setSender(ua);
+                ent.getInfraRequestQueue().getInfraWorkRequestQueue().add(i);
+                JOptionPane.showMessageDialog(null,"SInfra Work Req Sent");
+            }
+        }
         }
 
         
@@ -190,6 +237,9 @@ public class OrderUtilities extends javax.swing.JPanel {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_BackActionPerformed
 
 
@@ -198,7 +248,9 @@ public class OrderUtilities extends javax.swing.JPanel {
     private javax.swing.JButton OrderButton;
     private javax.swing.JPanel Panel;
     private javax.swing.JTextField QuantityHealth;
+    private javax.swing.JTextField QuantityInfr;
     private javax.swing.JTextField QuantityStationary;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

@@ -51,7 +51,7 @@ public class Configuration {
         h1.setAccount(true);
         Enterprize i1 = state1.getInfraProvider();
         e1 = i1.getEmployeeDirectory().createEmployee("Varun Singh");
-        i1.getUserAccountDirectory().createUserAccount("stationary1", "stationary1", e1, new InfraRole());
+        i1.getUserAccountDirectory().createUserAccount("infra1", "infra1", e1, new InfraRole());
         i1.setAccount(true);
         Enterprize s1 = state1.getEnterpriseDirectory().createAndAddEnterprise("Prestige High School", School);
         e1 = s1.getEmployeeDirectory().createEmployee("prestige");

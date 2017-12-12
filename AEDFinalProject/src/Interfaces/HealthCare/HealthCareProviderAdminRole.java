@@ -7,6 +7,7 @@ package Interfaces.HealthCare;
 
 import Business.Enterprize.Enterprize;
 import Business.Enterprize.HealthCare;
+import Business.Network.Network;
 import Business.Users.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -20,13 +21,15 @@ public class HealthCareProviderAdminRole extends javax.swing.JPanel {
     JPanel userProcessContainer;
     Enterprize enterprize;
     UserAccount ua;
+    Network network;
     /**
      * Creates new form HealthCareProviderWorkArea
      */
-    public HealthCareProviderAdminRole(JPanel userPricessContainer,UserAccount ua) {
+    public HealthCareProviderAdminRole(JPanel userPricessContainer,UserAccount ua,Network network) {
         initComponents();
         this.userProcessContainer=userPricessContainer;
         this.enterprize=HealthCare.getInstance();
+        this.network=network;
         this.ua=ua;
     }
 

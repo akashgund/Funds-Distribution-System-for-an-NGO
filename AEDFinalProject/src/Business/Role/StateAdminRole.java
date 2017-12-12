@@ -22,7 +22,7 @@ public class StateAdminRole extends Role {
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network, Organization organisation, Enterprize enterprise, Ecosystem business) {
        
-        System.out.println("trying to fetch userAccount"+ account.getEmailId());
+        //System.out.println("trying to fetch userAccount"+ account.getEmailId());
         return new StateAdminWorkArea(userProcessContainer ,account, network);
     }
     

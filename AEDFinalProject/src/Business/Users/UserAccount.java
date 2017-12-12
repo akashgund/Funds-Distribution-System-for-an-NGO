@@ -11,6 +11,7 @@ import Business.Network.Network;
 import Business.OrderItems.Order;
 import Business.Role.Role;
 import Business.WorkQueue.EmailQueue;
+import Business.WorkQueue.InfraRequestQueue;
 import Business.WorkQueue.ManpowerRequestQueue;
 import Business.WorkQueue.StationaryRquestQueue;
 import Business.WorkQueue.VaccineWorkRequestQueue;
@@ -34,6 +35,7 @@ public class UserAccount {
     private ManpowerRequestQueue manPowerQueue;
     private VaccineWorkRequestQueue vacccineWorkRequestQueue;
     private StationaryRquestQueue stationaryWorkRequestQueue;
+    private InfraRequestQueue infraRequestQueue;
     private Network network;
     private Enterprize enterprize;
     //add workqueue
@@ -43,10 +45,19 @@ public class UserAccount {
        orderList = new ArrayList<>();
        manPowerQueue= new ManpowerRequestQueue();
        vacccineWorkRequestQueue= new VaccineWorkRequestQueue();
+       infraRequestQueue= new InfraRequestQueue();
     }
 
     public StationaryRquestQueue getStationaryWorkRequestQueue() {
         return stationaryWorkRequestQueue;
+    }
+
+    public InfraRequestQueue getInfraRequestQueue() {
+        return infraRequestQueue;
+    }
+
+    public void setInfraRequestQueue(InfraRequestQueue infraRequestQueue) {
+        this.infraRequestQueue = infraRequestQueue;
     }
 
     public void setStationaryWorkRequestQueue(StationaryRquestQueue stationaryWorkRequestQueue) {

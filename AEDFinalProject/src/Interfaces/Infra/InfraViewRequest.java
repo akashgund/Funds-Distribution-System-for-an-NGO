@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces.HealthCare;
+package Interfaces.Infra;
 
 import Business.Enterprize.Enterprize;
 import Business.Users.UserAccount;
-import Business.WorkQueue.ManpowerRequest;
+import Business.WorkQueue.InfraRequest;
 import Business.WorkQueue.VaccineWorkRequest;
-import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,40 +18,39 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author akash
  */
-public class HealthCareRequest extends javax.swing.JPanel {
+public class InfraViewRequest extends javax.swing.JPanel {
 
     /**
-     * Creates new form HealthCareRequest
+     * Creates new form InfraViewRequest
      */
-   JPanel userProcessContainer;
+    JPanel userProcessContainer;
    UserAccount ua;
    Enterprize enterprize;
-    
 
-    HealthCareRequest(JPanel userProcessContainer, Enterprize enterprize, UserAccount ua) {
-       
-         initComponents();
+    public InfraViewRequest(JPanel userProcessContainer, Enterprize enterprize, UserAccount ua) {
+         initComponents(); //To change body of generated methods, choose Tools | Templates.
          this.userProcessContainer=userProcessContainer;
          this.ua=ua;
          this.enterprize=enterprize;
          populate();
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         
     }
     public void populate()
     {
         DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
         dtm.setRowCount(0);
-        for(VaccineWorkRequest request : enterprize.getVaccineWorkRequestQueue().getVaccineWorkRequestQueue())
+        for(InfraRequest request : enterprize.getInfraRequestQueue().getInfraWorkRequestQueue())
         {
             Object []row = new Object[3];
             row[0] = request;
-            row[1] = request.getQuantityReq();
+            row[1] = request.getInfraRequested();
             
             dtm.addRow(row);
         }
      
         }
     
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,6 +61,7 @@ public class HealthCareRequest extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         Panel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -71,7 +70,7 @@ public class HealthCareRequest extends javax.swing.JPanel {
         DisplayTable = new javax.swing.JTable();
         Back = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         Panel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -100,7 +99,7 @@ public class HealthCareRequest extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Sender", "Requested Health Kit"
+                "Sender", "Requested InfraFunds"
             }
         ));
         jScrollPane1.setViewportView(DisplayTable);
@@ -157,37 +156,76 @@ public class HealthCareRequest extends javax.swing.JPanel {
                 .addGap(161, 161, 161))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(0, 12, Short.MAX_VALUE)
                 .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 48, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 847, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 676, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 847, Short.MAX_VALUE)
+            .addGap(0, 857, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 676, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ProcessReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessReqActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = DisplayTable.getSelectedRow();
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row first", "Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else
+        {
+            InfraRequest v= (InfraRequest) DisplayTable.getValueAt(selectedRow,0);
+            //mrequest = (ManpowerRequest) DisplayTable.getValueAt(selectedRow, 0);
+            InfraProcessRequest panel = new InfraProcessRequest(userProcessContainer, v, ua);
+            userProcessContainer.add("Forward ProcessRequest", panel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+    }//GEN-LAST:event_ProcessReqActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
@@ -195,24 +233,6 @@ public class HealthCareRequest extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_BackActionPerformed
-
-    private void ProcessReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessReqActionPerformed
-        // TODO add your handling code here:
-int selectedRow = DisplayTable.getSelectedRow();
-        if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row first", "Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        else  
-                 {
-                    VaccineWorkRequest v= (VaccineWorkRequest) DisplayTable.getValueAt(selectedRow,0);
-            //mrequest = (ManpowerRequest) DisplayTable.getValueAt(selectedRow, 0);
-            ProcessRequest panel = new ProcessRequest(userProcessContainer, v, ua);
-            userProcessContainer.add("Forward ProcessRequest", panel);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        } 
-    }//GEN-LAST:event_ProcessReqActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -223,6 +243,7 @@ int selectedRow = DisplayTable.getSelectedRow();
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

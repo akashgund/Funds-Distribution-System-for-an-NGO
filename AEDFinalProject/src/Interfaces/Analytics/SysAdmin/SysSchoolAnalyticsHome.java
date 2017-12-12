@@ -7,6 +7,7 @@ package Interfaces.Analytics.Sysadmin;
 
 import Business.Ecosystem.Ecosystem;
 import Business.Network.Network;
+import Interfaces.Analytics.SysAdmin.AcademicAnalytics;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -132,10 +133,11 @@ public class SysSchoolAnalyticsHome extends javax.swing.JPanel {
         // TODO add your handling code here:
          
         String entry= AnalyticsMenu.getSelectedItem().toString();
-        
-        
-           SchoolAnalyticsPage schoolAnalyticsPage = new SchoolAnalyticsPage(userProcessContainer, network, entry);
-userProcessContainer.add("FundingAnalyticsHome",schoolAnalyticsPage);
+        SchoolAnalyticsPage schoolanal=new SchoolAnalyticsPage(userProcessContainer,business,entry);
+       //, View Fund Shares, View Progress Report
+        //AcademicAnalytics analy = new AcademicAnalytics(userProcessContainer,business,entry);
+          /*Interfaces.Analytics.Sysadmin.SchoolAnalyticsPage  AcademicAnalyticsPage = new Interfaces.Analytics.Sysadmin.SchoolAnalyticsPage (userProcessContainer, network, entry);*/
+userProcessContainer.add("AcademicAnalytics",schoolanal);
 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
 layout.next(userProcessContainer);
 
