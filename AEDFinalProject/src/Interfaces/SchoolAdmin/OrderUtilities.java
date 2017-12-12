@@ -5,6 +5,16 @@
  */
 package Interfaces.SchoolAdmin;
 
+import Business.Enterprize.Enterprize;
+import Business.Enterprize.HealthCare;
+import Business.Enterprize.School;
+import Business.Enterprize.StationaryProvider;
+import Business.Network.Network;
+import Business.Users.UserAccount;
+import Business.WorkQueue.StationaryRequest;
+import Business.WorkQueue.VaccineWorkRequest;
+import javax.swing.JPanel;
+
 /**
  *
  * @author akash
@@ -14,8 +24,22 @@ public class OrderUtilities extends javax.swing.JPanel {
     /**
      * Creates new form OrderUtilities
      */
-    public OrderUtilities() {
-        initComponents();
+    JPanel userProcessContainer;
+    Network network;
+    Enterprize enterprize;
+    UserAccount ua;
+    
+   
+
+    public OrderUtilities(JPanel container, School enterprize, Network network,UserAccount ua) {
+       initComponents();//To change body of generated methods, choose Tools | Templates.
+    
+       this.userProcessContainer=container;
+       this.network=network;
+       this.enterprize= enterprize;
+       this.ua=ua;
+       
+               
     }
 
     /**
@@ -27,19 +51,156 @@ public class OrderUtilities extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Panel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        OrderButton = new javax.swing.JButton();
+        Back = new javax.swing.JButton();
+        QuantityHealth = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        QuantityStationary = new javax.swing.JTextField();
+
+        Panel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Resource Management");
+
+        jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Enter Quantity of HealthKit :");
+
+        OrderButton.setBackground(new java.awt.Color(255, 0, 51));
+        OrderButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        OrderButton.setForeground(new java.awt.Color(255, 255, 102));
+        OrderButton.setText("Order");
+        OrderButton.setBorder(null);
+        OrderButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        OrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderButtonActionPerformed(evt);
+            }
+        });
+
+        Back.setBackground(new java.awt.Color(255, 0, 51));
+        Back.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        Back.setForeground(new java.awt.Color(255, 255, 102));
+        Back.setText("<<Back");
+        Back.setBorder(null);
+        Back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Enter Quantity of Stationary :");
+
+        javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
+        Panel.setLayout(PanelLayout);
+        PanelLayout.setHorizontalGroup(
+            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelLayout.createSequentialGroup()
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(OrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(PanelLayout.createSequentialGroup()
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(QuantityHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PanelLayout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(QuantityStationary, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(74, Short.MAX_VALUE))
+        );
+        PanelLayout.setVerticalGroup(
+            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Back, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(QuantityHealth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(QuantityStationary, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(OrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(393, 393, 393))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(Panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void OrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderButtonActionPerformed
+        // TODO add your handling code here:
+        int sationaryquantity= Integer.parseInt(QuantityStationary.getText());
+        int healthKitQuantity =Integer.parseInt(QuantityHealth.getText());
+        
+        for (Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList())
+        {
+            if(ent instanceof HealthCare)
+            {
+                VaccineWorkRequest v= new VaccineWorkRequest();
+                v.setQuantityReq(healthKitQuantity);
+                v.setSender(ua);
+                v.setRequestType("Health Kit");
+             ent.getVaccineWorkRequestQueue().getVaccineWorkRequestQueue().add(v);
+            }
+            
+            //add for stationary
+            if(ent instanceof StationaryProvider)
+            {
+                StationaryRequest s= new StationaryRequest();
+                s.setStationaryRequested(sationaryquantity);
+                s.setSender(ua);
+                s.setRequestType("Stationary");
+             ent.getStationaryRequestQueue().getStationaryWorkRequestQueue().add(s);
+            }
+        }
+
+        
+
+    }//GEN-LAST:event_OrderButtonActionPerformed
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
+    private javax.swing.JButton OrderButton;
+    private javax.swing.JPanel Panel;
+    private javax.swing.JTextField QuantityHealth;
+    private javax.swing.JTextField QuantityStationary;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,6 +12,7 @@ import Business.OrderItems.Order;
 import Business.Role.Role;
 import Business.WorkQueue.EmailQueue;
 import Business.WorkQueue.ManpowerRequestQueue;
+import Business.WorkQueue.StationaryRquestQueue;
 import Business.WorkQueue.VaccineWorkRequestQueue;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class UserAccount {
     private ArrayList<Order> orderList;
     private ManpowerRequestQueue manPowerQueue;
     private VaccineWorkRequestQueue vacccineWorkRequestQueue;
+    private StationaryRquestQueue stationaryWorkRequestQueue;
     private Network network;
     private Enterprize enterprize;
     //add workqueue
@@ -41,6 +43,14 @@ public class UserAccount {
        orderList = new ArrayList<>();
        manPowerQueue= new ManpowerRequestQueue();
        vacccineWorkRequestQueue= new VaccineWorkRequestQueue();
+    }
+
+    public StationaryRquestQueue getStationaryWorkRequestQueue() {
+        return stationaryWorkRequestQueue;
+    }
+
+    public void setStationaryWorkRequestQueue(StationaryRquestQueue stationaryWorkRequestQueue) {
+        this.stationaryWorkRequestQueue = stationaryWorkRequestQueue;
     }
 
     public Network getNetwork() {

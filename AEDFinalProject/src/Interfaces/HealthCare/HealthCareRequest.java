@@ -7,7 +7,11 @@ package Interfaces.HealthCare;
 
 import Business.Enterprize.Enterprize;
 import Business.Users.UserAccount;
+import Business.WorkQueue.ManpowerRequest;
+import Business.WorkQueue.VaccineWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,9 +33,24 @@ public class HealthCareRequest extends javax.swing.JPanel {
          this.userProcessContainer=userProcessContainer;
          this.ua=ua;
          this.enterprize=enterprize;
+         populate();
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    public void populate()
+    {
+        DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
+        dtm.setRowCount(0);
+        for(VaccineWorkRequest request : ua.getVacccineWorkRequestQueue().getVaccineWorkRequestQueue())
+        {
+            Object []row = new Object[3];
+            row[0] = request;
+            row[1] = request.getQuantityReq();
+            
+            dtm.addRow(row);
+        }
+     
+        }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,10 +67,10 @@ public class HealthCareRequest extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        loginButton = new javax.swing.JButton();
+        ProcessReq = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        loginButton4 = new javax.swing.JButton();
+        DisplayTable = new javax.swing.JTable();
+        Back = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -75,37 +94,37 @@ public class HealthCareRequest extends javax.swing.JPanel {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Requests");
 
-        loginButton.setBackground(new java.awt.Color(255, 0, 51));
-        loginButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        loginButton.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton.setText("Process Request");
-        loginButton.setBorder(null);
-        loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
+        ProcessReq.setBackground(new java.awt.Color(255, 0, 51));
+        ProcessReq.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        ProcessReq.setForeground(new java.awt.Color(255, 255, 102));
+        ProcessReq.setText("Process Request");
+        ProcessReq.setBorder(null);
+        ProcessReq.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ProcessReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                ProcessReqActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        DisplayTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Sender", "Request Type", "Amount"
+                "Sender", "Requested Health Kit"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(DisplayTable);
 
-        loginButton4.setBackground(new java.awt.Color(255, 0, 51));
-        loginButton4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        loginButton4.setForeground(new java.awt.Color(255, 255, 102));
-        loginButton4.setText("<<Back");
-        loginButton4.setBorder(null);
-        loginButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginButton4.addActionListener(new java.awt.event.ActionListener() {
+        Back.setBackground(new java.awt.Color(255, 0, 51));
+        Back.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        Back.setForeground(new java.awt.Color(255, 255, 102));
+        Back.setText("<<Back");
+        Back.setBorder(null);
+        Back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButton4ActionPerformed(evt);
+                BackActionPerformed(evt);
             }
         });
 
@@ -120,7 +139,7 @@ public class HealthCareRequest extends javax.swing.JPanel {
             .addGroup(PanelLayout.createSequentialGroup()
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelLayout.createSequentialGroup()
-                        .addComponent(loginButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -134,7 +153,7 @@ public class HealthCareRequest extends javax.swing.JPanel {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(37, 37, 37)
                                 .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(loginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ProcessReq, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
@@ -144,7 +163,7 @@ public class HealthCareRequest extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginButton4, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(Back, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -156,7 +175,7 @@ public class HealthCareRequest extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ProcessReq, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(161, 161, 161))
         );
 
@@ -192,17 +211,23 @@ public class HealthCareRequest extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void ProcessReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessReqActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_loginButtonActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_ProcessReqActionPerformed
 
-    private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_loginButton4ActionPerformed
+    }//GEN-LAST:event_BackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
+    private javax.swing.JTable DisplayTable;
     private javax.swing.JPanel Panel;
+    private javax.swing.JButton ProcessReq;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -210,8 +235,5 @@ public class HealthCareRequest extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton loginButton;
-    private javax.swing.JButton loginButton4;
     // End of variables declaration//GEN-END:variables
 }
