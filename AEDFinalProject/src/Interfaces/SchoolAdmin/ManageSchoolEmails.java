@@ -201,7 +201,7 @@ public class ManageSchoolEmails extends javax.swing.JPanel {
 
     private void ComposeEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComposeEmailActionPerformed
         // TODO add your handling code here:
-        ComposeEmail composeEmail= new ComposeEmail(userProcessContainer,userAccount);
+        ComposeEmail composeEmail= new ComposeEmail(userProcessContainer,null,userAccount);
         userProcessContainer.add("ComaposeEmail",composeEmail);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

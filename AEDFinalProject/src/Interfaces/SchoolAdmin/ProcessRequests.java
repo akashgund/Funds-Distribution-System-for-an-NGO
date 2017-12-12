@@ -8,6 +8,8 @@ package Interfaces.SchoolAdmin;
 import Business.Users.UserAccount;
 import Business.WorkQueue.ManpowerRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -200,6 +202,19 @@ public class ProcessRequests extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
+        WorkRequest request =null;
+        int selectedRow = jTable1.getSelectedRow();
+        if(selectedRow < 0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row!" , "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        request = (WorkRequest) jTable1.getValueAt(selectedRow, 0);
+        System.out.println(request);
+        ForwardRequest panel = new  ForwardRequest(container , request ,account);
+        container.add("Forward Request", panel);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed

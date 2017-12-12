@@ -30,6 +30,7 @@ public class Network extends Organization {
     private VaccineManufacturer vaccineManufacturer;
     private EnterpriseDirectory enterpriseDirectory;
     private UserAccountDirectory userAccountDirectory;
+    private double total_funds = 1000000.0;
     int healthcount;
     int infracount;
     int stationarycount;
@@ -52,6 +53,16 @@ public class Network extends Organization {
         
         //enterpriseDirectory.getEnterprizeList().add(vaccineManufacturer);
     }
+
+    public double getTotal_funds() {
+        return total_funds;
+    }
+
+    public void setTotal_funds(double total_funds) {
+        this.total_funds = total_funds;
+    }
+    
+    
 
     public int getHealthcount() {
         return healthcount;

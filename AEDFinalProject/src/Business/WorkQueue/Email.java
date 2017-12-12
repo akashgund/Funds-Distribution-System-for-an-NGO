@@ -14,6 +14,17 @@ import java.util.Date;
 public class Email extends WorkRequestABS{
     String emailContent;
     private Date requestDate;
+    private WorkRequest request;
+
+    public WorkRequest getRequest() {
+        return request;
+    }
+
+    public void setRequest(WorkRequest request) {
+        this.request = request;
+    }
+    
+    
     
     
     

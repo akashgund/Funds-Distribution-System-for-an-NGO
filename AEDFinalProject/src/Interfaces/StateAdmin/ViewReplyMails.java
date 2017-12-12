@@ -8,6 +8,7 @@ package Interfaces.StateAdmin;
 import Business.Ecosystem.Ecosystem;
 import Business.Users.UserAccount;
 import Business.WorkQueue.Email;
+import Business.WorkQueue.WorkRequest;
 import Interfaces.*;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -33,6 +34,7 @@ public class ViewReplyMails extends javax.swing.JPanel {
         this.email=email;
         this.userAccount=userAccount;
         populateMail();
+        attachment();
         business=Ecosystem.getInstance();
     }
     public void populateMail()
@@ -41,6 +43,20 @@ public class ViewReplyMails extends javax.swing.JPanel {
         Content.setText(email.getEmailContent());
         
         
+    }
+    
+    public void attachment()
+    {
+        if(email.getRequest()==null)
+        {
+            lblAvail.setVisible(false);
+            btnAttachment.setVisible(false);
+        }
+        else
+        {
+            lblAvail.setVisible(true);
+            btnAttachment.setVisible(true);
+        }
     }
 
     
@@ -54,6 +70,8 @@ public class ViewReplyMails extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel7 = new javax.swing.JLabel();
+        ViewEmail1 = new javax.swing.JButton();
         Panel = new javax.swing.JPanel();
         SenderNameText = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -62,6 +80,19 @@ public class ViewReplyMails extends javax.swing.JPanel {
         Content = new javax.swing.JTextArea();
         Buackbutton = new javax.swing.JButton();
         ReplyButton = new javax.swing.JButton();
+        lblAvail = new javax.swing.JLabel();
+        btnAttachment = new javax.swing.JButton();
+
+        jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("This email contains and attachment");
+
+        ViewEmail1.setBackground(new java.awt.Color(255, 0, 51));
+        ViewEmail1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        ViewEmail1.setForeground(new java.awt.Color(255, 255, 102));
+        ViewEmail1.setText("Open Attachment");
+        ViewEmail1.setBorder(null);
+        ViewEmail1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -103,6 +134,22 @@ public class ViewReplyMails extends javax.swing.JPanel {
             }
         });
 
+        lblAvail.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        lblAvail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAvail.setText("This email contains and attachment");
+
+        btnAttachment.setBackground(new java.awt.Color(255, 0, 51));
+        btnAttachment.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        btnAttachment.setForeground(new java.awt.Color(255, 255, 102));
+        btnAttachment.setText("Open Attachment");
+        btnAttachment.setBorder(null);
+        btnAttachment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAttachment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAttachmentActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
         PanelLayout.setHorizontalGroup(
@@ -126,6 +173,12 @@ public class ViewReplyMails extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(ReplyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(PanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAvail)
+                    .addComponent(btnAttachment))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelLayout.setVerticalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,8 +194,12 @@ public class ViewReplyMails extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(ReplyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ReplyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAvail))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAttachment)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -173,6 +230,15 @@ public class ViewReplyMails extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_BuackbuttonActionPerformed
 
+    private void btnAttachmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachmentActionPerformed
+        // TODO add your handling code here:
+        WorkRequest request = email.getRequest();
+        RequestDetails panel = new RequestDetails(userProcessContainer,request);
+        userProcessContainer.add("ManageAccountsPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnAttachmentActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buackbutton;
@@ -180,8 +246,12 @@ public class ViewReplyMails extends javax.swing.JPanel {
     private javax.swing.JPanel Panel;
     private javax.swing.JButton ReplyButton;
     private javax.swing.JTextField SenderNameText;
+    private javax.swing.JButton ViewEmail1;
+    private javax.swing.JButton btnAttachment;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAvail;
     // End of variables declaration//GEN-END:variables
 }

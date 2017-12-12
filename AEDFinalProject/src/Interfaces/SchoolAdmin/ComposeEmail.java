@@ -11,6 +11,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Users.UserAccount;
 import Business.WorkQueue.Email;
+import Business.WorkQueue.WorkRequest;
 import UtilityClasses.JComboBoxDecorator;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -29,49 +30,56 @@ public class ComposeEmail extends javax.swing.JPanel {
     JPanel userProcessContainer;
     Ecosystem business;
     UserAccount loggedin;
+    WorkRequest request;
 
-   public ComposeEmail(JPanel container,UserAccount loggedin) {
-         initComponents();
-         userProcessContainer=container;
-         this.business=Ecosystem.getInstance();
-         populateReceiverList();
-       autosuggest();
-         this.loggedin=loggedin;
-         //To change body of generated methods, choose Tools | Templates.
+    public ComposeEmail(JPanel container, WorkRequest request, UserAccount loggedin) {
+        initComponents();
+        userProcessContainer = container;
+        this.business = Ecosystem.getInstance();
+        this.request = request;
+        populateReceiverList();
+        autosuggest();
+        this.loggedin = loggedin;
+        initialmail();
+        //To change body of generated methods, choose Tools | Templates.
     }
-   public void autosuggest() {
+
+    public void initialmail() {
+        if (request != null) {
+            EmailContent.setText("Work Request id : " + request.getClass().toString().hashCode() + "\n" + "Respected Sir,\nI hereby request you to kindly approve the aforementioned request.\n\nRegards,\n" + loggedin.getEmployee().getName());
+            SendEmailButton.setText("Send Request");
+        } else {
+            SendEmailButton.setText("Send Mail");
+        }
+    }
+
+    public void autosuggest() {
         JTextField text = (JTextField) jComboBox1.getEditor().getEditorComponent();
         text.setText("");
         text.addKeyListener(new JComboBoxDecorator(jComboBox1));
     }
-   public void populateReceiverList()
-   {
-       jComboBox1.removeAllItems();
-       jComboBox1.addItem("sysadmin@eduloom.edu");
-       
-       for(Network network:business.getNetworkList())
-       {
-          for(UserAccount ua: network.getUserAccountDirectory().getUserAccount())
-          {
-              jComboBox1.addItem(ua.getEmailId());
-              
-          }
-          for(Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList())
-          {
-              for(UserAccount ua: ent.getUserAccountDirectory().getUserAccount())
-          {
-              jComboBox1.addItem(ua.getEmailId());
-          }
-              for(Organization org:ent.getOrganizationDirectory().getOrganisationList())
-              {
-                 for(UserAccount ua: org.getUserAccountDirectory().getUserAccount())
-          { 
-              jComboBox1.addItem(ua.getEmailId());
-          }
-              }
-          }
-       }
-   }
+
+    public void populateReceiverList() {
+        jComboBox1.removeAllItems();
+        jComboBox1.addItem("sysadmin@eduloom.edu");
+
+        for (Network network : business.getNetworkList()) {
+            for (UserAccount ua : network.getUserAccountDirectory().getUserAccount()) {
+                jComboBox1.addItem(ua.getEmailId());
+
+            }
+            for (Enterprize ent : network.getEnterpriseDirectory().getEnterprizeList()) {
+                for (UserAccount ua : ent.getUserAccountDirectory().getUserAccount()) {
+                    jComboBox1.addItem(ua.getEmailId());
+                }
+                for (Organization org : ent.getOrganizationDirectory().getOrganisationList()) {
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccount()) {
+                        jComboBox1.addItem(ua.getEmailId());
+                    }
+                }
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -208,69 +216,61 @@ public class ComposeEmail extends javax.swing.JPanel {
 
     private void SendEmailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendEmailButtonActionPerformed
         // TODO add your handling code here:
-        String receiverEmail=jComboBox1.getSelectedItem().toString();
-        UserAccount userAccount=null;
-        for(Network network:business.getNetworkList())
-       {
-          for(UserAccount ua: network.getUserAccountDirectory().getUserAccount())
-          {
-              if(ua.getEmailId().equalsIgnoreCase(receiverEmail))
-              userAccount=ua;
-              
-          }
-          if(userAccount==null)
-          {
-          for(Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList())
-          {
-             
-              for(UserAccount ua: ent.getUserAccountDirectory().getUserAccount())
-          {
-              if(ua.getEmailId().equalsIgnoreCase(receiverEmail))
-              {
-                  userAccount=ua;
-              break;
-              }
-              }
-          if(userAccount==null)
-          {
-              for(Organization org:ent.getOrganizationDirectory().getOrganisationList())
-              {
-                 for(UserAccount ua: org.getUserAccountDirectory().getUserAccount())
-          { 
-              if(ua.getEmailId().equalsIgnoreCase(receiverEmail))
-              {
-                  userAccount=ua;
-              break;
-              }
-          }
-              }
-          }
-          }
-       }
-          
-       }
-        UserAccount admin= business.getUserAccountDirectory().getUserAccount().get(0);
-        if(admin.getEmailId().equalsIgnoreCase(receiverEmail))
-        {
-            userAccount=admin;
+        String receiverEmail = jComboBox1.getSelectedItem().toString();
+        UserAccount userAccount = null;
+        for (Network network : business.getNetworkList()) {
+            for (UserAccount ua : network.getUserAccountDirectory().getUserAccount()) {
+                if (ua.getEmailId().equalsIgnoreCase(receiverEmail)) {
+                    userAccount = ua;
+                }
+
+            }
+            if (userAccount == null) {
+                for (Enterprize ent : network.getEnterpriseDirectory().getEnterprizeList()) {
+
+                    for (UserAccount ua : ent.getUserAccountDirectory().getUserAccount()) {
+                        if (ua.getEmailId().equalsIgnoreCase(receiverEmail)) {
+                            userAccount = ua;
+                            break;
+                        }
+                    }
+                    if (userAccount == null) {
+                        for (Organization org : ent.getOrganizationDirectory().getOrganisationList()) {
+                            for (UserAccount ua : org.getUserAccountDirectory().getUserAccount()) {
+                                if (ua.getEmailId().equalsIgnoreCase(receiverEmail)) {
+                                    userAccount = ua;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
         }
-        if(userAccount==null)
-          {
-              JOptionPane.showMessageDialog(null,"No such Emailid found");
-          }
-          if(userAccount!=null)
-          {
-              Email email=new Email();
-              email.setEmailContent(EmailContent.getText());
-              email.setReceiver(userAccount);
-              email.setSender(loggedin);
-              JOptionPane.showMessageDialog(null, "Sender"+loggedin.getEmailId());
-              JOptionPane.showMessageDialog(null, "Rece"+userAccount.getEmailId());
-              userAccount.getEmailQueue().getEmailQueue().add(email);
-              JOptionPane.showMessageDialog(null, "Send Succesfully!");
-          }
-        
-        
+        UserAccount admin = business.getUserAccountDirectory().getUserAccount().get(0);
+        if (admin.getEmailId().equalsIgnoreCase(receiverEmail)) {
+            userAccount = admin;
+        }
+        if (userAccount == null) {
+            JOptionPane.showMessageDialog(null, "No such Emailid found");
+        }
+        if (userAccount != null) {
+            Email email = new Email();
+            email.setEmailContent(EmailContent.getText());
+            email.setReceiver(userAccount);
+            email.setSender(loggedin);
+            if (request != null) {
+                email.setRequest(request);
+                request.setSender(loggedin);
+                request.setGrantStatus("Forwarded");
+                userAccount.getWorkQueue().getWorkRequestList().add(request);
+            }
+            userAccount.getEmailQueue().getEmailQueue().add(email);
+            JOptionPane.showMessageDialog(null, "Send Succesfully!");
+        }
+
+
     }//GEN-LAST:event_SendEmailButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed

@@ -8,7 +8,6 @@ package Interfaces;
 import Business.Ecosystem.Configuration;
 import Business.Ecosystem.Ecosystem;
 import Business.Enterprize.Enterprize;
-import Business.Enterprize.Exam;
 import Business.Enterprize.School;
 import Business.Network.Network;
 import Business.Organization.Organization;
@@ -57,7 +56,7 @@ public class MainJFrame extends javax.swing.JFrame {
                                             }
                                             else
                                             {
-                                                Thread.sleep(1000);
+                                                Thread.sleep(5000);
                                             }
                                             s.setInfraFunds(s.getInfraFunds() - s.getIspendingRate());
                                             s.setStationaryFunds(s.getStationaryFunds() - s.getSspendingRate());
