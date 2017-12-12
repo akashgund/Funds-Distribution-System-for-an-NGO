@@ -8,8 +8,10 @@ package Interfaces.SchoolAdmin;
 import Business.Enterprize.Enterprize;
 import Business.Enterprize.HealthCare;
 import Business.Enterprize.School;
+import Business.Enterprize.StationaryProvider;
 import Business.Network.Network;
 import Business.Users.UserAccount;
+import Business.WorkQueue.StationaryRequest;
 import Business.WorkQueue.VaccineWorkRequest;
 import javax.swing.JPanel;
 
@@ -167,10 +169,19 @@ public class OrderUtilities extends javax.swing.JPanel {
                 VaccineWorkRequest v= new VaccineWorkRequest();
                 v.setQuantityReq(healthKitQuantity);
                 v.setSender(ua);
+                v.setRequestType("Health Kit");
              ent.getVaccineWorkRequestQueue().getVaccineWorkRequestQueue().add(v);
             }
             
             //add for stationary
+            if(ent instanceof StationaryProvider)
+            {
+                StationaryRequest s= new StationaryRequest();
+                s.setStationaryRequested(sationaryquantity);
+                s.setSender(ua);
+                s.setRequestType("Stationary");
+             ent.getStationaryRequestQueue().getStationaryWorkRequestQueue().add(s);
+            }
         }
 
         

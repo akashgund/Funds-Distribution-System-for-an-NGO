@@ -159,6 +159,7 @@ public class ProcessRequest extends javax.swing.JPanel {
                 
         v.setBill(healthKitQuantity*100);
         v.setReceiver(ua);
+        
         v.setPaymentStatus("Not Paid");
         JOptionPane.showMessageDialog(null, "Request Accepted");
 
