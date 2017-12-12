@@ -9,6 +9,7 @@ import Business.Enterprize.Enterprize;
 import Business.Enterprize.School;
 import Business.Network.Network;
 import Business.Users.UserAccount;
+import Business.WorkQueue.ManpowerRequest;
 import Interfaces.SystemAdmin.CreateFacilityProviderAccount;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -26,18 +27,18 @@ public class SchoolPrincipalWorkRequestGenrate extends javax.swing.JPanel {
      * Creates new form SchoolPrincipalWorkRequestGenrate
      */
     JPanel userProcessContainer;
-    Enterprize enterprize;
+    School enterprize;
     UserAccount ua;
     Network network;
-    public SchoolPrincipalWorkRequestGenrate(JPanel userProcessContainer,Enterprize enterprize,UserAccount ua,Network network) {
+
+    public SchoolPrincipalWorkRequestGenrate(JPanel userProcessContainer, Enterprize enterprize, UserAccount ua) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.enterprize=(School)enterprize;
-        this.ua=ua;
-        this.network= network;
-       // populateMenu();
-       JOptionPane.showMessageDialog(null,"in work req gen");
+        this.userProcessContainer = userProcessContainer;
+        this.enterprize = (School) enterprize;
+        this.ua = ua;
+        load();
     }
+
     public void load() {
         final Timer t = new Timer(200, (ActionEvent e) -> {
             simulate();
@@ -47,28 +48,11 @@ public class SchoolPrincipalWorkRequestGenrate extends javax.swing.JPanel {
         });
         t.start();
     }
-public void simulate() {
-    /*
-        double infra = enterprise.getInfraScore() * 100;
-        double util = enterprise.getStationaryScore() * 100;
-        double health = enterprise.getHealthScore() * 100;
-        if (fundsCombo.getSelectedIndex() == 0) {
-            txtFunds.setText("");
-        }
-        if (fundsCombo.getSelectedIndex() == 1) {
-            txtFunds.setText(String.valueOf(enterprise.getInfraFunds()));
-            jProgressBar2.setValue((int) infra);
-        }
-        if (fundsCombo.getSelectedIndex() == 2) {
-            txtFunds.setText(String.valueOf(enterprise.getStationaryFunds()));
-            jProgressBar2.setValue((int) util);
-        }
-        if (fundsCombo.getSelectedIndex() == 3) {
-            txtFunds.setText(String.valueOf(enterprise.getHealthFunds()));
-            jProgressBar2.setValue((int) health);
-        }
-    */
+
+    public void simulate() {
+        jProgressBar2.setValue((int) enterprize.getManpowerScore());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,37 +64,20 @@ public void simulate() {
 
         Panel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        FacilityProviderLabel1 = new javax.swing.JLabel();
-        RequestMenu = new javax.swing.JComboBox<>();
         CreateButton1 = new javax.swing.JButton();
         jProgressBar2 = new javax.swing.JProgressBar();
         jLabel9 = new javax.swing.JLabel();
 
         Panel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Create Resource Request");
-
-        FacilityProviderLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        FacilityProviderLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        FacilityProviderLabel1.setText("Select Type of Request");
-
-        RequestMenu.setBackground(new java.awt.Color(255, 0, 51));
-        RequestMenu.setEditable(true);
-        RequestMenu.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        RequestMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Request Staff" }));
-        RequestMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        RequestMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RequestMenuActionPerformed(evt);
-            }
-        });
+        jLabel8.setText("Create Training Request");
 
         CreateButton1.setBackground(new java.awt.Color(255, 0, 51));
         CreateButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         CreateButton1.setForeground(new java.awt.Color(255, 255, 102));
-        CreateButton1.setText("Create Request");
+        CreateButton1.setText("Request Online Training");
         CreateButton1.setBorder(null);
         CreateButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CreateButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -132,44 +99,33 @@ public void simulate() {
         PanelLayout.setHorizontalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(282, 282, 282)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PanelLayout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
-                        .addGap(0, 174, Short.MAX_VALUE)
-                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PanelLayout.createSequentialGroup()
-                                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(FacilityProviderLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PanelLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(RequestMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(PanelLayout.createSequentialGroup()
-                                        .addGap(30, 30, 30)
-                                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(154, 154, 154))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(154, 154, 154))
         );
         PanelLayout.setVerticalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addGap(77, 77, 77)
+                .addGap(108, 108, 108)
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RequestMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FacilityProviderLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(114, 114, 114)
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(90, 90, 90)
+                .addGap(116, 116, 116)
                 .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -188,39 +144,25 @@ public void simulate() {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RequestMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RequestMenuActionPerformed
-
     private void CreateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButton1ActionPerformed
-        // TODO add your handling code here:
-        
-String choice= RequestMenu.getSelectedItem().toString();
-        if(choice.equalsIgnoreCase("Request Staff"))
-        {
-            PrincipalTeacherRequest panel = new PrincipalTeacherRequest(userProcessContainer, enterprize,ua);
-            userProcessContainer.add("PrincipalTeacherRequest", panel);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        }
-        if(choice.equalsIgnoreCase("Request Vaccine"))
-        {
-            PrincipalVaccineRequest panel = new PrincipalVaccineRequest(userProcessContainer, enterprize,ua);
-            userProcessContainer.add("PrincipalVaccineRequest", panel);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        }
-        
-        
-        
+        ManpowerRequest request = new ManpowerRequest();
+        request.setSender(ua);
+        request.setRequestType("man power request");
+        enterprize.getUserAccountDirectory().getUserAccount().stream()
+                .forEach(x
+                        -> {
+                    request.setReceiver(x);
+                    request.setStatus("In transit");
+                    x.getManPowerQueue().getManpwerWorkRequestQueue().add(request);
+                }
+                );
+        JOptionPane.showMessageDialog(null, "Send request", "Success" , JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_CreateButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreateButton1;
-    private javax.swing.JLabel FacilityProviderLabel1;
     private javax.swing.JPanel Panel;
-    private javax.swing.JComboBox<String> RequestMenu;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JProgressBar jProgressBar2;

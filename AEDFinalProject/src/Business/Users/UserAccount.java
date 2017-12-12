@@ -6,6 +6,8 @@
 package Business.Users;
 
 import Business.Employee.Employee;
+import Business.Enterprize.Enterprize;
+import Business.Network.Network;
 import Business.OrderItems.Order;
 import Business.Role.Role;
 import Business.WorkQueue.EmailQueue;
@@ -30,6 +32,8 @@ public class UserAccount {
     private ArrayList<Order> orderList;
     private ManpowerRequestQueue manPowerQueue;
     private VaccineWorkRequestQueue vacccineWorkRequestQueue;
+    private Network network;
+    private Enterprize enterprize;
     //add workqueue
     public UserAccount() {
        workQueue = new WorkQueue();
@@ -39,6 +43,23 @@ public class UserAccount {
        vacccineWorkRequestQueue= new VaccineWorkRequestQueue();
     }
 
+    public Network getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(Network network) {
+        this.network = network;
+    }
+
+    public Enterprize getEnterprize() {
+        return enterprize;
+    }
+
+    public void setEnterprize(Enterprize enterprize) {
+        this.enterprize = enterprize;
+    }
+
+    
     public VaccineWorkRequestQueue getVacccineWorkRequestQueue() {
         return vacccineWorkRequestQueue;
     }

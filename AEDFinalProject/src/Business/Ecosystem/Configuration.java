@@ -7,15 +7,19 @@ package Business.Ecosystem;
 
 import Business.Employee.Employee;
 import Business.Enterprize.Enterprize;
+import static Business.Enterprize.Enterprize.Enterprisetype.Healthcare;
 import static Business.Enterprize.Enterprize.Enterprisetype.School;
 import Business.Enterprize.School;
 import Business.Funds.HealthFunds;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Role.HealthcareRole;
+import Business.Role.InfraRole;
 import Business.Role.SchoolAdminRole;
 import Business.Role.SchoolPrincipalRole;
 import Business.Role.SchoolTreasuryRole;
 import Business.Role.StateAdminRole;
+import Business.Role.StationaryAdminRole;
 import Business.Role.SystemAdminRole;
 import Business.Users.UserAccount;
 
@@ -34,6 +38,21 @@ public class Configuration {
         Employee e1 = state1.getEmployeeDirectory().createEmployee("sur");
         state1.getUserAccountDirectory().createUserAccount("sur", "sur", e1, new StateAdminRole());
         //Organization statesur=state1.get
+        Enterprize h1 = state1.getHealthCare();
+        
+        //HEALTH CARE AND STTIONARY ACCOUNTS MADEE HERE
+        
+        e1 = h1.getEmployeeDirectory().createEmployee("Aditya Dev");
+        h1.getUserAccountDirectory().createUserAccount("health1", "health1", e1, new HealthcareRole());
+        h1.setAccount(true);
+        Enterprize st1 = state1.getStationaryProvider();
+        e1 = st1.getEmployeeDirectory().createEmployee("Varun Singh");
+        h1.getUserAccountDirectory().createUserAccount("stationary1", "stationary1", e1, new StationaryAdminRole());
+        h1.setAccount(true);
+        Enterprize i1 = state1.getInfraProvider();
+        e1 = i1.getEmployeeDirectory().createEmployee("Varun Singh");
+        i1.getUserAccountDirectory().createUserAccount("stationary1", "stationary1", e1, new InfraRole());
+        i1.setAccount(true);
         Enterprize s1 = state1.getEnterpriseDirectory().createAndAddEnterprise("Prestige High School", School);
         e1 = s1.getEmployeeDirectory().createEmployee("prestige");
         s1.getUserAccountDirectory().createUserAccount("prestige", "prestige", e1, new SchoolAdminRole());

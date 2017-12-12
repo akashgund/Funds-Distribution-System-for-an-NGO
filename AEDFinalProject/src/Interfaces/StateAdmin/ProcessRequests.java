@@ -44,66 +44,46 @@ public class ProcessRequests extends javax.swing.JPanel {
         //populateRequest();
     }
 
-    public void update()
-    {
+    public void update() {
         jTextField1.setText(String.valueOf(network.getTotal_funds()));
         jTextField2.setText(String.valueOf(outstanding));
     }
-    
+
     public void populateRequest() {
-        outstanding=0;
-        for (Enterprize e : network.getEnterpriseDirectory().getEnterprizeList()) {
-            for (ManpowerRequest mn : e.getManpowerQueue().getManpwerWorkRequestQueue()) {
-                if (mn != null) {
-                    network.getManpowerQueue().getManpwerWorkRequestQueue().add(mn);
-                }
-                userAccount.getManPowerQueue().getManpwerWorkRequestQueue().add(mn);
-                //mn.getStatus().equalsIgnoreCase(TOOL_TIP_TEXT_KEY)
-            }
-
-        }
-        DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
-        for (Enterprize e : network.getEnterpriseDirectory().getEnterprizeList()) {
-            for (ManpowerRequest mn : e.getManpowerQueue().getManpwerWorkRequestQueue()) {
-                Object row[] = new Object[3];
-                row[0] = mn;
-                row[1] = mn.getRequestType();
-                row[2] = mn.getStatus();
-
-                dtm.addRow(row);
-            }
-        }
-        //System.out.println("Size of man queue"+ network.getManpowerQueue().getManpwerWorkRequestQueue().size());
-        for (ManpowerRequest mn : network.getManpowerQueue().getManpwerWorkRequestQueue()) {
-            System.out.println(mn);
-        }
+        outstanding = 0;
         DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
         dtm.setRowCount(0);
-       // for (Enterprize e : network.getEnterpriseDirectory().getEnterprizeList()) {
-            /*for (ManpowerRequest mn : e.getManpowerQueue().getManpwerWorkRequestQueue()) {
-                Object row[] = new Object[3];
-                row[0] = mn;
-                row[1] = mn.getRequestType();
-                row[2] = mn.getStatus(); 
-                dtm.addRow(row);
-            }*/
-            for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList())
-            {
-                if(!request.getGrantStatus().equalsIgnoreCase("completed"))
-                {
-                    outstanding += request.getFundRequested();
-                }
-                Object row[] = new Object[5];
-                row[0] = request.getFundType();
-                row[1] = request;
-                row[2] = request.getReceiver();
-                row[3] = request.getFundRequested();
-                row[4] = request.getGrantStatus();
-                dtm.addRow(row);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
+            if (!request.getGrantStatus().equalsIgnoreCase("completed")) {
+                outstanding += request.getFundRequested();
             }
-            update();
-            
+            Object row[] = new Object[5];
+            row[0] = request.getFundType();
+            row[1] = request;
+            row[2] = request.getReceiver();
+            row[3] = request.getFundRequested();
+            row[4] = request.getGrantStatus();
+            dtm.addRow(row);
+        }
+        update();
+
         //}
+    }
+    
+    public void populateManpowerRequest()
+    {
+        DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
+        dtm.setRowCount(0);
+        for(ManpowerRequest m : userAccount.getManPowerQueue().getManpwerWorkRequestQueue())
+        {
+            Object row[] = new Object[5];
+            row[0] = m.getRequestType();
+            row[1] = m;
+            row[2] = m.getReceiver();
+            row[3] = "Online Training";
+            row[4] = m.getStatus();
+            dtm.addRow(row);
+        }
     }
 
     /**
@@ -175,7 +155,7 @@ public class ProcessRequests extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Request Type", "Sender", "Receiver", "Amount", "Status"
+                "Request Type", "Sender", "Receiver", "Details", "Status"
             }
         ));
         jScrollPane1.setViewportView(DisplayTable);
@@ -312,7 +292,7 @@ public class ProcessRequests extends javax.swing.JPanel {
     private void processRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processRequestActionPerformed
         // TODO add your handling code here:
 
-  /*      String requestTypeChoice = RequestType.getSelectedItem().toString();
+        /*      String requestTypeChoice = RequestType.getSelectedItem().toString();
 
         if (requestTypeChoice.equalsIgnoreCase("Man Power Request")) {
             ManpowerRequestQueue requestQueue = userAccount.getManPowerQueue();
@@ -337,62 +317,61 @@ public class ProcessRequests extends javax.swing.JPanel {
     private void processRequest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processRequest1ActionPerformed
         // TODO add your handling code here:
         int selectedrow = DisplayTable.getSelectedRow();
-        if(selectedrow < 0)
-        {
-            JOptionPane.showMessageDialog(null, "Please select a row!" , "Warning" , JOptionPane.WARNING_MESSAGE);
+        if (selectedrow < 0 || DisplayTable.getValueAt(selectedrow, 0).toString().equalsIgnoreCase("completed")) {
+            JOptionPane.showMessageDialog(null, "Please make a valid selection!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
-        
-        WorkRequest request = (WorkRequest) DisplayTable.getValueAt(selectedrow , 1);
-        
-        if(request.getFundRequested() > network.getTotal_funds())
-        {
-            JOptionPane.showMessageDialog(null, "Sufficient funds not available!" , "Warning" , JOptionPane.ERROR_MESSAGE);
-            return;
+
+        if (DisplayTable.getValueAt(selectedrow, 0).toString().equalsIgnoreCase("man power request")) {
+            ManpowerRequest request = (ManpowerRequest) DisplayTable.getValueAt(selectedrow, 1);
+            School s = (School) request.getSender().getEnterprize();
+            s.setUnderOnlineTraining(true);
+            request.setStatus("completed");
+            populateManpowerRequest();
+        } else {
+            WorkRequest request = (WorkRequest) DisplayTable.getValueAt(selectedrow, 1);
+
+            if (request.getFundRequested() > network.getTotal_funds()) {
+                JOptionPane.showMessageDialog(null, "Sufficient funds not available!", "Warning", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            network.setTotal_funds(network.getTotal_funds() - request.getFundRequested());
+            network.getEnterpriseDirectory().getEnterprizeList().stream()
+                    .filter(x -> x instanceof School)
+                    .forEach(x
+                            -> {
+                        for (UserAccount ua : x.getUserAccountDirectory().getUserAccount()) {
+                            if (ua.getUsername().equals(request.getSender().getUsername())) {
+                                System.out.println("Jai shri ram");
+                                School s = (School) x;
+                                if (request.getFundType().equalsIgnoreCase("infra funds")) {
+                                    s.setInfraFunds(s.getInfraFunds() + request.getFundRequested());
+                                    request.setFundAccepted(request.getFundRequested());
+                                }
+                                if (request.getFundType().equalsIgnoreCase("stationary funds")) {
+                                    s.setStationaryFunds(s.getStationaryFunds() + request.getFundRequested());
+                                    request.setFundAccepted(request.getFundRequested());
+                                }
+                                if (request.getFundType().equalsIgnoreCase("healthcare funds")) {
+                                    s.setHealthFunds(s.getStationaryFunds() + request.getFundRequested());
+                                    request.setFundAccepted(request.getFundRequested());
+                                }
+                                request.setGrantStatus("Completed");
+                            }
+                        }
+                    });
+            JOptionPane.showMessageDialog(null, "Successfully delivered funds!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            populateRequest();
         }
-        network.setTotal_funds(network.getTotal_funds()-request.getFundRequested());
-        network.getEnterpriseDirectory().getEnterprizeList().stream()
-                                                            .filter(x -> x instanceof School)
-                                                            .forEach(x ->
-                                                            {
-                                                                for(UserAccount ua : x.getUserAccountDirectory().getUserAccount())
-                                                                {
-                                                                    if(ua.getUsername().equals(request.getSender().getUsername()))
-                                                                    {
-                                                                        System.out.println("Jai shri ram");
-                                                                        School s = (School)x;
-                                                                        if(request.getFundType().equalsIgnoreCase("infra funds"))
-                                                                        {
-                                                                            s.setInfraFunds(s.getInfraFunds()+request.getFundRequested());
-                                                                            request.setFundAccepted(request.getFundRequested());
-                                                                        }
-                                                                        if(request.getFundType().equalsIgnoreCase("stationary funds"))
-                                                                        {
-                                                                            s.setStationaryFunds(s.getStationaryFunds()+request.getFundRequested());
-                                                                            request.setFundAccepted(request.getFundRequested());
-                                                                        }
-                                                                        if(request.getFundType().equalsIgnoreCase("healthcare funds"))
-                                                                        {
-                                                                            s.setHealthFunds(s.getStationaryFunds()+request.getFundRequested());
-                                                                            request.setFundAccepted(request.getFundRequested());
-                                                                        }
-                                                                        request.setGrantStatus("Completed");
-                                                                    }
-                                                                }
-                                                            });
-        JOptionPane.showMessageDialog(null, "Successfully delivered funds!" , "Success" , JOptionPane.INFORMATION_MESSAGE);
-        populateRequest();    
+
     }//GEN-LAST:event_processRequest1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        if(jComboBox1.getSelectedIndex()==0)
-        {
-            
+        if (jComboBox1.getSelectedIndex() == 0) {
+            populateManpowerRequest();
         }
-        if(jComboBox1.getSelectedIndex()==1)
-        {
+        if (jComboBox1.getSelectedIndex() == 1) {
             populateRequest();
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed

@@ -142,7 +142,7 @@ public class Network extends Organization {
 
     @Override
     public String toString() {
-        return networkName;
+        return this.getOrganisationName();
     }
 
     @Override

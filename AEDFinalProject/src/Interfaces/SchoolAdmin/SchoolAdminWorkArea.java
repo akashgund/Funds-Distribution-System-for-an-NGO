@@ -33,6 +33,7 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
         this.account = account;
         this.network= network;
         txtUser.setText(account.getEmployee().getName());
+        System.out.println(account.getNetwork());
         //System.out.println(this.enterprise.getInfraScore()*100);
         //populate();
     }
@@ -287,11 +288,11 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
 
     private void OrderUtilitiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderUtilitiesButtonActionPerformed
         // TODO add your handling code here:
-        OrderUtilities order = new OrderUtilities(container,enterprize,network);
+        /*OrderUtilities order = new OrderUtilities(container,enterprize,network);
         container.add("OrderUtilities", order);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
-        
+       */ 
     }//GEN-LAST:event_OrderUtilitiesButtonActionPerformed
 
 
