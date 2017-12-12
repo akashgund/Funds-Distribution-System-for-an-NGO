@@ -21,7 +21,7 @@ public class SchoolAdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network, Organization organisation, Enterprize enterprise, Ecosystem business) {
-        return new SchoolAdminWorkArea(userProcessContainer , account, enterprise);
+        return new SchoolAdminWorkArea(userProcessContainer , account, enterprise,network);
     }
 
   
