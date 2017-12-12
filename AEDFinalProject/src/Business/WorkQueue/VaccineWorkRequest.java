@@ -70,6 +70,11 @@ public class VaccineWorkRequest extends WorkRequestABS {
         this.bill = bill;
     }
     
+    @Override
+    public String toString()
+    {
+        return sender.getUsername();
+    }
     
     
     

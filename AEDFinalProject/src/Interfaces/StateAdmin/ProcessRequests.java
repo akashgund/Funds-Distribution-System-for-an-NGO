@@ -30,50 +30,42 @@ public class ProcessRequests extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     UserAccount userAccount;
-   Network network;
-  
-    
+    Network network;
 
-    public ProcessRequests(JPanel container, UserAccount account,Network network) {
-       initComponents();
+    public ProcessRequests(JPanel container, UserAccount account, Network network) {
+        initComponents();
         this.userProcessContainer = container;
-        this.userAccount=account;
-        this.network=network; //To change body of generated methods, choose Tools | Templates.
+        this.userAccount = account;
+        this.network = network; //To change body of generated methods, choose Tools | Templates.
         populateRequest();
     }
-    public void populateRequest()
-    {
+
+    public void populateRequest() {
         System.out.println("in populate");
-        System.out.println(network.getEnterpriseDirectory().getEnterprizeList()+"Ent dir size");
-       for(Enterprize e: network.getEnterpriseDirectory().getEnterprizeList())
-       {
-           for(ManpowerRequest mn: e.getManpowerQueue().getManpwerWorkRequestQueue())
-           {
-               if(mn!=null)
-               network.getManpowerQueue().getManpwerWorkRequestQueue().add(mn);
-               userAccount.getManPowerQueue().getManpwerWorkRequestQueue().add(mn);
-               //mn.getStatus().equalsIgnoreCase(TOOL_TIP_TEXT_KEY)
-           }
-         
-       }
-       DefaultTableModel dtm =(DefaultTableModel)DisplayTable.getModel();
-       for(Enterprize e: network.getEnterpriseDirectory().getEnterprizeList())
-       {
-    for(ManpowerRequest mn: e.getManpowerQueue().getManpwerWorkRequestQueue())
-           {
-         Object row[] = new Object[3];
-            row[0] = mn;
-            row[1] = mn.getRequestType();
-            row[2]=mn.getStatus();
-            
-            
-            
-            dtm.addRow(row);
-    }
-       }
-       //System.out.println("Size of man queue"+ network.getManpowerQueue().getManpwerWorkRequestQueue().size());
-        for(ManpowerRequest mn: network.getManpowerQueue().getManpwerWorkRequestQueue())
-        {
+        System.out.println(network.getEnterpriseDirectory().getEnterprizeList() + "Ent dir size");
+        for (Enterprize e : network.getEnterpriseDirectory().getEnterprizeList()) {
+            for (ManpowerRequest mn : e.getManpowerQueue().getManpwerWorkRequestQueue()) {
+                if (mn != null) {
+                    network.getManpowerQueue().getManpwerWorkRequestQueue().add(mn);
+                }
+                userAccount.getManPowerQueue().getManpwerWorkRequestQueue().add(mn);
+                //mn.getStatus().equalsIgnoreCase(TOOL_TIP_TEXT_KEY)
+            }
+
+        }
+        DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
+        for (Enterprize e : network.getEnterpriseDirectory().getEnterprizeList()) {
+            for (ManpowerRequest mn : e.getManpowerQueue().getManpwerWorkRequestQueue()) {
+                Object row[] = new Object[3];
+                row[0] = mn;
+                row[1] = mn.getRequestType();
+                row[2] = mn.getStatus();
+
+                dtm.addRow(row);
+            }
+        }
+        //System.out.println("Size of man queue"+ network.getManpowerQueue().getManpwerWorkRequestQueue().size());
+        for (ManpowerRequest mn : network.getManpowerQueue().getManpwerWorkRequestQueue()) {
             System.out.println(mn);
         }
     }
@@ -252,24 +244,19 @@ public class ProcessRequests extends javax.swing.JPanel {
 
     private void processRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processRequestActionPerformed
         // TODO add your handling code here:
-        
-        
-        
-        String requestTypeChoice=RequestType.getSelectedItem().toString();
-        
-                
-        if(requestTypeChoice.equalsIgnoreCase("Man Power Request"))
-        {
-            ManpowerRequestQueue requestQueue= userAccount.getManPowerQueue();
-             ProcessManPowerRequest processManPowerRequest= new ProcessManPowerRequest(userProcessContainer,requestQueue);
-        userProcessContainer.add("ProcessManPowerRequest",processManPowerRequest);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+
+        String requestTypeChoice = RequestType.getSelectedItem().toString();
+
+        if (requestTypeChoice.equalsIgnoreCase("Man Power Request")) {
+            ManpowerRequestQueue requestQueue = userAccount.getManPowerQueue();
+            ProcessManPowerRequest processManPowerRequest = new ProcessManPowerRequest(userProcessContainer, requestQueue);
+            userProcessContainer.add("ProcessManPowerRequest", processManPowerRequest);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
         }
-        
-        if(requestTypeChoice.equalsIgnoreCase("Vaccine Request"))
-        {
-            VaccineWorkRequestQueue requestQueue= userAccount.getVacccineWorkRequestQueue();
+
+        if (requestTypeChoice.equalsIgnoreCase("Vaccine Request")) {
+            VaccineWorkRequestQueue requestQueue = userAccount.getVacccineWorkRequestQueue();
         }
     }//GEN-LAST:event_processRequestActionPerformed
 
@@ -299,4 +286,3 @@ public class ProcessRequests extends javax.swing.JPanel {
     private javax.swing.JButton processRequest;
     // End of variables declaration//GEN-END:variables
 }
-
