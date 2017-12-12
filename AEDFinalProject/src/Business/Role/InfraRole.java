@@ -10,6 +10,7 @@ import Business.Enterprize.Enterprize;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Users.UserAccount;
+import Interfaces.Infra.InfraAdminWorkArea;
 import Interfaces.StateAdmin.InfrastructureWorkArea;
 import javax.swing.JPanel;
 
@@ -21,7 +22,7 @@ public class InfraRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network, Organization organisation, Enterprize enterprise, Ecosystem business) {
-        return new InfrastructureWorkArea(userProcessContainer, account, network);
+        return new InfraAdminWorkArea(userProcessContainer, enterprise,account, network);
     }
     
 }

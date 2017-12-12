@@ -6,6 +6,7 @@
 package Interfaces.Analytics.SysAdmin;
 
 import Business.Ecosystem.Ecosystem;
+import Interfaces.Analytics.StateAdmin.SchoolAnalyticsHome;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -141,7 +142,7 @@ public class AnalyticsHome extends javax.swing.JPanel {
         }
         if(entry.equalsIgnoreCase("School Performance"))// redirect to funding analytics home
         {
-            Interfaces.Analytics.Sysadmin.SysFundingAnalyticsHome schoolAnalyticsHome = new Interfaces.Analytics.Sysadmin.SysFundingAnalyticsHome(userProcessContainer, business);
+            Interfaces.Analytics.Sysadmin.SysSchoolAnalyticsHome schoolAnalyticsHome = new Interfaces.Analytics.Sysadmin.SysSchoolAnalyticsHome(userProcessContainer, business);
             userProcessContainer.add("SchoolAnalyticsHome",schoolAnalyticsHome);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

@@ -25,8 +25,8 @@ public class ExamResults extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Enterprize enterprize;
-    static int examno;
-    static double totalmks;
+     int examno;
+     double totalmks;
     
     public ExamResults(JPanel userProcessContainer,Enterprize enterprize) {
         initComponents();
@@ -40,7 +40,7 @@ public class ExamResults extends javax.swing.JPanel {
     
     }
     public void load() {
-        final Timer t = new Timer(2000, (ActionEvent e) -> {
+        final Timer t = new Timer(5000, (ActionEvent e) -> {
             populateExamResults();
             populate();
             /*if (jProgressBar1.getValue() == 30) {
