@@ -9,6 +9,7 @@ import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
 import Business.Users.UserAccountDirectory;
 import Business.WorkQueue.EmailQueue;
+import Business.WorkQueue.InfraRequestQueue;
 import Business.WorkQueue.ManpowerRequestQueue;
 import Business.WorkQueue.StationaryRquestQueue;
 import Business.WorkQueue.VaccineWorkRequestQueue;
@@ -33,6 +34,7 @@ public abstract class Organization {
     private ManpowerRequestQueue manpowerQueue;
     private VaccineWorkRequestQueue vaccineWorkRequestQueue;
     private StationaryRquestQueue stationaryRequestQueue;
+    private InfraRequestQueue infraRequestQueue;
     private boolean account;
     public Organization(String name)
     {
@@ -44,12 +46,21 @@ public abstract class Organization {
         userAccountDirectory= new UserAccountDirectory();
         vaccineWorkRequestQueue= new VaccineWorkRequestQueue();
         stationaryRequestQueue = new StationaryRquestQueue();
+        infraRequestQueue= new InfraRequestQueue();
         organizationID=counter;
         ++counter;
     }
 
     public StationaryRquestQueue getStationaryRequestQueue() {
         return stationaryRequestQueue;
+    }
+
+    public InfraRequestQueue getInfraRequestQueue() {
+        return infraRequestQueue;
+    }
+
+    public void setInfraRequestQueue(InfraRequestQueue infraRequestQueue) {
+        this.infraRequestQueue = infraRequestQueue;
     }
 
     public void setStationaryRequestQueue(StationaryRquestQueue stationaryRequestQueue) {

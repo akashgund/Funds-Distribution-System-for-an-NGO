@@ -5,11 +5,18 @@
  */
 package Interfaces.Analytics.Sysadmin;
 
+import Business.Ecosystem.Ecosystem;
 import Business.Enterprize.Enterprize;
+import Business.Enterprize.School;
 import Business.Network.Network;
+import UtilityClasses.JComboBoxDecorator;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.Timer;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -29,21 +36,46 @@ public class SchoolAnalyticsPage extends javax.swing.JPanel {
      */ Network network;
     JPanel userProcessContainer;
     String input;
-    public SchoolAnalyticsPage( JPanel userProcessContainer,Network network,String input) {
-        initComponents();
-        this.network=network;
+    Ecosystem business;
+     SchoolAnalyticsPage(JPanel userProcessContainer, Ecosystem business, String entry) {
+       initComponents();
+        
+        this.business=business;
+        
         this.userProcessContainer=userProcessContainer;
         this.input=input;
-        populateSchool();
-        
+        populateSchool(); //To change body of generated methods, choose Tools | Templates.
     }
+    public void autosuggest() {
+        JTextField text = (JTextField) SchoolJCombo.getEditor().getEditorComponent();
+        text.setText("");
+        text.addKeyListener(new JComboBoxDecorator(SchoolJCombo));
+    }
+    
+
+    public void load() {
+        final Timer t = new Timer(2000, (ActionEvent e) -> {
+            populateGraph();
+            /*if (jProgressBar1.getValue() == 30) {
+                ((Timer) e.getSource()).stop();
+            }*/
+        });
+        t.start();
+    }
+
+
+   
     public void populateSchool()
     {
         //network.getEnterpriseDir().getEnterprizeList();//thi will have list of schools
-        schoolJCombo.removeAllItems();
+        SchoolJCombo.removeAllItems();
+        for(Network network: business.getNetworkList())
+        {
         for(Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList() )
         {
-            schoolJCombo.addItem(ent.getOrganisationName());
+            if( ent instanceof School)
+            SchoolJCombo.addItem(ent.getOrganisationName());
+        }
         }
         
     }
@@ -52,10 +84,14 @@ public void populateGraph()
         if(input.equalsIgnoreCase("Individual School Performance"))
         {
             DefaultPieDataset  dataset= new DefaultPieDataset();
-      String schoolSelected= schoolJCombo.getSelectedItem().toString();
+      String schoolSelected= SchoolJCombo.getSelectedItem().toString();
       //print analytics for the selected school in this loop
       for(Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList() )
         {
+            if(ent.getOrganisationName().equalsIgnoreCase(SchoolJCombo.getSelectedItem().toString()))
+            {
+                //dataset.setValue(supplier.getSupplierName(),soldtotal);
+            }
             
            
       //dataset.setValue(supplier.getSupplierName(),soldtotal);
@@ -87,20 +123,7 @@ public void populateGraph()
         {
             
              DefaultCategoryDataset dataset= new DefaultCategoryDataset();
-        /*for(SalesPerson salesPerson:salesPersonList.getSalesPersonList())
-        {
-            Object row[] = new Object[3];
-            row[0]=salesPerson;
-            row[1]=salesPerson.getSalesValueCurrent();
-            row[2]= salesPerson.getCommission();
-            dataset.setValue(salesPerson.getSalesValueCurrent(),"Sales",salesPerson.getSalesPersonID());
-
-        }
-             */
-
-        //dataset.setValue(2000,"contribution","Sales1");
-        //dataset.setValue(3000,"contribution","Sales2");
-        //JFreeChart dataSet = ChartFactory.createBarChart("Sales data", "Salesdata", "SSS", dataset);
+        
 
         JFreeChart chartdata=ChartFactory.createBarChart3D("SalesData","Sales Person", "Revenue", dataset);
         CategoryPlot areachart= chartdata.getCategoryPlot();
@@ -110,8 +133,9 @@ public void populateGraph()
         GraphPanel.add(panel);
         GraphPanel.validate();
         }
-         if(input.equalsIgnoreCase("Funding History"))
+         if(input.equalsIgnoreCase("Best School"))
         {
+            
          DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
           JFreeChart chartdata=ChartFactory.createLineChart3D("Funding History","Year", "Fund Granted", dataset);
         CategoryPlot areachart= chartdata.getCategoryPlot();
@@ -134,14 +158,14 @@ public void populateGraph()
     private void initComponents() {
 
         AnalyticsMenu = new javax.swing.JComboBox<>();
-        jPanel1 = new javax.swing.JPanel();
         JPanel = new javax.swing.JPanel();
-        Individualschool = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        schoolJCombo = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        compareSchools = new javax.swing.JButton();
-        bestSchool = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        FundingHistory = new javax.swing.JButton();
+        schoolFunded = new javax.swing.JButton();
+        fundTypeButton = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        SchoolJCombo = new javax.swing.JComboBox();
+        GOBUTTON = new javax.swing.JButton();
         GraphPanel = new javax.swing.JPanel();
 
         AnalyticsMenu.setBackground(new java.awt.Color(255, 0, 51));
@@ -157,62 +181,103 @@ public void populateGraph()
 
         JPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        Individualschool.setBackground(new java.awt.Color(255, 0, 51));
-        Individualschool.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        Individualschool.setForeground(new java.awt.Color(255, 255, 102));
-        Individualschool.setText("Individual School");
-        Individualschool.setBorder(null);
-        Individualschool.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Individualschool.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        FundingHistory.setBackground(new java.awt.Color(255, 0, 51));
+        FundingHistory.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        FundingHistory.setForeground(new java.awt.Color(255, 255, 102));
+        FundingHistory.setText("Individual School Analysis");
+        FundingHistory.setBorder(null);
+        FundingHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        FundingHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IndividualschoolActionPerformed(evt);
+                FundingHistoryActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Select School");
-        jLabel5.setEnabled(false);
-
-        schoolJCombo.setBackground(new java.awt.Color(255, 0, 51));
-        schoolJCombo.setEditable(true);
-        schoolJCombo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        schoolJCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funding", "School Performance" }));
-        schoolJCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        schoolJCombo.setEnabled(false);
-        schoolJCombo.addActionListener(new java.awt.event.ActionListener() {
+        schoolFunded.setBackground(new java.awt.Color(255, 0, 51));
+        schoolFunded.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        schoolFunded.setForeground(new java.awt.Color(255, 255, 102));
+        schoolFunded.setText("Compare Exam Scores");
+        schoolFunded.setBorder(null);
+        schoolFunded.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        schoolFunded.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                schoolJComboActionPerformed(evt);
+                schoolFundedActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Fund Analytics ");
-
-        compareSchools.setBackground(new java.awt.Color(255, 0, 51));
-        compareSchools.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        compareSchools.setForeground(new java.awt.Color(255, 255, 102));
-        compareSchools.setText("Compare Performance");
-        compareSchools.setBorder(null);
-        compareSchools.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        compareSchools.addActionListener(new java.awt.event.ActionListener() {
+        fundTypeButton.setBackground(new java.awt.Color(255, 0, 51));
+        fundTypeButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        fundTypeButton.setForeground(new java.awt.Color(255, 255, 102));
+        fundTypeButton.setText("Best School");
+        fundTypeButton.setBorder(null);
+        fundTypeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        fundTypeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                compareSchoolsActionPerformed(evt);
+                fundTypeButtonActionPerformed(evt);
             }
         });
 
-        bestSchool.setBackground(new java.awt.Color(255, 0, 51));
-        bestSchool.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        bestSchool.setForeground(new java.awt.Color(255, 255, 102));
-        bestSchool.setText("Best School");
-        bestSchool.setBorder(null);
-        bestSchool.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bestSchool.addActionListener(new java.awt.event.ActionListener() {
+        jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Academic Analytics");
+
+        SchoolJCombo.setBackground(new java.awt.Color(255, 0, 51));
+        SchoolJCombo.setEditable(true);
+        SchoolJCombo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        SchoolJCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "gund", "chacha", "nair", "bhai" }));
+        SchoolJCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        SchoolJCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bestSchoolActionPerformed(evt);
+                SchoolJComboActionPerformed(evt);
             }
         });
+
+        GOBUTTON.setBackground(new java.awt.Color(255, 0, 51));
+        GOBUTTON.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        GOBUTTON.setForeground(new java.awt.Color(255, 255, 102));
+        GOBUTTON.setText("GO");
+        GOBUTTON.setBorder(null);
+        GOBUTTON.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        GOBUTTON.setEnabled(false);
+        GOBUTTON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GOBUTTONActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(fundTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                .addComponent(schoolFunded, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(152, 152, 152)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(GOBUTTON, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(SchoolJCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(FundingHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(schoolFunded, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fundTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FundingHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(SchoolJCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(GOBUTTON, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         GraphPanel.setLayout(new java.awt.BorderLayout());
 
@@ -220,118 +285,91 @@ public void populateGraph()
         JPanel.setLayout(JPanelLayout);
         JPanelLayout.setHorizontalGroup(
             JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(schoolJCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
             .addGroup(JPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPanelLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(GraphPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JPanelLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(Individualschool, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bestSchool, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(compareSchools, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(174, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelLayout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(GraphPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         JPanelLayout.setVerticalGroup(
             JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelLayout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(schoolJCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(GraphPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
-                .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Individualschool, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bestSchool, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(compareSchools, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(JPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(JPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(GraphPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 971, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(JPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(JPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void IndividualschoolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IndividualschoolActionPerformed
-        // TODO add your handling code here:
-        schoolJCombo.setEnabled(true);
-    }//GEN-LAST:event_IndividualschoolActionPerformed
-
-    private void compareSchoolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compareSchoolsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_compareSchoolsActionPerformed
-
-    private void bestSchoolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bestSchoolActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bestSchoolActionPerformed
 
     private void AnalyticsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalyticsMenuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AnalyticsMenuActionPerformed
 
-    private void schoolJComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schoolJComboActionPerformed
+    private void FundingHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FundingHistoryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_schoolJComboActionPerformed
+        input = "View by Funding History";
+        load();
+    }//GEN-LAST:event_FundingHistoryActionPerformed
+
+    private void schoolFundedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schoolFundedActionPerformed
+        // TODO add your handling code here:
+        input = "View by Schools Funded";
+        load();
+    }//GEN-LAST:event_schoolFundedActionPerformed
+
+    private void fundTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundTypeButtonActionPerformed
+        // TODO add your handling code here:
+        input = "view by Fund Type";
+        SchoolJCombo.setEnabled(true);
+        //schoolchoice= SchoolJCombo.getSelectedItem().toString();
+        //load();
+        JOptionPane.showMessageDialog(null,"passed test");
+        //jComboBox1.setEnabled(false);
+
+    }//GEN-LAST:event_fundTypeButtonActionPerformed
+
+    private void SchoolJComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SchoolJComboActionPerformed
+        // TODO add your handling code here:
+        GOBUTTON.setEnabled(true);
+        //Enterprize enterprize = null;
+    }//GEN-LAST:event_SchoolJComboActionPerformed
+
+    private void GOBUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GOBUTTONActionPerformed
+        // TODO add your handling code here:
+        //schoolchoice= SchoolJCombo.getSelectedItem().toString();
+        input = "View by Funding History";
+        //JOptionPane.showMessageDialog(null,"from go button"+schoolchoice);
+        load();
+    }//GEN-LAST:event_GOBUTTONActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AnalyticsMenu;
+    private javax.swing.JButton FundingHistory;
+    private javax.swing.JButton GOBUTTON;
     private javax.swing.JPanel GraphPanel;
-    private javax.swing.JButton Individualschool;
     private javax.swing.JPanel JPanel;
-    private javax.swing.JButton bestSchool;
-    private javax.swing.JButton compareSchools;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JComboBox SchoolJCombo;
+    private javax.swing.JButton fundTypeButton;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> schoolJCombo;
+    private javax.swing.JButton schoolFunded;
     // End of variables declaration//GEN-END:variables
 }
