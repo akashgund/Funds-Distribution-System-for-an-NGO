@@ -51,6 +51,10 @@ public class StationaryRequest extends WorkRequestABS {
     public void setRequestType(String requestType) {
         this.requestType = requestType;
     }
-    
+    @Override
+    public String toString()
+    {
+        return sender.getUsername();
+    }
     
 }

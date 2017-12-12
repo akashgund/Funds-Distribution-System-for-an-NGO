@@ -11,6 +11,7 @@ import Business.Enterprize.School;
 import Business.Network.Network;
 import Business.Users.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -31,7 +32,8 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
         this.container = container;
         this.enterprize = (School) enterprise;
         this.account = account;
-        this.network= network;
+        this.network=account.getNetwork();
+        JOptionPane.showMessageDialog(null, network);
         txtUser.setText(account.getEmployee().getName());
         System.out.println(account.getNetwork());
         //System.out.println(this.enterprise.getInfraScore()*100);
@@ -267,7 +269,7 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
         container.add("OrderUtilities", order);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
-       */ 
+       
     }//GEN-LAST:event_OrderUtilitiesButtonActionPerformed
 
 
