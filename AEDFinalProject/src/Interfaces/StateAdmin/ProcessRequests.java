@@ -6,19 +6,14 @@
 package Interfaces.StateAdmin;
 
 import Business.Ecosystem.Ecosystem;
-import Business.Enterprize.Enterprize;
 import Business.Enterprize.School;
 import Business.Network.Network;
 import Business.Users.UserAccount;
-import Business.WorkQueue.Email;
 import Business.WorkQueue.ManpowerRequest;
-import Business.WorkQueue.ManpowerRequestQueue;
-import Business.WorkQueue.VaccineWorkRequestQueue;
-import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.WorkRequest;
-import Interfaces.SystemAdmin.*;
-import Interfaces.*;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -51,6 +46,54 @@ public class ProcessRequests extends javax.swing.JPanel {
     }
 
     public void populateRequest() {
+        ArrayList<WorkRequest> requestList;
+        requestList = new ArrayList();
+        double[] temp = new double[userAccount.getWorkQueue().getWorkRequestList().size()];
+        int j = 0;
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
+            if (!request.getGrantStatus().equalsIgnoreCase("completed")) {
+                School s = (School) request.getSender().getEnterprize();
+                temp[j] = s.getOverallScore();
+                j++;
+            }
+        }
+        System.out.println(j);
+        Arrays.sort(temp);
+        for (int i = 0; i < j; i++) {
+            for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
+                School s = (School) request.getSender().getEnterprize();
+                if(temp[i]==s.getOverallScore() && !request.getGrantStatus().equalsIgnoreCase("completed"))
+                {
+                    for(WorkRequest r : requestList)
+                    {
+                        if(r.equals(request))
+                        {
+                            
+                        }
+                        else
+                        {
+                            requestList.add(request);
+                        }
+                    }
+                    
+                    
+                }
+            }
+        }
+        outstanding = 0;
+        DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
+        dtm.setRowCount(0);
+        for (WorkRequest request : requestList) {
+            Object row[] = new Object[5];
+            outstanding += request.getFundRequested();
+            row[0] = request.getFundType();
+            row[1] = request;
+            row[2] = request.getReceiver();
+            row[3] = request.getFundRequested();
+            row[4] = request.getGrantStatus();
+            dtm.addRow(row);
+        }
+        /*
         outstanding = 0;
         DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
         dtm.setRowCount(0);
@@ -65,7 +108,7 @@ public class ProcessRequests extends javax.swing.JPanel {
             row[3] = request.getFundRequested();
             row[4] = request.getGrantStatus();
             dtm.addRow(row);
-        }
+        }*/
         update();
 
         //}
@@ -303,11 +346,9 @@ public class ProcessRequests extends javax.swing.JPanel {
                         x.getWorkQueue().getWorkRequestList().add(request);
                     });
             request.setReceiver(userAccount);
-            JOptionPane.showConfirmDialog(null, "Forwarded to systemadmin");
-        }
-        else
-        {
-            JOptionPane.showConfirmDialog(null, "Forwarded to systemadmin","Warning",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Forwarded to systemadmin");
+        } else {
+            JOptionPane.showMessageDialog(null, "Forwarded to systemadmin", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
     }//GEN-LAST:event_processRequestActionPerformed
