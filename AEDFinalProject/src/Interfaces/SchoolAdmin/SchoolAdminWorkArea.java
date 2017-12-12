@@ -267,7 +267,7 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
         container.add("OrderUtilities", order);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
-       */ 
+       
     }//GEN-LAST:event_OrderUtilitiesButtonActionPerformed
 
 

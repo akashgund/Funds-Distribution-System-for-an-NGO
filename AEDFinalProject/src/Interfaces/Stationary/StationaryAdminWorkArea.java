@@ -183,10 +183,10 @@ public class StationaryAdminWorkArea extends javax.swing.JPanel {
 
     private void ViewReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewReqActionPerformed
         // TODO add your handling code here:
-        ViewRequestPanel panel = new ViewRequestPanel(userProcessContainer,enterprize,ua);
+      /*  ViewRequestPanel panel = new ViewRequestPanel(userProcessContainer,enterprize,ua);
         userProcessContainer.add("ViewRequestPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        layout.next(userProcessContainer);*/
     }//GEN-LAST:event_ViewReqActionPerformed
 
 

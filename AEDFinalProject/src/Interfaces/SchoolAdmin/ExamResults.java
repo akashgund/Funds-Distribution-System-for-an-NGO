@@ -24,24 +24,21 @@ public class ExamResults extends javax.swing.JPanel {
      * Creates new form LoginPage
      */
     JPanel userProcessContainer;
-    Enterprize enterprize;
-    static int examno;
-    static double totalmks;
-    
-    public ExamResults(JPanel userProcessContainer,Enterprize enterprize) {
+    School enterprize;
+    static int examno=0;
+    static double totalmks=0;
+    DefaultTableModel dtm =null;
+
+    public ExamResults(JPanel userProcessContainer, Enterprize enterprize) {
         initComponents();
-    this.userProcessContainer=userProcessContainer;
-    this.enterprize=enterprize;
-     
-    examno=0;
-    totalmks=0;
-    load();
-    
-    
+        this.userProcessContainer = userProcessContainer;
+        this.enterprize =(School) enterprize;
+        load();
     }
+
     public void load() {
-        final Timer t = new Timer(2000, (ActionEvent e) -> {
-            populateExamResults();
+        final Timer t = new Timer(5000, (ActionEvent e) -> {
+            //populateExamResults();
             populate();
             /*if (jProgressBar1.getValue() == 30) {
                 ((Timer) e.getSource()).stop();
@@ -49,31 +46,35 @@ public class ExamResults extends javax.swing.JPanel {
         });
         t.start();
     }
+
     public void populate() {
-        School e=(School)enterprize;
-       double exam = e.getAverageMarks();
-      
-       jProgressBar2.setValue((int)exam);
-      
-      /* jLabel12.setText(String.valueOf("$ "+enterprize.getInfraFunds()));
-       jLabel13.setText(String.valueOf("$ "+enterprize.getStationaryFunds()));
-       jLabel14.setText(String.valueOf("Average Exam Scores:   "+Math.ceil(enterprize.getAverageMarks())));
-       jLabel15.setText(String.valueOf("$ "+enterprize.getHealthFunds()));*/
-       //System.out.println(enterprize.getOverallScore());
+        double exam = enterprize.getManpowerScore();
+        jProgressBar2.setValue((int) exam);
+        populateExamResults();
     }
-    public void populateExamResults()
-    {
-        DefaultTableModel dtm= (DefaultTableModel)DisplayTable.getModel();
+
+    public void populateExamResults() {
+        /*
+        DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
         examno++;
         Object row[] = new Object[2];
-        row[0]= "Exam"+examno;
-         School s = (School) enterprize;
-        row[1]=Math.ceil(s.getAverageMarks());
+        row[0] = "Exam " + examno;
+        School s = (School) enterprize;
+        row[1] = Math.ceil(s.getAverageMarks());
         dtm.addRow(row);
-        totalmks=totalmks+s.getAverageMarks();
-        double avgmks=Math.ceil(totalmks/dtm.getRowCount());
-       weightedAvgtext.setText(String.valueOf(avgmks));
-        
+        totalmks = totalmks + s.getAverageMarks();
+        double avgmks = Math.ceil(totalmks / dtm.getRowCount());
+        weightedAvgtext.setText(String.valueOf(avgmks));*/
+        int sum =0;
+        dtm = (DefaultTableModel) DisplayTable.getModel();
+        Object row[] = new Object[2];
+        row[0] = "Exam " + ++examno;
+        row[1] = Math.ceil(enterprize.getAverageMarks());
+        dtm.addRow(row);
+        totalmks = totalmks + enterprize.getAverageMarks();
+        System.out.println(dtm.getRowCount());
+        double avgmks = Math.ceil(totalmks / dtm.getRowCount());
+        weightedAvgtext.setText(String.valueOf(avgmks));      
     }
 
     /**
