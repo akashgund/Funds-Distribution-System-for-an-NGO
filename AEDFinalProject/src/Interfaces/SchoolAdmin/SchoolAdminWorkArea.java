@@ -81,7 +81,6 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        FundingHistory = new javax.swing.JButton();
         OrderUtilitiesButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -139,18 +138,6 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
             }
         });
 
-        FundingHistory.setBackground(new java.awt.Color(255, 0, 51));
-        FundingHistory.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        FundingHistory.setForeground(new java.awt.Color(255, 255, 102));
-        FundingHistory.setText("Funding History");
-        FundingHistory.setBorder(null);
-        FundingHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        FundingHistory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FundingHistoryActionPerformed(evt);
-            }
-        });
-
         OrderUtilitiesButton.setBackground(new java.awt.Color(255, 0, 51));
         OrderUtilitiesButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         OrderUtilitiesButton.setForeground(new java.awt.Color(255, 255, 102));
@@ -168,39 +155,34 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
         userProcessContainerLayout.setHorizontalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userProcessContainerLayout.createSequentialGroup()
+                .addGap(194, 194, 194)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loginButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addGap(0, 168, Short.MAX_VALUE)
+                        .addComponent(OrderUtilitiesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(231, 231, 231)))))
+                    .addGroup(userProcessContainerLayout.createSequentialGroup()
+                        .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(loginButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 180, Short.MAX_VALUE)
                         .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
                                 .addComponent(loginButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33))))
-                    .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addComponent(OrderUtilitiesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(userProcessContainerLayout.createSequentialGroup()
-                .addGap(194, 194, 194)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(userProcessContainerLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(FundingHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userProcessContainerLayout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(231, 231, 231)))))
+                                .addGap(33, 33, 33))))))
         );
         userProcessContainerLayout.setVerticalGroup(
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,12 +196,11 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FundingHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(OrderUtilitiesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addComponent(OrderUtilitiesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(42, 42, 42)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -279,15 +260,9 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
         layout.next(container);
     }//GEN-LAST:event_loginButton4ActionPerformed
 
-    private void FundingHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FundingHistoryActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_FundingHistoryActionPerformed
-
     private void OrderUtilitiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderUtilitiesButtonActionPerformed
         // TODO add your handling code here:
-        OrderUtilities order = new OrderUtilities(container,enterprize,network);
+        OrderUtilities order = new OrderUtilities(container,enterprize,network,account);
         container.add("OrderUtilities", order);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
@@ -296,7 +271,6 @@ public class SchoolAdminWorkArea extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton FundingHistory;
     private javax.swing.JButton OrderUtilitiesButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
