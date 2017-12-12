@@ -8,7 +8,6 @@ package Interfaces;
 import Business.Ecosystem.Configuration;
 import Business.Ecosystem.Ecosystem;
 import Business.Enterprize.Enterprize;
-import Business.Enterprize.Exam;
 import Business.Enterprize.School;
 import Business.Network.Network;
 import Business.Organization.Organization;
@@ -57,7 +56,7 @@ public class MainJFrame extends javax.swing.JFrame {
                                             }
                                             else
                                             {
-                                                Thread.sleep(1000);
+                                                Thread.sleep(5000);
                                             }
                                             s.setInfraFunds(s.getInfraFunds() - s.getIspendingRate());
                                             s.setStationaryFunds(s.getStationaryFunds() - s.getSspendingRate());
@@ -255,11 +254,17 @@ public class MainJFrame extends javax.swing.JFrame {
                                 if (userAccount != null) {
                                     inEnterprise = enterprise;
                                     inOrganization = organization;
+                                    userAccount.setEnterprize(enterprise);
+                                    userAccount.setNetwork(network);
                                     break;
                                 }
                             }
                         } else {
                             inEnterprise = enterprise;
+                            System.out.println("lodu"+enterprise);
+                            userAccount.setEnterprize(enterprise);
+                            userAccount.setNetwork(network);
+                            System.out.println(userAccount.getNetwork().getOrganisationName());
                             break;
                         }
                         if (inOrganization != null) {
@@ -269,6 +274,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 }//idhar
                 else {
                     inNetwork = network;
+                    userAccount.setNetwork(network);
                     break;
                 }
                 if (inNetwork != null || inEnterprise != null) {

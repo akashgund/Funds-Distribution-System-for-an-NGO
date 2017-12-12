@@ -8,6 +8,8 @@ package Interfaces.SchoolAdmin;
 import Business.Users.UserAccount;
 import Business.WorkQueue.ManpowerRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,31 +24,29 @@ public class ProcessRequests extends javax.swing.JPanel {
      */
     JPanel container;
     private UserAccount account;
-    public ProcessRequests(JPanel container , UserAccount account) {
+
+    public ProcessRequests(JPanel container, UserAccount account) {
         initComponents();
         this.container = container;
         this.account = account;
         populateTable();
     }
-    
-    public void populateTable()
-    {
+
+    public void populateTable() {
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
-        for(WorkRequest request : account.getWorkQueue().getWorkRequestList())
-        {
-            Object []row = new Object[3];
+        for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
+            Object[] row = new Object[3];
             row[0] = request;
             row[1] = request.getFundType();
             row[2] = request.getFundRequested();
             dtm.addRow(row);
         }
-        for(ManpowerRequest mn : account.getManPowerQueue().getManpwerWorkRequestQueue())
-        {
-            Object []row = new Object[3];
+        for (ManpowerRequest mn : account.getManPowerQueue().getManpwerWorkRequestQueue()) {
+            Object[] row = new Object[3];
             row[0] = mn;
             row[1] = mn.getRequestType();
-            row[2] = mn.getTecherRequested();
+            row[2] = "Requested online Training";
             dtm.addRow(row);
         }
     }
@@ -110,7 +110,7 @@ public class ProcessRequests extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Sender", "Request Type", "Amount"
+                "Sender", "Request Type", "Details"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -200,6 +200,27 @@ public class ProcessRequests extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
+        WorkRequest request = null;
+        ManpowerRequest mrequest = null;
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+       
+        if (jTable1.getValueAt(selectedRow, 1).toString().equalsIgnoreCase("man power request")) {
+            mrequest = (ManpowerRequest) jTable1.getValueAt(selectedRow, 0);
+            ForwardTrainingRequest panel = new ForwardTrainingRequest(container, mrequest, account);
+            container.add("Forward Request", panel);
+            CardLayout layout = (CardLayout) container.getLayout();
+            layout.next(container);
+        } else {
+            request = (WorkRequest) jTable1.getValueAt(selectedRow, 0);
+            ForwardRequest panel = new ForwardRequest(container, request, account);
+            container.add("Forward Request", panel);
+            CardLayout layout = (CardLayout) container.getLayout();
+            layout.next(container);
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed

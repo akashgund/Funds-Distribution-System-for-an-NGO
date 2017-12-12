@@ -38,6 +38,22 @@ public class School extends Enterprize {
     private double hspendingRate;
     private int rangeMin = 10;
     private int rangeMax = 100;
+    private boolean underOnlineTraining=false;
+
+    public boolean isUnderOnlineTraining() {
+        return underOnlineTraining;
+    }
+
+    
+    public void setUnderOnlineTraining(boolean underOnlineTraining) {
+        this.underOnlineTraining = underOnlineTraining;
+        if(underOnlineTraining==true)
+        {
+            rangeMin+=70;
+        }
+    }
+    
+    
     
 
     public double getIspendingRate() {

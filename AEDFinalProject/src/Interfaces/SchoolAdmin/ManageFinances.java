@@ -260,6 +260,7 @@ public class ManageFinances extends javax.swing.JPanel {
                     .forEach(x -> {
                         request.setReceiver(x);
                         request.setFundRequested(Double.parseDouble(txtAmount.getText()));
+                        request.setGrantStatus("In Transit");
                         x.getWorkQueue().getWorkRequestList().add(request);
                     });
             JOptionPane.showMessageDialog(null, "Sent request to school admin!", "Sent", JOptionPane.INFORMATION_MESSAGE);
@@ -279,6 +280,7 @@ public class ManageFinances extends javax.swing.JPanel {
                     .forEach(x -> {
                         request.setReceiver(x);
                         request.setFundRequested(Double.parseDouble(txtAmount.getText()));
+                        request.setGrantStatus("In Transit");
                         x.getWorkQueue().getWorkRequestList().add(request);
                     });
             JOptionPane.showMessageDialog(null, "Sent request to school admin!", "Sent", JOptionPane.INFORMATION_MESSAGE);
@@ -298,6 +300,7 @@ public class ManageFinances extends javax.swing.JPanel {
                     .forEach(x -> {
                         request.setReceiver(x);
                         request.setFundRequested(Double.parseDouble(txtAmount.getText()));
+                        request.setGrantStatus("In Transit");
                         x.getWorkQueue().getWorkRequestList().add(request);
                     });
             JOptionPane.showMessageDialog(null, "Sent request to school admin!", "Sent", JOptionPane.INFORMATION_MESSAGE);

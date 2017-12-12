@@ -6,6 +6,7 @@
 package Interfaces.StateAdmin;
 
 import Business.Enterprize.Enterprize;
+import Business.Enterprize.School;
 import Business.Network.Network;
 import Business.Users.UserAccount;
 import Business.WorkQueue.Email;
@@ -13,9 +14,11 @@ import Business.WorkQueue.ManpowerRequest;
 import Business.WorkQueue.ManpowerRequestQueue;
 import Business.WorkQueue.VaccineWorkRequestQueue;
 import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkRequest;
 import Interfaces.SystemAdmin.*;
 import Interfaces.*;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,42 +34,55 @@ public class ProcessRequests extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount userAccount;
     Network network;
+    private int outstanding;
 
     public ProcessRequests(JPanel container, UserAccount account, Network network) {
         initComponents();
         this.userProcessContainer = container;
         this.userAccount = account;
         this.network = network; //To change body of generated methods, choose Tools | Templates.
-        populateRequest();
+        //populateRequest();
+    }
+
+    public void update() {
+        jTextField1.setText(String.valueOf(network.getTotal_funds()));
+        jTextField2.setText(String.valueOf(outstanding));
     }
 
     public void populateRequest() {
-        System.out.println("in populate");
-        System.out.println(network.getEnterpriseDirectory().getEnterprizeList() + "Ent dir size");
-        for (Enterprize e : network.getEnterpriseDirectory().getEnterprizeList()) {
-            for (ManpowerRequest mn : e.getManpowerQueue().getManpwerWorkRequestQueue()) {
-                if (mn != null) {
-                    network.getManpowerQueue().getManpwerWorkRequestQueue().add(mn);
-                }
-                userAccount.getManPowerQueue().getManpwerWorkRequestQueue().add(mn);
-                //mn.getStatus().equalsIgnoreCase(TOOL_TIP_TEXT_KEY)
-            }
-
-        }
+        outstanding = 0;
         DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
-        for (Enterprize e : network.getEnterpriseDirectory().getEnterprizeList()) {
-            for (ManpowerRequest mn : e.getManpowerQueue().getManpwerWorkRequestQueue()) {
-                Object row[] = new Object[3];
-                row[0] = mn;
-                row[1] = mn.getRequestType();
-                row[2] = mn.getStatus();
-
-                dtm.addRow(row);
+        dtm.setRowCount(0);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
+            if (!request.getGrantStatus().equalsIgnoreCase("completed")) {
+                outstanding += request.getFundRequested();
             }
+            Object row[] = new Object[5];
+            row[0] = request.getFundType();
+            row[1] = request;
+            row[2] = request.getReceiver();
+            row[3] = request.getFundRequested();
+            row[4] = request.getGrantStatus();
+            dtm.addRow(row);
         }
-        //System.out.println("Size of man queue"+ network.getManpowerQueue().getManpwerWorkRequestQueue().size());
-        for (ManpowerRequest mn : network.getManpowerQueue().getManpwerWorkRequestQueue()) {
-            System.out.println(mn);
+        update();
+
+        //}
+    }
+    
+    public void populateManpowerRequest()
+    {
+        DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
+        dtm.setRowCount(0);
+        for(ManpowerRequest m : userAccount.getManPowerQueue().getManpwerWorkRequestQueue())
+        {
+            Object row[] = new Object[5];
+            row[0] = m.getRequestType();
+            row[1] = m;
+            row[2] = m.getReceiver();
+            row[3] = "Online Training";
+            row[4] = m.getStatus();
+            dtm.addRow(row);
         }
     }
 
@@ -89,7 +105,11 @@ public class ProcessRequests extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         DisplayTable = new javax.swing.JTable();
         loginButton4 = new javax.swing.JButton();
-        RequestType = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        processRequest1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -101,9 +121,14 @@ public class ProcessRequests extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Notifications");
+        jLabel5.setText("Select Type :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manpower", "Funds" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -116,7 +141,7 @@ public class ProcessRequests extends javax.swing.JPanel {
         processRequest.setBackground(new java.awt.Color(255, 0, 51));
         processRequest.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         processRequest.setForeground(new java.awt.Color(255, 255, 102));
-        processRequest.setText("Process Request");
+        processRequest.setText("Generate Request");
         processRequest.setBorder(null);
         processRequest.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         processRequest.addActionListener(new java.awt.event.ActionListener() {
@@ -130,17 +155,9 @@ public class ProcessRequests extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Request Type", "Sender", "Status"
+                "Request Type", "Sender", "Receiver", "Details", "Status"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(DisplayTable);
 
         loginButton4.setBackground(new java.awt.Color(255, 0, 51));
@@ -155,14 +172,23 @@ public class ProcessRequests extends javax.swing.JPanel {
             }
         });
 
-        RequestType.setBackground(new java.awt.Color(255, 0, 51));
-        RequestType.setEditable(true);
-        RequestType.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        RequestType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Man Power Request", "Fund Request", "Vaccine Request" }));
-        RequestType.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        RequestType.addActionListener(new java.awt.event.ActionListener() {
+        jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel9.setText("Available Funds Pool:");
+
+        jLabel10.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel10.setText("Outstanding Funds:");
+
+        processRequest1.setBackground(new java.awt.Color(255, 0, 51));
+        processRequest1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        processRequest1.setForeground(new java.awt.Color(255, 255, 102));
+        processRequest1.setText("Approve Request");
+        processRequest1.setBorder(null);
+        processRequest1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        processRequest1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RequestTypeActionPerformed(evt);
+                processRequest1ActionPerformed(evt);
             }
         });
 
@@ -171,22 +197,17 @@ public class ProcessRequests extends javax.swing.JPanel {
         PanelLayout.setHorizontalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLayout.createSequentialGroup()
-                .addGap(260, 260, 260)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelLayout.createSequentialGroup()
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelLayout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(PanelLayout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(37, 37, 37)
                                 .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(processRequest, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PanelLayout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(PanelLayout.createSequentialGroup()
                         .addGap(179, 179, 179)
                         .addComponent(jLabel6)
@@ -195,9 +216,27 @@ public class ProcessRequests extends javax.swing.JPanel {
                     .addGroup(PanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1))
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelLayout.createSequentialGroup()
+                                .addGap(260, 260, 260)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(processRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(PanelLayout.createSequentialGroup()
+                                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(32, 32, 32)
+                                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(RequestType, 0, 676, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(processRequest1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         PanelLayout.setVerticalGroup(
@@ -213,15 +252,23 @@ public class ProcessRequests extends javax.swing.JPanel {
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(RequestType, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(processRequest1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(processRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(256, 256, 256))
+                .addGap(126, 126, 126))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -238,14 +285,14 @@ public class ProcessRequests extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void processRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processRequestActionPerformed
         // TODO add your handling code here:
 
-        String requestTypeChoice = RequestType.getSelectedItem().toString();
+        /*      String requestTypeChoice = RequestType.getSelectedItem().toString();
 
         if (requestTypeChoice.equalsIgnoreCase("Man Power Request")) {
             ManpowerRequestQueue requestQueue = userAccount.getManPowerQueue();
@@ -257,12 +304,8 @@ public class ProcessRequests extends javax.swing.JPanel {
 
         if (requestTypeChoice.equalsIgnoreCase("Vaccine Request")) {
             VaccineWorkRequestQueue requestQueue = userAccount.getVacccineWorkRequestQueue();
-        }
+        }*/
     }//GEN-LAST:event_processRequestActionPerformed
-
-    private void RequestTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RequestTypeActionPerformed
 
     private void loginButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton4ActionPerformed
         // TODO add your handling code here:
@@ -271,18 +314,84 @@ public class ProcessRequests extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_loginButton4ActionPerformed
 
+    private void processRequest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processRequest1ActionPerformed
+        // TODO add your handling code here:
+        int selectedrow = DisplayTable.getSelectedRow();
+        if (selectedrow < 0 || DisplayTable.getValueAt(selectedrow, 0).toString().equalsIgnoreCase("completed")) {
+            JOptionPane.showMessageDialog(null, "Please make a valid selection!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (DisplayTable.getValueAt(selectedrow, 0).toString().equalsIgnoreCase("man power request")) {
+            ManpowerRequest request = (ManpowerRequest) DisplayTable.getValueAt(selectedrow, 1);
+            School s = (School) request.getSender().getEnterprize();
+            s.setUnderOnlineTraining(true);
+            request.setStatus("completed");
+            populateManpowerRequest();
+        } else {
+            WorkRequest request = (WorkRequest) DisplayTable.getValueAt(selectedrow, 1);
+
+            if (request.getFundRequested() > network.getTotal_funds()) {
+                JOptionPane.showMessageDialog(null, "Sufficient funds not available!", "Warning", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            network.setTotal_funds(network.getTotal_funds() - request.getFundRequested());
+            network.getEnterpriseDirectory().getEnterprizeList().stream()
+                    .filter(x -> x instanceof School)
+                    .forEach(x
+                            -> {
+                        for (UserAccount ua : x.getUserAccountDirectory().getUserAccount()) {
+                            if (ua.getUsername().equals(request.getSender().getUsername())) {
+                                System.out.println("Jai shri ram");
+                                School s = (School) x;
+                                if (request.getFundType().equalsIgnoreCase("infra funds")) {
+                                    s.setInfraFunds(s.getInfraFunds() + request.getFundRequested());
+                                    request.setFundAccepted(request.getFundRequested());
+                                }
+                                if (request.getFundType().equalsIgnoreCase("stationary funds")) {
+                                    s.setStationaryFunds(s.getStationaryFunds() + request.getFundRequested());
+                                    request.setFundAccepted(request.getFundRequested());
+                                }
+                                if (request.getFundType().equalsIgnoreCase("healthcare funds")) {
+                                    s.setHealthFunds(s.getStationaryFunds() + request.getFundRequested());
+                                    request.setFundAccepted(request.getFundRequested());
+                                }
+                                request.setGrantStatus("Completed");
+                            }
+                        }
+                    });
+            JOptionPane.showMessageDialog(null, "Successfully delivered funds!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            populateRequest();
+        }
+
+    }//GEN-LAST:event_processRequest1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        if (jComboBox1.getSelectedIndex() == 0) {
+            populateManpowerRequest();
+        }
+        if (jComboBox1.getSelectedIndex() == 1) {
+            populateRequest();
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable DisplayTable;
     private javax.swing.JPanel Panel;
-    private javax.swing.JComboBox<String> RequestType;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton loginButton4;
     private javax.swing.JButton processRequest;
+    private javax.swing.JButton processRequest1;
     // End of variables declaration//GEN-END:variables
 }

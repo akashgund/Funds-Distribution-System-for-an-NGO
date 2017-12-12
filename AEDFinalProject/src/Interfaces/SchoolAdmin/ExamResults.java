@@ -8,6 +8,7 @@ package Interfaces.SchoolAdmin;
 import Business.Enterprize.Enterprize;
 import Business.Enterprize.School;
 import Interfaces.*;
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -205,6 +206,9 @@ public class ExamResults extends javax.swing.JPanel {
 
     private void BAckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAckButtonActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_BAckButtonActionPerformed
 
 
