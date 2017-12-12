@@ -18,11 +18,28 @@ public class HealthCare extends Enterprize {
 
     private String healthProviderName;
     private static HealthCare healthCareProvider;
-    private ArrayList<Disease> diseaseList;
-    private ArrayList<Vaccine> vaccineList;
+    private int healthKitStock=100000;
+    private int healthKitCosts=100;
+ 
 
     public String getHealthProviderName() {
         return healthProviderName;
+    }
+
+    public int getHealthKitStock() {
+        return healthKitStock;
+    }
+
+    public void setHealthKitStock(int healthKitStock) {
+        this.healthKitStock = healthKitStock;
+    }
+
+    public int getHealthKitCosts() {
+        return healthKitCosts;
+    }
+
+    public void setHealthKitCosts(int healthKitCosts) {
+        this.healthKitCosts = healthKitCosts;
     }
 
     public void setHealthProviderName(String healthProviderName) {
@@ -39,19 +56,10 @@ public class HealthCare extends Enterprize {
 
     private HealthCare(String name) {
         super(name,Enterprize.Enterprisetype.Healthcare);
-        vaccineList = new ArrayList();
-        diseaseList = new ArrayList();
+        
     }
     
-    public Disease addDisease(String vaccineName)
-       {
-           Disease disease = new Disease();
-           diseaseList.add(disease);
-           Disease.Vaccine vaccine = disease.new Vaccine();
-           vaccine.setVaccineName(vaccineName);
-           vaccineList.add(vaccine);
-           return disease;
-       }
+  
 
     public static HealthCare getInstance() {
         if (healthCareProvider == null) {

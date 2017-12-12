@@ -63,6 +63,21 @@ public class ProcessRequests extends javax.swing.JPanel {
 
         }
         DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
+        for (Enterprize e : network.getEnterpriseDirectory().getEnterprizeList()) {
+            for (ManpowerRequest mn : e.getManpowerQueue().getManpwerWorkRequestQueue()) {
+                Object row[] = new Object[3];
+                row[0] = mn;
+                row[1] = mn.getRequestType();
+                row[2] = mn.getStatus();
+
+                dtm.addRow(row);
+            }
+        }
+        //System.out.println("Size of man queue"+ network.getManpowerQueue().getManpwerWorkRequestQueue().size());
+        for (ManpowerRequest mn : network.getManpowerQueue().getManpwerWorkRequestQueue()) {
+            System.out.println(mn);
+        }
+        DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
         dtm.setRowCount(0);
        // for (Enterprize e : network.getEnterpriseDirectory().getEnterprizeList()) {
             /*for (ManpowerRequest mn : e.getManpowerQueue().getManpwerWorkRequestQueue()) {
