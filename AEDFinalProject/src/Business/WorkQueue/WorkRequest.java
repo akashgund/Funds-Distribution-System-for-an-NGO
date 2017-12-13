@@ -6,6 +6,8 @@
 
 package Business.WorkQueue;
 
+import Business.Enterprize.School;
+
 /**
  *
  * @author akash
@@ -17,6 +19,19 @@ public class WorkRequest extends WorkRequestABS {
     int teacherReq;
     String grantStatus;
     private String requestType;
+    private boolean reported;
+
+    public boolean isReported() {
+        return reported;
+    }
+
+    public void setReported(boolean reported) {
+        this.reported = reported;
+    }
+
+    
+    
+    
 
     public WorkRequest() {
         requestType="Fund Request";
@@ -54,6 +69,8 @@ public class WorkRequest extends WorkRequestABS {
     public void setFundAccepted(double fundAccepted) {
         this.fundAccepted = fundAccepted;
     }
+
+   
     
     
 }

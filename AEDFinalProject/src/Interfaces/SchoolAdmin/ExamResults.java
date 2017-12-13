@@ -47,13 +47,14 @@ public class ExamResults extends javax.swing.JPanel {
     }
 
     public void populate() {
-        double exam = enterprize.getManpowerScore();
+        School e=(School)enterprize;
+        double exam = e.getAverageMarks();
         jProgressBar2.setValue((int) exam);
         populateExamResults();
     }
 
     public void populateExamResults() {
-        /*
+        
         DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
         examno++;
         Object row[] = new Object[2];
@@ -63,9 +64,9 @@ public class ExamResults extends javax.swing.JPanel {
         dtm.addRow(row);
         totalmks = totalmks + s.getAverageMarks();
         double avgmks = Math.ceil(totalmks / dtm.getRowCount());
-        weightedAvgtext.setText(String.valueOf(avgmks));*/
-        int sum =0;
-        dtm = (DefaultTableModel) DisplayTable.getModel();
+        weightedAvgtext.setText(String.valueOf(avgmks));
+        /*int sum =0;
+       DefaultTableModel dtm = (DefaultTableModel) DisplayTable.getModel();
         Object row[] = new Object[2];
         row[0] = "Exam " + ++examno;
         row[1] = Math.ceil(enterprize.getAverageMarks());
@@ -73,7 +74,7 @@ public class ExamResults extends javax.swing.JPanel {
         totalmks = totalmks + enterprize.getAverageMarks();
         System.out.println(dtm.getRowCount());
         double avgmks = Math.ceil(totalmks / dtm.getRowCount());
-        weightedAvgtext.setText(String.valueOf(avgmks));      
+        weightedAvgtext.setText(String.valueOf(avgmks)); */     
     }
 
     /**

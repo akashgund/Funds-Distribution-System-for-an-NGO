@@ -143,7 +143,7 @@ public class StationaryAdminWorkArea extends javax.swing.JPanel {
         ViewReq panel = new ViewReq(userProcessContainer,enterprize,ua);
         userProcessContainer.add("ViewRequestPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);*/
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_ViewReqActionPerformed
 
 

@@ -58,6 +58,7 @@ public class ManageStateAdminEmails extends javax.swing.JPanel {
         ViewEmail = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
         ComposeEmail = new javax.swing.JButton();
+        ComposeEmail1 = new javax.swing.JButton();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -140,6 +141,18 @@ public class ManageStateAdminEmails extends javax.swing.JPanel {
             }
         });
 
+        ComposeEmail1.setBackground(new java.awt.Color(255, 0, 51));
+        ComposeEmail1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        ComposeEmail1.setForeground(new java.awt.Color(255, 255, 102));
+        ComposeEmail1.setText("Send Reports");
+        ComposeEmail1.setBorder(null);
+        ComposeEmail1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ComposeEmail1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComposeEmail1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,6 +160,7 @@ public class ManageStateAdminEmails extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(521, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ComposeEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ComposeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -166,11 +180,13 @@ public class ManageStateAdminEmails extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BackButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 467, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 405, Short.MAX_VALUE)
                 .addComponent(ViewEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(ComposeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ComposeEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -216,17 +232,26 @@ public class ManageStateAdminEmails extends javax.swing.JPanel {
 
     private void ComposeEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComposeEmailActionPerformed
         // TODO add your handling code here:
-        ComposeEmail composeEmail = new ComposeEmail(userProcessContainer, userAccount);
+        ComposeEmail composeEmail = new ComposeEmail(userProcessContainer,null, userAccount);
         userProcessContainer.add("ComaposeEmail", composeEmail);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
 
     }//GEN-LAST:event_ComposeEmailActionPerformed
 
+    private void ComposeEmail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComposeEmail1ActionPerformed
+        // TODO add your handling code here:
+        ComposeEmail composeEmail = new ComposeEmail(userProcessContainer,userAccount.getWorkQueue(), userAccount);
+        userProcessContainer.add("ComaposeEmail", composeEmail);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_ComposeEmail1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JButton ComposeEmail;
+    private javax.swing.JButton ComposeEmail1;
     private javax.swing.JTable DisplayTable;
     private javax.swing.JPanel Panel;
     private javax.swing.JButton ViewEmail;
