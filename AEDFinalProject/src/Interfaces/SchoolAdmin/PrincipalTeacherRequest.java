@@ -11,6 +11,7 @@ import Business.Organization.Organization;
 import Business.Role.SchoolAdminRole;
 import Business.Users.UserAccount;
 import Business.WorkQueue.ManpowerRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -49,6 +50,7 @@ this.ua=ua;//To change body of generated methods, choose Tools | Templates.
         CreateButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         teacherNumberText = new javax.swing.JTextField();
+        BackButton = new javax.swing.JButton();
 
         JPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -72,6 +74,18 @@ this.ua=ua;//To change body of generated methods, choose Tools | Templates.
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Enter Number of Teachers:");
 
+        BackButton.setBackground(new java.awt.Color(255, 0, 51));
+        BackButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        BackButton.setForeground(new java.awt.Color(255, 255, 102));
+        BackButton.setText("<<Back");
+        BackButton.setBorder(null);
+        BackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout JPanelLayout = new javax.swing.GroupLayout(JPanel);
         JPanel.setLayout(JPanelLayout);
         JPanelLayout.setHorizontalGroup(
@@ -81,7 +95,9 @@ this.ua=ua;//To change body of generated methods, choose Tools | Templates.
                     .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(JPanelLayout.createSequentialGroup()
-                            .addGap(232, 232, 232)
+                            .addContainerGap()
+                            .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(124, 124, 124)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(JPanelLayout.createSequentialGroup()
                             .addGap(39, 39, 39)
@@ -94,7 +110,9 @@ this.ua=ua;//To change body of generated methods, choose Tools | Templates.
             JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
+                .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(BackButton))
                 .addGap(54, 54, 54)
                 .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,8 +172,16 @@ this.ua=ua;//To change body of generated methods, choose Tools | Templates.
 
     }//GEN-LAST:event_CreateButtonActionPerformed
 
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BackButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
     private javax.swing.JButton CreateButton;
     private javax.swing.JPanel JPanel;
     private javax.swing.JLabel jLabel7;

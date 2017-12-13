@@ -46,6 +46,7 @@ public class SysSchoolAnalyticsHome extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         AnalyticsMenu = new javax.swing.JComboBox<>();
+        BackButton = new javax.swing.JButton();
 
         JPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -72,11 +73,23 @@ public class SysSchoolAnalyticsHome extends javax.swing.JPanel {
         AnalyticsMenu.setBackground(new java.awt.Color(255, 0, 51));
         AnalyticsMenu.setEditable(true);
         AnalyticsMenu.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        AnalyticsMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "View by Academic Performance", "View Fund Shares", "View Progress Report" }));
+        AnalyticsMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "View by Academic Performance" }));
         AnalyticsMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         AnalyticsMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AnalyticsMenuActionPerformed(evt);
+            }
+        });
+
+        BackButton.setBackground(new java.awt.Color(255, 0, 51));
+        BackButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        BackButton.setForeground(new java.awt.Color(255, 255, 102));
+        BackButton.setText("<<Back");
+        BackButton.setBorder(null);
+        BackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
             }
         });
 
@@ -95,13 +108,17 @@ public class SysSchoolAnalyticsHome extends javax.swing.JPanel {
                 .addContainerGap(138, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JPanelLayout.setVerticalGroup(
             JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BackButton))
                 .addGap(18, 18, 18)
                 .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,9 +164,17 @@ layout.next(userProcessContainer);
         // TODO add your handling code here:
     }//GEN-LAST:event_AnalyticsMenuActionPerformed
 
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BackButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AnalyticsMenu;
+    private javax.swing.JButton BackButton;
     private javax.swing.JPanel JPanel;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
