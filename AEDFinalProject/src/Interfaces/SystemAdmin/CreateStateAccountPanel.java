@@ -216,9 +216,20 @@ public class CreateStateAccountPanel extends javax.swing.JPanel {
 
     private void CreateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButton1ActionPerformed
         // TODO add your handling code here:
-        String username = userNameTextField.getText();
-        String password = String.valueOf(passwordField.getText());
-        String name = nameTextField.getText();
+        String username = "";
+                
+        String password = "";
+       
+        String name = "";
+        try{
+        username=userNameTextField.getText();
+         password=String.valueOf(passwordField.getText());
+        name=nameTextField.getText();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Enter Proper Data pls!");
+        }
 
         Employee employee = selectednetwork.getEmployeeDirectory().createEmployee(name);
 

@@ -1,0 +1,376 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Interfaces.SystemAdmin;
+
+import Business.Ecosystem.Ecosystem;
+import Business.Enterprize.Enterprize;
+import Business.Enterprize.HealthCare;
+import Business.Enterprize.InfraProvider;
+import Business.Enterprize.StationaryProvider;
+import Business.Network.Network;
+import Business.Users.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+/**
+ *
+ * @author akash
+ */
+public class CreateFacilityProvider extends javax.swing.JPanel {
+
+    /**
+     * Creates new form CreateFacilityProvider
+     */
+    JPanel userProcessContainer;
+    Ecosystem business;
+    Network selectednetwork;
+    Enterprize selectedEnt;
+    int hospcount = 0;
+    int infracount = 0;
+    int stationarycount = 0;
+
+    public CreateFacilityProvider(JPanel userProcessContainer, Ecosystem business) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.business = business;
+        populateState();
+
+    }
+
+    public void populateState() {
+        System.out.println("in pops");
+        //StateJCombo.removeAllItems();;
+        for (Network network : business.getNetworkList()) {
+            StateJCombo.addItem(network.getOrganisationName());
+        }
+    }
+
+    public void populateFacilityProvider() {
+
+        String selected = StateJCombo.getSelectedItem().toString();
+        selectednetwork = null;
+
+        for (Network network : business.getNetworkList()) {
+
+            if (network.getOrganisationName().equalsIgnoreCase(selected)) {
+                FacilityProvider.removeAllItems();
+                selectednetwork = network;
+                for (Enterprize ent : network.getEnterpriseDirectory().getEnterprizeList()) {
+                    
+                    if (ent.getEnterpriseType().toString().equalsIgnoreCase("School")) {
+                        continue;
+                    }
+                    if (ent instanceof HealthCare) {
+                        System.out.println("In instance chk");
+                        
+                        if (ent.getUserAccountDirectory().getUserAccount().size() == 1) {
+                            hospcount = 1;
+
+                        }
+
+                    }
+                    if(ent instanceof InfraProvider)
+                    {
+                        if (ent.getUserAccountDirectory().getUserAccount().size() == 1) {
+                            infracount = 1;
+
+                        }
+                        
+                    }
+                    if(ent instanceof StationaryProvider)
+                    {
+                        if (ent.getUserAccountDirectory().getUserAccount().size() == 1) {
+                            stationarycount = 1;
+
+                        }
+                        
+                    }
+
+                    //FacilityProvider.addItem(ent.getEnterpriseType().toString());
+                }
+            }
+
+        }
+        
+        for (Network network : business.getNetworkList()) {
+            if (network.getOrganisationName().equalsIgnoreCase(selected)) {
+                for (Enterprize ent : network.getEnterpriseDirectory().getEnterprizeList()) {
+                    if (ent.getEnterpriseType().toString().equalsIgnoreCase("School")) {
+                        continue;
+                    }
+                    if (ent instanceof HealthCare) {
+                        if (network.getHealthcount()==1) {
+                            //System.out.println("hospcount beep" + hospcount);
+                            continue;
+                        }
+                    }
+                    if (ent instanceof InfraProvider) {
+                        if (network.getInfracount()==1) {
+                            System.out.println("infra exists"+network.getInfracount());
+                            continue;
+                        }
+                    }
+                    if (ent instanceof StationaryProvider) {
+                        if (network.getStationarycount()==1) {
+                            //System.out.println("hospcount beep" + hospcount);
+                            continue;
+                        }
+                    }
+                    if(network.getInfracount()==1&&network.getHealthcount()==1&&network.getStationarycount()==1)
+                    {
+                        JOptionPane.showMessageDialog(null,"All Providers created Cant create more");
+                    }
+                   
+
+                    FacilityProvider.addItem(ent.getEnterpriseType().toString());
+
+                }
+            }
+        }
+        //hospcount=0;
+
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        JPanel = new javax.swing.JPanel();
+        StateJCombo = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        FacilityProviderLabel = new javax.swing.JLabel();
+        FacilityProvider = new javax.swing.JComboBox<>();
+        CreateButton = new javax.swing.JButton();
+        loginButton5 = new javax.swing.JButton();
+
+        JPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        StateJCombo.setBackground(new java.awt.Color(255, 0, 51));
+        StateJCombo.setEditable(true);
+        StateJCombo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        StateJCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        StateJCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StateJComboActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel7.setText("Create Accounts");
+
+        jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel8.setText("Select State");
+
+        FacilityProviderLabel.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        FacilityProviderLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        FacilityProviderLabel.setText("Select Facility Provider");
+
+        FacilityProvider.setBackground(new java.awt.Color(255, 0, 51));
+        FacilityProvider.setEditable(true);
+        FacilityProvider.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        FacilityProvider.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        FacilityProvider.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FacilityProviderActionPerformed(evt);
+            }
+        });
+
+        CreateButton.setBackground(new java.awt.Color(255, 0, 51));
+        CreateButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        CreateButton.setForeground(new java.awt.Color(255, 255, 102));
+        CreateButton.setText("Create Account");
+        CreateButton.setBorder(null);
+        CreateButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CreateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateButtonActionPerformed(evt);
+            }
+        });
+
+        loginButton5.setBackground(new java.awt.Color(255, 0, 51));
+        loginButton5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        loginButton5.setForeground(new java.awt.Color(255, 255, 102));
+        loginButton5.setText("Logout");
+        loginButton5.setBorder(null);
+        loginButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JPanelLayout = new javax.swing.GroupLayout(JPanel);
+        JPanel.setLayout(JPanelLayout);
+        JPanelLayout.setHorizontalGroup(
+            JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelLayout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelLayout.createSequentialGroup()
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(JPanelLayout.createSequentialGroup()
+                        .addComponent(loginButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JPanelLayout.createSequentialGroup()
+                        .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(FacilityProviderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(FacilityProvider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(StateJCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(166, 166, 166))
+        );
+        JPanelLayout.setVerticalGroup(
+            JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(StateJCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FacilityProvider, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FacilityProviderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(293, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(JPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(JPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void StateJComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StateJComboActionPerformed
+        // TODO add your handling code here:
+        System.out.println("blalala");
+        populateFacilityProvider();
+        //for(Enterprize ent:network.getEnterpriseDirectory().getEnterprizeList())
+
+        //}
+/*
+        for (Network network : business.getNetworkList()) {
+            int hospcount=0;
+            int infracount=0;
+            int stationarycount=0;
+            
+            for(Enterprize ent:network.getEnterpriseDirectory().getEnterprizeList())
+            {
+                if(ent.getEnterpriseType().toString().equalsIgnoreCase("School"))
+                    continue;
+                
+                   if( ent instanceof HealthCare) 
+                   {
+                       if(ent.getUserAccountDirectory().getUserAccount().size()==1)
+                           hospcount=1;
+                           
+                   }
+                   if(ent instanceof InfraProvider)
+                   {
+                       if(ent.getUserAccountDirectory().getUserAccount().size()==1)
+                           infracount=1;
+                       
+                   }
+                   if(ent instanceof StationaryProvider)
+                   {
+                       if(ent.getUserAccountDirectory().getUserAccount().size()==1)
+                           hospcount=1;
+                   }
+                   
+                }
+            for(Enterprize ent:network.getEnterpriseDirectory().getEnterprizeList())
+            {
+                if(hospcount==0)
+                {
+                    
+                FacilityProvider.addItem(ent.getEnterpriseType().toString());
+            }
+                if(infracount==0)
+                {
+                    
+                FacilityProvider.addItem(ent.getEnterpriseType().toString());
+                }
+                if(stationarycount==0)
+                {
+                    
+                FacilityProvider.addItem(ent.getEnterpriseType().toString());
+                }
+            }
+        }
+
+         */
+        // Network selected=Network(StateJCombo.)
+        //if()
+    }//GEN-LAST:event_StateJComboActionPerformed
+
+    private void FacilityProviderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacilityProviderActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_FacilityProviderActionPerformed
+
+    private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
+        // TODO add your handling code here:
+        //ent.getEnterpriseType().toString()
+        for (Enterprize ent : selectednetwork.getEnterpriseDirectory().getEnterprizeList()) {
+            //System.out.println(FacilityProvider.getSelectedItem().toString()+"...."+ent.getEnterpriseType().toString());
+            if (FacilityProvider.getSelectedItem().toString().equalsIgnoreCase(ent.getEnterpriseType().getValue())) {
+                selectedEnt = ent;
+            }
+           
+        }
+       
+        CreateFacilityProviderAccount panel = new CreateFacilityProviderAccount(userProcessContainer, selectedEnt, selectednetwork);
+        userProcessContainer.add("CreateFaciltiyProviderAccount", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_CreateButtonActionPerformed
+
+    private void loginButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton5ActionPerformed
+        // TODO add your handling code here:
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        userProcessContainer.remove(component);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_loginButton5ActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CreateButton;
+    private javax.swing.JComboBox<String> FacilityProvider;
+    private javax.swing.JLabel FacilityProviderLabel;
+    private javax.swing.JPanel JPanel;
+    private javax.swing.JComboBox<String> StateJCombo;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton loginButton5;
+    // End of variables declaration//GEN-END:variables
+}
