@@ -10,6 +10,7 @@ import Business.Enterprize.Enterprize;
 import Business.Enterprize.School;
 import Business.Network.Network;
 import UtilityClasses.JComboBoxDecorator;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
@@ -43,8 +45,9 @@ public class SchoolAnalyticsPage extends javax.swing.JPanel {
         this.business=business;
         
         this.userProcessContainer=userProcessContainer;
-        this.input=input;
+        this.input=entry;
         populateSchool(); //To change body of generated methods, choose Tools | Templates.
+        load();
     }
     public void autosuggest() {
         JTextField text = (JTextField) SchoolJCombo.getEditor().getEditorComponent();
@@ -81,71 +84,180 @@ public class SchoolAnalyticsPage extends javax.swing.JPanel {
     }
 public void populateGraph()
     {
-        if(input.equalsIgnoreCase("Individual School Performance"))
+        if(input.equalsIgnoreCase("Best School"))
         {
-            DefaultPieDataset  dataset= new DefaultPieDataset();
+            DefaultCategoryDataset  dataset= new DefaultCategoryDataset();
       String schoolSelected= SchoolJCombo.getSelectedItem().toString();
       //print analytics for the selected school in this loop
-      for(Enterprize ent: network.getEnterpriseDirectory().getEnterprizeList() )
-        {
-            if(ent.getOrganisationName().equalsIgnoreCase(SchoolJCombo.getSelectedItem().toString()))
-            {
+      //JOption
+                    double max=0;
+                    School best=null;
+               for (Network network : business.getNetworkList()) {
+
+                for (Enterprize ent : network.getEnterpriseDirectory().getEnterprizeList()) {
+                    //totalfund=0;
+
+                    if (ent instanceof School && ent.isAccount()) {
+                          School s=(School) ent;
+                          if(s.getOverallScore()>max)
+                          {
+                              best=s;
+                          }
+                    }
+                }
+                
+               //e.getExam();
+               if(best!=null)
+               dataset.setValue(best.getAverageMarks(),"",best.getOrganisationName());
+               
                 //dataset.setValue(supplier.getSupplierName(),soldtotal);
-            }
+            
             
            
       //dataset.setValue(supplier.getSupplierName(),soldtotal);
-        }
-     
         
-
-        JFreeChart chartdata=ChartFactory.createPieChart(
-            "Funds Distibution",  // chart title
-            dataset,             // data
-            true,               // include legend
-            true,
-            false
+     
+        //create
+//ChartFactory.createBarChart
+        JFreeChart chartdata=ChartFactory.createBarChart(
+            "Exam Results",
+                "School",
+                    "Marks",// chart title
+            dataset            // data
+                          // include legend
+            
         );
        // CategoryPlot areachart= chartdata.getCategoryPlot();
+       
        // areachart.setRangeCrosshairPaint(Color.BLUE);
-        ChartPanel panel= new ChartPanel(chartdata);
+       
         
-        PiePlot plot =(PiePlot)chartdata.getPlot();
-        plot.setLabelFont(new Font("Tempus Sans ITC", Font.PLAIN, 14));
-        plot.setNoDataMessage("data missing");
-        plot.setCircular(false);
-        plot.setLabelGap(0.03);
-        GraphPanel.removeAll();
-        GraphPanel.add(panel);
-        GraphPanel.validate();
-        }
-        if(input.equalsIgnoreCase("School Funded"))
+        CategoryPlot areachart = chartdata.getCategoryPlot();
+                areachart.setRangeCrosshairPaint(Color.BLUE);
+                ChartPanel panel = new ChartPanel(chartdata);
+                GraphPanel.removeAll();
+                GraphPanel.add(panel);
+                //JOptionPane.showMessageDialog(null,"sddfs aDDING GRAPH MFK");
+                GraphPanel.validate();
+    }
+                }
+               
+        
+        
+               
+        
+        if(input.equalsIgnoreCase("Compare Exam Scores"))
         {
+             DefaultCategoryDataset  dataset= new DefaultCategoryDataset();
+      String schoolSelected= SchoolJCombo.getSelectedItem().toString();
+      //print analytics for the selected school in this loop
+      //JOption
+                    
+               for (Network network : business.getNetworkList()) {
+
+                for (Enterprize ent : network.getEnterpriseDirectory().getEnterprizeList()) {
+                    //totalfund=0;
+
+                    if (ent instanceof School && ent.isAccount()) {
+                          School s=(School) ent;
+                           dataset.setValue(s.getAverageMarks(),"",s.getOrganisationName());
+                            
+                          }
+                    }
+                }
+                
+               //e.getExam();
+               
+              
+               
+                //dataset.setValue(supplier.getSupplierName(),soldtotal);
             
-             DefaultCategoryDataset dataset= new DefaultCategoryDataset();
+            
+           
+      //dataset.setValue(supplier.getSupplierName(),soldtotal);
+        
+     
+        //create
+//ChartFactory.createBarChart
+        JFreeChart chartdata=ChartFactory.createBarChart(
+            "Exam Results",
+                "School",
+                    "Marks",// chart title
+            dataset            // data
+                          // include legend
+            
+        );
+       // CategoryPlot areachart= chartdata.getCategoryPlot();
+       
+       // areachart.setRangeCrosshairPaint(Color.BLUE);
+       
+        
+        CategoryPlot areachart = chartdata.getCategoryPlot();
+                areachart.setRangeCrosshairPaint(Color.BLUE);
+                ChartPanel panel = new ChartPanel(chartdata);
+                GraphPanel.removeAll();
+                GraphPanel.add(panel);
+                //JOptionPane.showMessageDialog(null,"sddfs aDDING GRAPH MFK");
+                GraphPanel.validate();
+        }
+         if(input.equalsIgnoreCase("Individual School"))
+        {
+         DefaultCategoryDataset  dataset= new DefaultCategoryDataset();
+      String schoolSelected= SchoolJCombo.getSelectedItem().toString();
+      //print analytics for the selected school in this loop
+      //JOption
+                    
+               for (Network network : business.getNetworkList()) {
+
+                for (Enterprize ent : network.getEnterpriseDirectory().getEnterprizeList()) {
+                    //totalfund=0;
+
+                    if (ent instanceof School && ent.isAccount()&& ent.getOrganisationName().equalsIgnoreCase(schoolSelected)) {
+                          School s=(School) ent;
+                           dataset.setValue(s.getAverageMarks(),"","Exam Results");
+                            
+                          }
+                    }
+                }
+                
+               //e.getExam();
+               
+              
+               
+                //dataset.setValue(supplier.getSupplierName(),soldtotal);
+            
+            
+           
+      //dataset.setValue(supplier.getSupplierName(),soldtotal);
+        
+     
+        //create
+//ChartFactory.createBarChart
+        JFreeChart chartdata=ChartFactory.createBarChart(
+            "Exam Results",
+                "School",
+                    "Marks",// chart title
+            dataset            // data
+                          // include legend
+            
+        );
+       // CategoryPlot areachart= chartdata.getCategoryPlot();
+       
+       // areachart.setRangeCrosshairPaint(Color.BLUE);
+       
+        
+        CategoryPlot areachart = chartdata.getCategoryPlot();
+                areachart.setRangeCrosshairPaint(Color.BLUE);
+                ChartPanel panel = new ChartPanel(chartdata);
+                GraphPanel.removeAll();
+                GraphPanel.add(panel);
+                //JOptionPane.showMessageDialog(null,"sddfs aDDING GRAPH MFK");
+                GraphPanel.validate();
+    }
+        }
+
         
 
-        JFreeChart chartdata=ChartFactory.createBarChart3D("SalesData","Sales Person", "Revenue", dataset);
-        CategoryPlot areachart= chartdata.getCategoryPlot();
-        areachart.setRangeCrosshairPaint(Color.BLUE);
-        ChartPanel panel= new ChartPanel(chartdata);
-        GraphPanel.removeAll();
-        GraphPanel.add(panel);
-        GraphPanel.validate();
-        }
-         if(input.equalsIgnoreCase("Best School"))
-        {
-            
-         DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-          JFreeChart chartdata=ChartFactory.createLineChart3D("Funding History","Year", "Fund Granted", dataset);
-        CategoryPlot areachart= chartdata.getCategoryPlot();
-        areachart.setRangeCrosshairPaint(Color.BLUE);
-        ChartPanel panel= new ChartPanel(chartdata);
-        GraphPanel.removeAll();
-        GraphPanel.add(panel);
-        GraphPanel.validate();
-        }
-        }
     
 
     /**
@@ -160,12 +272,13 @@ public void populateGraph()
         AnalyticsMenu = new javax.swing.JComboBox<>();
         JPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        FundingHistory = new javax.swing.JButton();
+        Indi = new javax.swing.JButton();
         schoolFunded = new javax.swing.JButton();
-        fundTypeButton = new javax.swing.JButton();
+        BestSchool = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         SchoolJCombo = new javax.swing.JComboBox();
         GOBUTTON = new javax.swing.JButton();
+        BackButton = new javax.swing.JButton();
         GraphPanel = new javax.swing.JPanel();
 
         AnalyticsMenu.setBackground(new java.awt.Color(255, 0, 51));
@@ -183,15 +296,15 @@ public void populateGraph()
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        FundingHistory.setBackground(new java.awt.Color(255, 0, 51));
-        FundingHistory.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        FundingHistory.setForeground(new java.awt.Color(255, 255, 102));
-        FundingHistory.setText("Individual School Analysis");
-        FundingHistory.setBorder(null);
-        FundingHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        FundingHistory.addActionListener(new java.awt.event.ActionListener() {
+        Indi.setBackground(new java.awt.Color(255, 0, 51));
+        Indi.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        Indi.setForeground(new java.awt.Color(255, 255, 102));
+        Indi.setText("Individual School Analysis");
+        Indi.setBorder(null);
+        Indi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Indi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FundingHistoryActionPerformed(evt);
+                IndiActionPerformed(evt);
             }
         });
 
@@ -207,15 +320,15 @@ public void populateGraph()
             }
         });
 
-        fundTypeButton.setBackground(new java.awt.Color(255, 0, 51));
-        fundTypeButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        fundTypeButton.setForeground(new java.awt.Color(255, 255, 102));
-        fundTypeButton.setText("Best School");
-        fundTypeButton.setBorder(null);
-        fundTypeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        fundTypeButton.addActionListener(new java.awt.event.ActionListener() {
+        BestSchool.setBackground(new java.awt.Color(255, 0, 51));
+        BestSchool.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        BestSchool.setForeground(new java.awt.Color(255, 255, 102));
+        BestSchool.setText("Best School");
+        BestSchool.setBorder(null);
+        BestSchool.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BestSchool.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fundTypeButtonActionPerformed(evt);
+                BestSchoolActionPerformed(evt);
             }
         });
 
@@ -247,32 +360,49 @@ public void populateGraph()
             }
         });
 
+        BackButton.setBackground(new java.awt.Color(255, 0, 51));
+        BackButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        BackButton.setForeground(new java.awt.Color(255, 255, 102));
+        BackButton.setText("<<Back");
+        BackButton.setBorder(null);
+        BackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(fundTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BestSchool, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                 .addComponent(schoolFunded, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(152, 152, 152)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(GOBUTTON, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SchoolJCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(FundingHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Indi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
+                .addComponent(BackButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(schoolFunded, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fundTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FundingHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BestSchool, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Indi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SchoolJCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -322,28 +452,28 @@ public void populateGraph()
         // TODO add your handling code here:
     }//GEN-LAST:event_AnalyticsMenuActionPerformed
 
-    private void FundingHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FundingHistoryActionPerformed
+    private void IndiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IndiActionPerformed
         // TODO add your handling code here:
-        input = "View by Funding History";
+        input = "Individual School";
         load();
-    }//GEN-LAST:event_FundingHistoryActionPerformed
+    }//GEN-LAST:event_IndiActionPerformed
 
     private void schoolFundedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schoolFundedActionPerformed
         // TODO add your handling code here:
-        input = "View by Schools Funded";
+        input = "Compare Exam Scores";
         load();
     }//GEN-LAST:event_schoolFundedActionPerformed
 
-    private void fundTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fundTypeButtonActionPerformed
+    private void BestSchoolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BestSchoolActionPerformed
         // TODO add your handling code here:
-        input = "view by Fund Type";
+        input = "Best School";
         SchoolJCombo.setEnabled(true);
         //schoolchoice= SchoolJCombo.getSelectedItem().toString();
         //load();
         JOptionPane.showMessageDialog(null,"passed test");
         //jComboBox1.setEnabled(false);
 
-    }//GEN-LAST:event_fundTypeButtonActionPerformed
+    }//GEN-LAST:event_BestSchoolActionPerformed
 
     private void SchoolJComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SchoolJComboActionPerformed
         // TODO add your handling code here:
@@ -354,20 +484,28 @@ public void populateGraph()
     private void GOBUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GOBUTTONActionPerformed
         // TODO add your handling code here:
         //schoolchoice= SchoolJCombo.getSelectedItem().toString();
-        input = "View by Funding History";
+        input = "Individual School Performance";
         //JOptionPane.showMessageDialog(null,"from go button"+schoolchoice);
         load();
     }//GEN-LAST:event_GOBUTTONActionPerformed
 
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BackButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AnalyticsMenu;
-    private javax.swing.JButton FundingHistory;
+    private javax.swing.JButton BackButton;
+    private javax.swing.JButton BestSchool;
     private javax.swing.JButton GOBUTTON;
     private javax.swing.JPanel GraphPanel;
+    private javax.swing.JButton Indi;
     private javax.swing.JPanel JPanel;
     private javax.swing.JComboBox SchoolJCombo;
-    private javax.swing.JButton fundTypeButton;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton schoolFunded;

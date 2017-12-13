@@ -53,6 +53,7 @@ public class StationaryAdminWorkArea extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         ViewReq = new javax.swing.JButton();
+        BackButton = new javax.swing.JButton();
 
         Panel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -95,6 +96,13 @@ public class StationaryAdminWorkArea extends javax.swing.JPanel {
             }
         });
 
+        BackButton.setBackground(new java.awt.Color(255, 0, 51));
+        BackButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        BackButton.setForeground(new java.awt.Color(255, 255, 102));
+        BackButton.setText("<<Back");
+        BackButton.setBorder(null);
+        BackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
         PanelLayout.setHorizontalGroup(
@@ -102,9 +110,8 @@ public class StationaryAdminWorkArea extends javax.swing.JPanel {
             .addGroup(PanelLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(CheckMail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CheckMail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,7 +124,9 @@ public class StationaryAdminWorkArea extends javax.swing.JPanel {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))))
             .addGroup(PanelLayout.createSequentialGroup()
-                .addGap(205, 205, 205)
+                .addContainerGap()
+                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106)
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
                         .addGap(302, 302, 302)
@@ -132,7 +141,9 @@ public class StationaryAdminWorkArea extends javax.swing.JPanel {
                 .addGap(6, 6, 6)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BackButton))
                 .addGap(34, 34, 34)
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,6 +202,7 @@ public class StationaryAdminWorkArea extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
     private javax.swing.JButton CheckMail;
     private javax.swing.JPanel Panel;
     private javax.swing.JButton ViewReq;

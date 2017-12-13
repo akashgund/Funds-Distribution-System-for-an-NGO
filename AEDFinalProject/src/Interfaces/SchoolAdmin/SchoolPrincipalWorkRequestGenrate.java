@@ -67,6 +67,7 @@ public class SchoolPrincipalWorkRequestGenrate extends javax.swing.JPanel {
         CreateButton1 = new javax.swing.JButton();
         jProgressBar2 = new javax.swing.JProgressBar();
         jLabel9 = new javax.swing.JLabel();
+        BackButton = new javax.swing.JButton();
 
         Panel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -94,12 +95,26 @@ public class SchoolPrincipalWorkRequestGenrate extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Score:");
 
+        BackButton.setBackground(new java.awt.Color(255, 0, 51));
+        BackButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        BackButton.setForeground(new java.awt.Color(255, 255, 102));
+        BackButton.setText("<<Back");
+        BackButton.setBorder(null);
+        BackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
         PanelLayout.setHorizontalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLayout.createSequentialGroup()
-                .addGap(282, 282, 282)
+                .addContainerGap()
+                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(174, 174, 174)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
@@ -118,7 +133,9 @@ public class SchoolPrincipalWorkRequestGenrate extends javax.swing.JPanel {
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(BackButton))
                 .addGap(108, 108, 108)
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,8 +176,16 @@ public class SchoolPrincipalWorkRequestGenrate extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Send request", "Success" , JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_CreateButton1ActionPerformed
 
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BackButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
     private javax.swing.JButton CreateButton1;
     private javax.swing.JPanel Panel;
     private javax.swing.JLabel jLabel8;

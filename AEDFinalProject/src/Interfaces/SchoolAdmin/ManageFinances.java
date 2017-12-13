@@ -14,6 +14,7 @@ import Business.Funds.StationaryFunds;
 import Business.Role.SchoolAdminRole;
 import Business.Users.UserAccount;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -102,6 +103,7 @@ public class ManageFinances extends javax.swing.JPanel {
         jProgressBar2 = new javax.swing.JProgressBar();
         jLabel9 = new javax.swing.JLabel();
         txtAmount = new javax.swing.JTextField();
+        BackButton = new javax.swing.JButton();
         loginButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -142,6 +144,18 @@ public class ManageFinances extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Enter Amount required:");
 
+        BackButton.setBackground(new java.awt.Color(255, 0, 51));
+        BackButton.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        BackButton.setForeground(new java.awt.Color(255, 255, 102));
+        BackButton.setText("<<Back");
+        BackButton.setBorder(null);
+        BackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
         userProcessContainer.setLayout(userProcessContainerLayout);
         userProcessContainerLayout.setHorizontalGroup(
@@ -149,7 +163,9 @@ public class ManageFinances extends javax.swing.JPanel {
             .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userProcessContainerLayout.createSequentialGroup()
-                        .addGap(195, 195, 195)
+                        .addContainerGap()
+                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(userProcessContainerLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
@@ -175,7 +191,9 @@ public class ManageFinances extends javax.swing.JPanel {
             userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userProcessContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
+                .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(BackButton))
                 .addGap(50, 50, 50)
                 .addGroup(userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,8 +325,16 @@ public class ManageFinances extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BackButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
     private javax.swing.JComboBox fundsCombo;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
