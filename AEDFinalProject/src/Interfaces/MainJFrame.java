@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.Ecosystem.Configuration;
 import Business.Ecosystem.Ecosystem;
 import Business.Enterprize.Enterprize;
@@ -30,10 +31,10 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     private Ecosystem system;
-
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public MainJFrame() {
         initComponents();
-        system = Configuration.configure();
+        system = dB4OUtil.retrieveSystem();
         populate();
     }
 
@@ -315,6 +316,7 @@ public class MainJFrame extends javax.swing.JFrame {
         crdLyt.next(container);
         loginButton.setEnabled(true);
         loginButton2.setEnabled(false);
+        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_loginButton2ActionPerformed
 
     /**
