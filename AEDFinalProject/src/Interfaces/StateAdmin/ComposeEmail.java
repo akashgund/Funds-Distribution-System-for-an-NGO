@@ -53,6 +53,10 @@ public class ComposeEmail extends javax.swing.JPanel {
                 request.setReported(true);
             }
         }
+        if(s.toString().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "No attachments available!" , "Sorry", JOptionPane.WARNING_MESSAGE);
+        }
         EmailContent.setText(s.toString());
     }
 
